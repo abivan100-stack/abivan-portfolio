@@ -89,7 +89,7 @@ function App() {
             </ol>
             <div className="chip-core">
               <p className="chip-location">Chennai, India</p>
-              <h1 id="intro-title">{heroView === 'board' ? 'Abivan Vijay' : 'Abivan'}</h1>
+              <h1 id="intro-title">Abivan Vijay</h1>
               <p className="chip-description">I’m 14. I turn ideas into software, experiments, and things that move.</p>
             </div>
             <ul className="pins pins-out" aria-label="Where to go next">
