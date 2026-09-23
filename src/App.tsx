@@ -1,23 +1,17 @@
+import { useState } from 'react'
 import { motion, MotionConfig, useReducedMotion } from 'motion/react'
 import projects from './data/projects.json'
 import './App.css'
 
 type Project = (typeof projects)[number]
 
-function ProjectRow({ project, index }: { project: Project; index: number }) {
-  const reduceMotion = useReducedMotion()
+function ProjectRow({ project }: { project: Project }) {
   const [projectTitle, projectSubtitle] = project.name.split(/\s+--\s+/, 2)
   return (
-    <motion.article
-      className="project-row"
-      initial={reduceMotion ? false : 'hidden'}
-      whileInView={reduceMotion ? undefined : 'visible'}
-      viewport={{ once: true, amount: 0.25 }}
-      variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.38, delay: index * 0.035 } } }}
-    >
+    <article className="project-row">
       <div className="project-name">
         <span className="project-type">{project.language || 'Project'}</span>
-        <h3>{projectSubtitle ? projectTitle : project.name}</h3>
+        <h3><a href={project.url} target="_blank" rel="noreferrer">{projectSubtitle ? projectTitle : project.name}</a></h3>
         {projectSubtitle && <span className="project-subtitle">{projectSubtitle}</span>}
       </div>
       <div className="project-detail">
@@ -28,12 +22,13 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noreferrer">Open live demo</a>}
         </div>
       </div>
-    </motion.article>
+    </article>
   )
 }
 
 function App() {
   const reduceMotion = useReducedMotion()
+  const [armMoved, setArmMoved] = useState(false)
   const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
   const entrance = (delay: number) => reduceMotion ? {} : { initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0, transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const } } }
 
@@ -65,11 +60,26 @@ function App() {
                 <p className="hero-description">I turn ideas into software, experiments, and things that move.</p>
               </motion.div>
             </div>
-            <motion.aside className="hero-note" {...entrance(0.3)} aria-label="A little about Abivan">
-              <span className="note-symbol" aria-hidden="true"><span /><span /><span /></span>
-              <p>Exploring robotics, code, and the ideas that bring them together.</p>
-              <a href="#about">A little about me <span aria-hidden="true">↓</span></a>
-              <span className="note-index" aria-hidden="true">AB / 01</span>
+            <motion.aside className="hero-study" {...entrance(0.3)} aria-label="Interactive motion sketch">
+              <div className="study-heading"><span>Motion sketch</span><span>{armMoved ? '02 / 02' : '01 / 02'}</span></div>
+              <svg className="study-diagram" viewBox="0 0 300 210" role="img" aria-label="A simple two-joint robotic arm drawing">
+                <path className="study-ground" d="M18 178H282" />
+                <path className="study-guide" d="M70 166V24M18 166H282" />
+                <circle className="study-radius" cx="70" cy="166" r="51" />
+                <motion.g initial={false} animate={{ rotate: armMoved ? -14 : 12 }} transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 95, damping: 17 }} style={{ transformOrigin: '70px 166px' }}>
+                  <path className="study-arm" d="M70 166L160 101" />
+                  <circle className="study-joint" cx="160" cy="101" r="9" />
+                  <circle className="study-joint-core" cx="160" cy="101" r="3" />
+                  <motion.g initial={false} animate={{ rotate: armMoved ? 24 : -16 }} transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 95, damping: 17 }} style={{ transformOrigin: '160px 101px' }}>
+                    <path className="study-arm" d="M160 101L231 57" />
+                    <path className="study-tool" d="M229 45L241 57L229 69M241 57L251 57" />
+                  </motion.g>
+                </motion.g>
+                <circle className="study-base" cx="70" cy="166" r="13" />
+                <circle className="study-base-core" cx="70" cy="166" r="4" />
+                <text x="27" y="199">BASE</text><text x="242" y="199">REACH</text>
+              </svg>
+              <div className="study-footer"><p>A little experiment in movement.</p><button type="button" onClick={() => setArmMoved((value) => !value)}>{armMoved ? 'Reset arm' : 'Move arm'}</button></div>
             </motion.aside>
           </section>
 
@@ -78,11 +88,11 @@ function App() {
               <span className="section-mark" aria-hidden="true">✳</span>
               <h2 id="about-title">A bit<br />about me</h2>
             </div>
-            <motion.div className="about-copy" initial={reduceMotion ? false : { opacity: 0, y: 12 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5 }}>
+            <div className="about-copy">
               <p className="about-lead">I’m Abivan, a 14-year-old robotics enthusiast and vibe coder based in Chennai.</p>
               <p>I study at Velammal Academy, Nolambur. Claude Code and Codex are my main coding tools; I use them to explore ideas, build software, and experiment with how hardware and code can work together.</p>
               <a className="text-link" href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">Find me on GitHub</a>
-            </motion.div>
+            </div>
           </section>
 
           <section className="work-section" id="work" aria-labelledby="work-title">
@@ -94,7 +104,7 @@ function App() {
               <p>Five projects across energy, health, cities, and agriculture.</p>
             </div>
             <div className="project-list section-wrap">
-              {orderedProjects.map((project, index) => <ProjectRow project={project} index={index} key={project.slug} />)}
+              {orderedProjects.map((project) => <ProjectRow project={project} key={project.slug} />)}
             </div>
             <div className="work-outro section-wrap">
               <span>More experiments and source code</span>
@@ -112,7 +122,6 @@ function App() {
                 <a className="closing-email" href="mailto:abivan100@gmail.com">abivan100@gmail.com</a>
                 <a className="closing-github" href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">Visit GitHub</a>
               </div>
-              <span className="closing-orbit" aria-hidden="true"><i /><i /><i /></span>
             </div>
           </section>
         </main>
