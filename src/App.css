@@ -46,8 +46,8 @@
 .note-symbol { width: 44px; height: 44px; margin-bottom: auto; display: flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid #ffffff70; border-radius: 50%; }
 .note-symbol span { width: 4px; height: 4px; border-radius: 50%; background: var(--acid); }
 .note-symbol span:nth-child(2) { width: 6px; height: 6px; }
-.hero-note > p { position: relative; z-index: 1; max-width: 225px; margin: 44px 0 20px; font-size: 1.18rem; line-height: 1.42; letter-spacing: -.025em; }
-.hero-note > a { position: relative; z-index: 2; display: flex; align-items: center; gap: 21px; color: var(--acid); font-size: .8rem; text-decoration: none; }
+.hero-note > p { position: relative; z-index: 1; max-width: 245px; margin: 44px 0 20px; font-size: 1.35rem; line-height: 1.4; letter-spacing: -.025em; }
+.hero-note > a { position: relative; z-index: 2; display: flex; align-items: center; gap: 21px; color: var(--acid); font-size: .9rem; text-decoration: none; }
 .hero-note > a span { transition: transform 180ms ease; }
 .hero-note > a:hover span { transform: translateY(4px); }
 .note-index { position: absolute; top: 36px; right: 28px; color: #ffffffa3; font-size: .65rem; letter-spacing: .07em; }
