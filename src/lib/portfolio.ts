@@ -1,5 +1,6 @@
 import projects from '../data/projects.json'
 import events from '../data/events.json'
+import toolkitData from '../data/toolkit.json'
 
 export type Project = (typeof projects)[number]
 export type Recognition = { text: string; dates: string[] }
@@ -48,3 +49,20 @@ export const milestones: (Recognition & { slug: string | null; title: string })[
   }))),
   ...events.map((event) => ({ ...event, slug: null })),
 ].sort((a, b) => a.dates[0].localeCompare(b.dates[0]))
+
+// The toolkit (bill of materials): each part links to the projects that use it. Qty is the number of
+// those projects, so it stays right as projects are added; unknown slugs are skipped rather than
+// rendered as broken links.
+type ToolkitRow = { group: string; part: string; note: string; projects: string[] | 'all' }
+// Keyed by lower-cased slug so toolkit.json matches regardless of letter case (repo names like Spike_Fit).
+const projectsBySlug = new Map(projects.map((project) => [
+  project.slug.toLowerCase(),
+  { slug: project.slug, title: project.name.split(/\s+--\s+/, 1)[0] },
+]))
+
+export const toolkit = (toolkitData as ToolkitRow[]).map((row) => {
+  const used = row.projects === 'all'
+    ? null
+    : row.projects.flatMap((slug) => projectsBySlug.get(slug.toLowerCase()) ?? [])
+  return { ...row, used, qty: used ? used.length : projects.length }
+})

@@ -257,8 +257,10 @@
 
 /* Timeline: results in date order as test points on one wire */
 .timeline { --tp-y: 44px; }
-.timeline-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px; }
-.timeline-head p { max-width: 54ch; margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; }
+.timeline-head,
+.toolkit-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px; }
+.timeline-head p,
+.toolkit-head p { max-width: 54ch; margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; }
 /* Columns wrap as results are added; each point draws its own wire segment across the gap, so every row stays wired */
 .timeline { --tp-gap: 28px; }
 .tp-wire { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 44px var(--tp-gap); margin: 40px 0 0; padding: 0; list-style: none; }
@@ -296,6 +298,22 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .sub-sheet { scroll-margin-top: 24px; }
 .sub-sheet.is-flashing .sheet-box { animation: sheet-flash 1100ms ease-out 350ms; }
 @keyframes sheet-flash { 0%, 100% { border-color: var(--magenta); box-shadow: none; } 20%, 65% { border-color: var(--green-hot); box-shadow: 0 0 0 4px #e8ffe9; } }
+
+/* Toolkit: a bill of materials, as KiCad would export it */
+.bom { width: 100%; margin-top: 32px; border: 2px solid var(--navy); border-collapse: collapse; background: var(--paper); font-size: .95rem; }
+.bom th,
+.bom td { padding: .65rem .9rem; border-bottom: 1px solid #c6cbe0; text-align: left; vertical-align: top; }
+.bom thead th { border-bottom: 2px solid var(--navy); color: var(--muted); font-size: .78rem; font-weight: 600; }
+.bom .bom-group th { padding-block: .4rem; background: var(--fill); color: var(--maroon); font-family: var(--mono); font-size: .75rem; font-weight: 600; }
+.bom-item,
+.bom-qty { width: 4.5rem; color: var(--navy); font-family: var(--mono); font-size: .85rem; }
+.bom-part { display: block; color: var(--navy); font-weight: 700; }
+.bom-note { display: block; margin-top: .1rem; color: var(--muted); font-size: .85rem; }
+.bom-used { color: var(--muted); line-height: 1.6; }
+.bom-used a { color: var(--teal); font-weight: 600; text-decoration: underline 1px transparent; text-underline-offset: 3px; transition: text-decoration-color 160ms ease; }
+.bom-used a:hover { text-decoration-color: currentColor; }
+.bom tbody tr:not(.bom-group) { transition: background-color 160ms ease; }
+.bom tbody tr:not(.bom-group):hover { background: #f1fbf2; }
 
 /* About */
 .about-copy { max-width: 62ch; }
@@ -464,6 +482,17 @@ a.tp-project:hover { text-decoration-color: currentColor; }
   .tp-mark { top: 0; left: -37px; }
   .timeline.is-armed .tp::before { clip-path: inset(0 0 100% 0); }
   .timeline.is-live .tp::before { animation-name: wire-down; }
+  /* Toolkit rows stack on phones: item and part on top, qty on the right, projects below */
+  .bom,
+  .bom tbody,
+  .bom tr,
+  .bom th,
+  .bom td { display: block; }
+  .bom thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .bom tbody tr:not(.bom-group) { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; column-gap: .6rem; padding: .7rem .8rem; border-bottom: 1px solid #c6cbe0; }
+  .bom td { width: auto; padding: 0; border: 0; }
+  .bom-qty::before { content: 'Qty '; color: var(--muted); }
+  .bom-used { grid-column: 2 / -1; margin-top: .35rem; }
   .work { --bus-x: 14px; --indent: 36px; --wire-y: 3.5rem; --gap: 40px; }
   .work-head p { order: -1; }
   .sheet-name { font-size: 1.25rem; }
