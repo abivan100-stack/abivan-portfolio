@@ -166,6 +166,7 @@ function App() {
                 </ul>
               </div>
               <span className="chip-value">Robotics enthusiast and vibe coder</span>
+              <span className="board-led" aria-hidden="true"><span className="led" />D1</span>
             </div>
           </section>
 

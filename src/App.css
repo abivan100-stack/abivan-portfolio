@@ -182,6 +182,19 @@
 .is-board .pins-in li::after,
 .is-board .pins-out .pin-name::before { opacity: 1; transform: scale(1); transition-delay: calc(var(--i) * 40ms + 120ms); }
 
+/* D1 status LED: blinks once on power-up, lights while an output pin is hovered or focused */
+.board-led { position: absolute; top: 9px; right: 44px; display: none; align-items: center; gap: 7px; color: var(--silk); font-family: var(--mono); font-size: .7rem; }
+.is-board .board-led { display: flex; }
+.led { width: 14px; height: 8px; border-radius: 2px; background: #2f5a3f; box-shadow: inset 0 0 0 1px #0b3320; transition: background-color 180ms ease, box-shadow 180ms ease; }
+.is-board .led { animation: led-power 900ms ease-out 250ms backwards; }
+.chip:has(.pins-out .pin-name:hover) .led,
+.chip:has(.pins-out .pin-name:focus-visible) .led { background: #8dffb0; box-shadow: inset 0 0 0 1px #0b3320, 0 0 10px #5dff92, 0 0 3px #5dff92; }
+@keyframes led-power {
+  0%, 100% { background: #2f5a3f; box-shadow: inset 0 0 0 1px #0b3320; }
+  15%, 45% { background: #8dffb0; box-shadow: inset 0 0 0 1px #0b3320, 0 0 10px #5dff92; }
+  30% { background: #2f5a3f; box-shadow: inset 0 0 0 1px #0b3320; }
+}
+
 /* Section shell and global net labels */
 .section { scroll-margin-top: 16px; padding-block: clamp(56px, 7vw, 100px); }
 .about,
@@ -318,7 +331,8 @@
   .pins-out .pin-name::before { top: calc(100% + var(--edge) + var(--stub) - 14px); }
   .is-board .chip { padding-inline: 12px; padding-bottom: 12px; }
   .is-board .chip-ref { right: 34px; }
-  .is-board .chip-value { padding-inline: 20px; }
+  .is-board .chip-value { padding-inline: 20px 84px; }
+  .board-led { top: auto; bottom: 14px; right: 38px; }
   .view-switch { margin-bottom: 12px; }
   .chip-body::before { top: 6px; left: 6px; width: 8px; height: 8px; }
   .chip-core { padding: 20px 16px 24px; }
