@@ -272,6 +272,16 @@
 .sub-sheet:hover::before,
 .sub-sheet:focus-within::before { border-color: var(--green-hot); filter: drop-shadow(0 0 3px var(--green-hot)); }
 
+/* Bus power-up: the drop from the label, then each branch in order, drawn top to bottom */
+.work.is-armed .sheet-bus::before,
+.work.is-armed .sub-sheet::before,
+.work.is-armed .sub-sheet::after { clip-path: inset(0 0 100% 0); }
+.work.is-live .sheet-bus::before { animation: wire-down 240ms ease-out forwards; }
+.work.is-live .sub-sheet::before { animation: wire-down 280ms ease-out forwards; animation-delay: calc(220ms + var(--n) * 300ms); }
+.work.is-live .sub-sheet::after { animation: wire-down 200ms linear forwards; animation-delay: calc(500ms + var(--n) * 300ms); }
+/* Release the clip at the end so the hover glow on a branch is not cut off */
+@keyframes wire-down { 99% { clip-path: inset(0); } 100% { clip-path: none; } }
+
 .sheet-name { margin: 0 0 .55rem; color: var(--teal); font-family: var(--mono); font-size: 1.5rem; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; }
 .sheet-name a { color: inherit; text-decoration: underline 2px transparent; text-underline-offset: 5px; transition: text-decoration-color 160ms ease; }
 .sheet-name a:hover { text-decoration-color: currentColor; }
@@ -394,4 +404,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
+  .work.is-armed .sheet-bus::before,
+  .work.is-armed .sub-sheet::before,
+  .work.is-armed .sub-sheet::after { clip-path: none; }
 }

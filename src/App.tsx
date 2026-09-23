@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import projects from './data/projects.json'
 import './App.css'
 
@@ -39,10 +39,10 @@ function NetLabel({ id, children }: { id: string; children: string }) {
   )
 }
 
-function ProjectSheet({ project }: { project: Project }) {
+function ProjectSheet({ project, index }: { project: Project; index: number }) {
   const [projectTitle, projectSubtitle] = project.name.split(/\s+--\s+/, 2)
   return (
-    <li className="sub-sheet">
+    <li className="sub-sheet" style={{ '--n': index } as CSSProperties}>
       <h3 className="sheet-name">
         <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a>
       </h3>
@@ -75,6 +75,7 @@ function ProjectSheet({ project }: { project: Project }) {
 function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [heroView, setHeroView] = useState<HeroView>(readSavedView)
+  const workRef = useRef<HTMLElement>(null)
   const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
   const lastUpdated = orderedProjects[0] ? formatDate(orderedProjects[0].updatedAt) : ''
 
@@ -102,6 +103,22 @@ function App() {
       // Storage can be unavailable (private windows, blocked site data); the toggle still works for this visit.
     }
   }, [heroView])
+
+  // The projects bus is drawn in the first time it scrolls into view. Wires are only hidden once JS
+  // has armed the section, so without IntersectionObserver or with reduced motion they simply show.
+  useEffect(() => {
+    const work = workRef.current
+    if (!work || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    work.classList.add('is-armed')
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return
+      work.classList.add('is-live')
+      observer.disconnect()
+    }, { threshold: 0.12 })
+    observer.observe(work)
+    return () => observer.disconnect()
+  }, [])
 
   const navLink = (id: string, label: string) => (
     <a
@@ -186,13 +203,13 @@ function App() {
             </div>
           </section>
 
-          <section className="work section" id="work" aria-labelledby="work-title">
+          <section ref={workRef} className="work section" id="work" aria-labelledby="work-title">
             <div className="work-head">
               <NetLabel id="work-title">projects</NetLabel>
               <p>Five projects across energy, health, cities, and agriculture, newest first.</p>
             </div>
             <ol className="sheet-bus">
-              {orderedProjects.map((project) => <ProjectSheet project={project} key={project.slug} />)}
+              {orderedProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
             </ol>
             <p className="work-outro">
               More experiments live on <a href={GITHUB_URL} target="_blank" rel="noreferrer">my GitHub</a>.
