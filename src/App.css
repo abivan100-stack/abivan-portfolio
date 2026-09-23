@@ -20,7 +20,7 @@
 .site-shell main,
 .site-footer { width: min(100%, 1320px); margin-inline: auto; }
 .site-header { height: 86px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
-.wordmark { color: var(--ink); font-family: var(--display); font-size: 1.2rem; font-weight: 700; letter-spacing: -.08em; text-decoration: none; }
+.wordmark { color: var(--ink); font-family: var(--display); font-size: 1.45rem; font-weight: 700; letter-spacing: -.08em; text-decoration: none; }
 .wordmark span { color: var(--blue); }
 .site-header nav { display: flex; align-items: center; gap: clamp(18px, 2.8vw, 38px); }
 .site-header nav a,
@@ -34,7 +34,7 @@
 .hero-main { padding-bottom: 21px; }
 .hero-location { margin: 0 0 clamp(33px, 5vw, 66px); display: flex; align-items: center; gap: 10px; color: var(--quiet); font-size: .82rem; }
 .location-mark { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px #414fe01b; }
-.hero h1 { margin: 0; font-family: var(--display); font-size: clamp(5rem, 10.5vw, 9rem); line-height: .89; letter-spacing: -.09em; font-weight: 600; }
+.hero h1 { margin: 0; font-family: var(--display); font-size: clamp(5rem, 10.5vw, 9rem); line-height: 1.02; letter-spacing: -.09em; font-weight: 600; }
 .hero h1 br { display: block; }
 .hero-period { color: var(--blue); }
 .hero-bottom { display: flex; align-items: flex-start; gap: clamp(27px, 6vw, 88px); margin-top: clamp(42px, 6vw, 74px); }
@@ -149,7 +149,7 @@
 @media (max-width: 370px) {
   .site-shell { padding-inline: 16px; }
   .site-header { gap: 8px; }
-  .wordmark { font-size: 1rem; }
+  .wordmark { font-size: 1.2rem; }
   .site-header nav { gap: clamp(6px, 2.2vw, 8px); }
   .site-header nav a { font-size: .64rem; }
   .hero h1 { font-size: 13vw; }
