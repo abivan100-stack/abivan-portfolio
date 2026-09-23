@@ -7,7 +7,7 @@
   { "group": "Software", "part": "TypeScript, React, Vite", "note": "Web apps", "projects": ["volt-ledger", "vault", "Spike_Fit"] },
   { "group": "Software", "part": "Python", "note": "FastAPI and Flask backends", "projects": ["C.R.A.S.H", "grammar-agent-project-1-"] },
   { "group": "Software", "part": "Node.js and Express", "note": "API servers", "projects": ["vault"] },
-  { "group": "Software", "part": "MongoDB", "note": "Database", "projects": ["volt-ledger", "C.R.A.S.H"] },
+  { "group": "Software", "part": "MongoDB and Supabase", "note": "Databases", "projects": ["volt-ledger", "C.R.A.S.H", "vault"] },
   { "group": "Software", "part": "APIs and API keys", "note": "Claude API, Resend, device keys", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "volt-ledger", "vault"] },
   { "group": "Software", "part": "Render and Vercel", "note": "Hosting and deploys", "projects": ["volt-ledger", "C.R.A.S.H", "Spike_Fit", "CR7-fan-page", "rutu-gaikwad-fansite"] },
   { "group": "Software", "part": "Claude Code and Codex", "note": "AI coding tools", "projects": "all" }
