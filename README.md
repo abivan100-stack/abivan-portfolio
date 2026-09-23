@@ -1,6 +1,8 @@
 # Abivan's personal portfolio
 
-A personal portfolio for Abivan with an editorial visual identity, a concise About section, and selected work backed by public GitHub repositories. Fan pages and football prediction projects are intentionally excluded from the portfolio index.
+A personal portfolio for Abivan, drawn as a KiCad-style schematic sheet. Fan pages and football prediction projects are intentionally excluded from the portfolio index.
+
+The site has two pages: the home page (`index.html`) shows a few highlighted projects, and the projects page (`projects/index.html`, served at `/projects/`) lists every project. Both are built as real pages, so no host rewrite rules are needed. Projects come from public GitHub repositories plus hand-listed builds without a repo; results and dates live in `scripts/sync-projects.mjs`, and timeline events not tied to a project live in `src/data/events.json`.
 
 ## Develop locally
 

@@ -356,9 +356,19 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .hier-pin:hover { color: var(--paper); background: var(--magenta); }
 .hier-pin:focus-visible { color: var(--paper); background: var(--magenta); outline-offset: 2px; }
 .sheet-file { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; margin: .6rem 0 0; color: var(--maroon); font-family: var(--mono); font-size: .72rem; }
-.work-outro { margin: 56px 0 0; padding-left: var(--indent); color: var(--muted); font-size: .98rem; }
-.work-outro a { color: var(--navy); font-weight: 700; text-decoration-color: var(--green); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-.work-outro a:hover { color: var(--green); }
+.work-outro { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin: 56px 0 0; padding-left: var(--indent); color: var(--muted); font-size: .98rem; }
+.work-outro p { margin: 0; }
+.work-outro p a { color: var(--navy); font-weight: 700; text-decoration-color: var(--green); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.work-outro p a:hover { color: var(--green); }
+/* Links between the two sheets are hierarchical pins: out to the projects sheet, back to the root sheet */
+.hier-pin.see-all { padding: .65em 2em .65em 1em; font-size: .85rem; }
+.hier-pin.see-all.back { padding: .65em 1em .65em 2em; clip-path: polygon(.8em 0, 100% 0, 100% 100%, .8em 100%, 0 50%); }
+
+/* Sheet path, like KiCad's title bar showing where you are in the hierarchy */
+.sheet-path { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 28px; color: var(--muted); font-family: var(--mono); font-size: .8rem; }
+.sheet-path a { color: var(--teal); text-decoration: underline 1px; text-underline-offset: 4px; }
+.sheet-path a:hover { color: var(--green); }
+.sheet-path [aria-current] { color: var(--navy); font-weight: 600; }
 
 /* Contact: the title block */
 .title-block { justify-self: end; width: min(100%, 760px); border: 2px solid var(--navy); background: var(--paper); }
