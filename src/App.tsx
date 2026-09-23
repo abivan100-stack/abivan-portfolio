@@ -148,6 +148,7 @@ function App() {
                     <li key={name} style={{ '--i': i } as CSSProperties}>
                       <span className="pin-num" aria-hidden="true">{i + 1}</span>
                       <span className="pin-name">{name}</span>
+                      <span className="pulse" aria-hidden="true" />
                     </li>
                   ))}
                 </ol>
@@ -167,6 +168,7 @@ function App() {
                       >
                         {pin.name}
                       </a>
+                      <span className="pulse" aria-hidden="true" />
                     </li>
                   ))}
                 </ul>

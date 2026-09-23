@@ -86,6 +86,35 @@
 @keyframes stub-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
 @keyframes stub-draw-down { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
 
+/* One signal pulse per pin, run once after the stubs draw in: into the chip on 1-4, out on 8-5 */
+.hero { --run: var(--stub); --pulse-hot: var(--green-hot); }
+.hero.is-board { --run: calc(var(--stub) - 15px); --pulse-hot: var(--copper-hot); }
+.pulse {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--pulse-hot);
+  box-shadow: 0 0 8px var(--pulse-hot);
+  opacity: 0;
+  pointer-events: none;
+  animation: pulse-run-x 520ms cubic-bezier(.45, 0, .55, 1) both;
+}
+.pins-in .pulse { right: calc(100% + var(--edge) + var(--run) - 8px); animation-delay: calc(1150ms + var(--i) * 60ms); }
+.pins-out .pulse { left: calc(100% + var(--edge)); animation-delay: calc(1450ms + var(--i) * 60ms); }
+@keyframes pulse-run-x {
+  0% { opacity: 0; transform: translateX(0); }
+  15%, 80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(calc(var(--run) - 8px)); }
+}
+@keyframes pulse-run-y {
+  0% { opacity: 0; transform: translateY(0); }
+  15%, 80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(calc(var(--run) - 8px)); }
+}
+
 .chip-core { container-type: inline-size; min-width: 0; padding: clamp(32px, 5vw, 64px) clamp(12px, 3vw, 40px); display: flex; flex-direction: column; justify-content: center; }
 .chip-location { margin: 0 0 1.4em; color: var(--teal); font-family: var(--mono); font-size: .8rem; }
 .chip-core h1 {
@@ -331,6 +360,10 @@
   .pins-out .pin-name::before { top: auto; right: auto; left: 50%; margin: 0 0 0 -7px; }
   .pins-in li::after { bottom: calc(100% + var(--edge) + var(--stub) - 14px); }
   .pins-out .pin-name::before { top: calc(100% + var(--edge) + var(--stub) - 14px); }
+  .hero.is-board { --run: calc(var(--stub) - 7px); }
+  .pulse { top: auto; margin: 0 0 0 -4px; animation-name: pulse-run-y; }
+  .pins-in .pulse { right: auto; left: 50%; bottom: calc(100% + var(--edge) + var(--run) - 8px); }
+  .pins-out .pulse { left: 50%; top: calc(100% + var(--edge)); }
   .is-board .chip { padding-inline: 12px; padding-bottom: 12px; }
   .is-board .chip-ref { right: 34px; }
   .is-board .chip-value { padding-inline: 20px 84px; }
