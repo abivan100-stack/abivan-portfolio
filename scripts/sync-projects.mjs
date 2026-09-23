@@ -8,6 +8,9 @@ const selectedRepositories = [
   'vault',
   'C.R.A.S.H',
   'Spike_Fit',
+  'grammar-agent-project-1-',
+  'CR7-fan-page',
+  'rutu-gaikwad-fansite',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
 // Each project lists its results oldest first. dates holds the event day, or the first and last
@@ -85,7 +88,15 @@ const offlineProjects = [
 // README notes that describe repo housekeeping rather than the project (Spike_Fit's note is about a
 // design-reference folder, not the app), so they are not shown.
 const hiddenContextNotes = new Set(['vault', 'spike_fit'])
-const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'abivan-portfolio', 'agrifly', 'pulse-fit']
+// Repos whose README is only a title get their wording here instead, taken from the live page.
+const readmeOverrides = {
+  'cr7-fan-page': {
+    name: 'CR7 -- Kinetic Fan Tribute',
+    summary: 'An unofficial kinetic tribute to Cristiano Ronaldo, set entirely in type. It walks through his honours and records, each club era from Sporting CP to Al Nassr, and the chase for 1,000 career goals, with a free-kick section to try.',
+    contextNote: 'Unofficial fan project. Not affiliated with the player or any club.',
+  },
+}
+const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'abivan-portfolio', 'agrifly', 'pulse-fit', 'raghav-dev-portfolio']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
   Accept: 'application/vnd.github+json',
@@ -265,6 +276,7 @@ try {
       name: cleanName(readmeTitle || repository.name),
       summary: cleanDescription(summary, repository.name),
       contextNote: hiddenContextNotes.has(repository.name.toLowerCase()) ? null : contextNote ? cleanDescription(contextNote, repository.name) : null,
+      ...readmeOverrides[repository.name.toLowerCase()],
       recognitions: recognitionsByRepository[repository.name.toLowerCase()] ?? [],
       url: repository.html_url,
       demoUrl: repository.homepage || null,

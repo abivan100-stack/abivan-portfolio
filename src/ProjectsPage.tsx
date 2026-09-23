@@ -28,7 +28,7 @@ function ProjectsPage() {
         </nav>
         <div className="work-head">
           <NetLabel id="all-projects-title">projects</NetLabel>
-          <p>All {orderedProjects.length} projects across robotics, energy, health, sport, cities, food, sanitation, and home safety, newest first.</p>
+          <p>All {orderedProjects.length} projects: robots, hardware builds, web apps, and fan tributes, newest first.</p>
         </div>
         <ol className="sheet-bus">
           {orderedProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
