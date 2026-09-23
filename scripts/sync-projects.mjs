@@ -106,18 +106,33 @@ function htmlProjectSummary(html = '') {
   return text.includes('{{') ? '' : text
 }
 
+async function readProjectSnapshot() {
+  try {
+    const snapshot = JSON.parse(await readFile(outputPath, 'utf8'))
+    return Array.isArray(snapshot) ? snapshot : []
+  } catch {
+    return []
+  }
+}
+
 function cleanName(text = '') {
   return text.replace(/\s*—\s*/g, ': ')
 }
 
-function cleanDescription(text = '') {
-  return text
+function cleanDescription(text = '', repositoryName = '') {
+  let cleaned = text
     .replace(/\s+—\s+/g, '. ')
-    .replace(/not on what is happening now, not on what already went wrong/gi, 'so you can act on current conditions as they unfold')
-    .replace(/([.!?]\s+)([a-z])/g, (_, punctuation, letter) => `${punctuation}${letter.toUpperCase()}`)
+    .replace(/so you act on what is happening now, not on what already went wrong/gi, 'You can act on current conditions as they unfold')
+  cleaned = cleaned.replace(/([.!?]\s+)([a-z])/g, (_, punctuation, letter) => `${punctuation}${letter.toUpperCase()}`)
+  if (repositoryName.toLowerCase() === 'vault') {
+    cleaned = cleaned.replace(/^A frontend prototype/i, 'A hardware and software project')
+  }
+  return cleaned
 }
 
 try {
+  const savedProjects = await readProjectSnapshot()
+  const savedByName = new Map(savedProjects.map((project) => [project.slug.toLowerCase(), project]))
   const allRepositories = await getJson(
     `https://api.github.com/users/${owner}/repos?per_page=100&type=owner&sort=updated`,
   )
@@ -148,6 +163,12 @@ try {
       contextNote = sourceNote(markdown)
     } catch (error) {
       console.warn(`README unavailable for ${slug}: ${error.message}`)
+      const savedProject = savedByName.get(slug.toLowerCase())
+      if (savedProject) {
+        readmeTitle = savedProject.name
+        summary = savedProject.summary
+        contextNote = savedProject.contextNote
+      }
     }
 
     if (!summary) {
@@ -165,8 +186,8 @@ try {
     return {
       slug: repository.name,
       name: cleanName(readmeTitle || repository.name),
-      summary: cleanDescription(summary),
-      contextNote: contextNote ? cleanDescription(contextNote) : null,
+      summary: cleanDescription(summary, repository.name),
+      contextNote: repository.name.toLowerCase() === 'vault' ? null : contextNote ? cleanDescription(contextNote, repository.name) : null,
       url: repository.html_url,
       demoUrl: repository.homepage || null,
       language: repository.language,
