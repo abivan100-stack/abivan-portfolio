@@ -20,7 +20,7 @@ function ToolkitPage() {
     <PageFrame
       homeHref={HOME_URL}
       nav={nav}
-      footer={<><span>Sheet 3 of 3, drawn by Abivan in Chennai</span><a href="#top">Back to top</a></>}
+      footer={<><span>Sheet 3 of 3, drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className="toolkit section" id="toolkit" aria-labelledby="toolkit-title">
         <nav className="sheet-path" aria-label="Breadcrumb">

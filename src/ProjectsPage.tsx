@@ -19,7 +19,7 @@ function ProjectsPage() {
     <PageFrame
       homeHref={HOME_URL}
       nav={nav}
-      footer={<><span>Sheet 2 of 3, drawn by Abivan in Chennai</span><a href="#top">Back to top</a></>}
+      footer={<><span>Sheet 2 of 3, drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className="work section" id="all-projects" aria-labelledby="all-projects-title" data-power-up>
         <nav className="sheet-path" aria-label="Breadcrumb">

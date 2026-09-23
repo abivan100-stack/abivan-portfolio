@@ -66,7 +66,7 @@ function App() {
     <PageFrame
       homeHref="#top"
       nav={nav}
-      footer={<><span>Drawn by Abivan in Chennai</span><a href="#top">Back to top</a></>}
+      footer={<><span>Drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className={`hero is-${heroView}`} aria-labelledby="intro-title">
         <div className="view-switch" role="group" aria-label="Show U1 as">
