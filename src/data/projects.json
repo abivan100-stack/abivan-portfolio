@@ -74,6 +74,19 @@
     "updatedAt": "2026-08-05T15:16:32Z"
   },
   {
+    "slug": "Spike_Fit",
+    "name": "Spikefit -- The Fitting Room",
+    "summary": "A rule-based, deterministic track-spike fitting tool. Answer a short guided quiz (or jump straight to your event), and get scored, explained spike recommendations. No external APIs, no ML, just a transparent rules engine over a real shoe catalog.",
+    "contextNote": null,
+    "recognitions": [],
+    "url": "https://github.com/abivan100-stack/Spike_Fit",
+    "demoUrl": null,
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "updatedAt": "2026-07-17T17:37:53Z"
+  },
+  {
     "slug": "freshsense",
     "name": "FreshSense -- Automated Food Spoilage Detection System",
     "summary": "An ESP32 build that checks food for spoilage on a conveyor belt. An IR sensor stops each item under two gas sensors, which compare its reading against a clean-air baseline the system calibrates at start-up. The verdict, FRESH or ROTTEN, shows on an LCD and is sent to the Blynk IoT cloud for remote monitoring. Built as a three-person team project.",

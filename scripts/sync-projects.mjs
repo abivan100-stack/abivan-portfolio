@@ -8,6 +8,7 @@ const selectedRepositories = [
   'vault',
   'C.R.A.S.H',
   'pulse-fit',
+  'Spike_Fit',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
 // Each project lists its results oldest first. dates holds the event day, or the first and last
@@ -51,7 +52,10 @@ const offlineProjects = [
     updatedAt: '2025-11-19T00:00:00Z',
   },
 ]
-const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'Spike_Fit', 'abivan-portfolio', 'agrifly']
+// README notes that describe repo housekeeping rather than the project (Spike_Fit's note is about a
+// design-reference folder, not the app), so they are not shown.
+const hiddenContextNotes = new Set(['vault', 'spike_fit'])
+const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'abivan-portfolio', 'agrifly']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
   Accept: 'application/vnd.github+json',
@@ -230,7 +234,7 @@ try {
       slug: repository.name,
       name: cleanName(readmeTitle || repository.name),
       summary: cleanDescription(summary, repository.name),
-      contextNote: repository.name.toLowerCase() === 'vault' ? null : contextNote ? cleanDescription(contextNote, repository.name) : null,
+      contextNote: hiddenContextNotes.has(repository.name.toLowerCase()) ? null : contextNote ? cleanDescription(contextNote, repository.name) : null,
       recognitions: recognitionsByRepository[repository.name.toLowerCase()] ?? [],
       url: repository.html_url,
       demoUrl: repository.homepage || null,
