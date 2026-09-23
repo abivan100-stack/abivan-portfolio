@@ -16,6 +16,22 @@ const recognitionByRepository = {
   'volt-ledger': "Presented at the school's Shark Tank-style pitch competition, with all 14 branches competing",
   vault: 'Consolation prize at PEC Hacks 4.0 (hackathon)',
 }
+// Projects without a public GitHub repository, listed as-is alongside the synced ones.
+const offlineProjects = [
+  {
+    slug: 'freshsense',
+    name: 'FreshSense -- Automated Food Spoilage Detection System',
+    summary: 'An ESP32 build that checks food for spoilage on a conveyor belt. An IR sensor stops each item under two gas sensors, which compare its reading against a clean-air baseline the system calibrates at start-up. The verdict, FRESH or ROTTEN, shows on an LCD and is sent to the Blynk IoT cloud for remote monitoring. Built as a three-person team project.',
+    contextNote: null,
+    recognition: 'Winner, school-level expo',
+    url: null,
+    demoUrl: null,
+    language: 'Arduino C++',
+    topics: [],
+    stars: 0,
+    updatedAt: '2026-02-13T00:00:00Z',
+  },
+]
 const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'Spike_Fit', 'abivan-portfolio']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
@@ -205,12 +221,17 @@ try {
   }))
 
   await mkdir(path.dirname(outputPath), { recursive: true })
-  await writeFile(outputPath, `${JSON.stringify(projects, null, 2)}\n`)
-  console.log(`Wrote ${projects.length} verified project records to ${outputPath}`)
+  await writeFile(outputPath, `${JSON.stringify([...projects, ...offlineProjects], null, 2)}\n`)
+  console.log(`Wrote ${projects.length + offlineProjects.length} verified project records to ${outputPath}`)
 } catch (error) {
   const hasSnapshot = await access(outputPath).then(() => true).catch(() => false)
   if (!hasSnapshot) throw error
   const snapshot = JSON.parse(await readFile(outputPath, 'utf8'))
-  if (!Array.isArray(snapshot) || snapshot.length !== selectedRepositories.length) throw error
+  if (!Array.isArray(snapshot)) throw error
+  const offlineSlugs = new Set(offlineProjects.map((project) => project.slug))
+  const syncedRecords = snapshot.filter((project) => !offlineSlugs.has(project.slug))
+  const syncedSlugs = new Set(syncedRecords.map((project) => project.slug.toLowerCase()))
+  if (syncedRecords.length !== selectedRepositories.length || selectedRepositories.some((slug) => !syncedSlugs.has(slug.toLowerCase()))) throw error
+  await writeFile(outputPath, `${JSON.stringify([...syncedRecords, ...offlineProjects], null, 2)}\n`)
   console.warn(`GitHub refresh failed (${error.message}); retaining the committed project snapshot.`)
 }

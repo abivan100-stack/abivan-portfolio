@@ -44,7 +44,7 @@ function ProjectSheet({ project, index }: { project: Project; index: number }) {
   return (
     <li className="sub-sheet" style={{ '--n': index } as CSSProperties}>
       <h3 className="sheet-name">
-        <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a>
+        {project.url ? <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a> : projectTitle}
       </h3>
       <div className="sheet-box">
         {projectSubtitle && <p className="sheet-subtitle">{projectSubtitle}</p>}
@@ -58,10 +58,12 @@ function ProjectSheet({ project, index }: { project: Project; index: number }) {
             {project.recognition}
           </p>
         )}
-        <div className="sheet-pins">
-          <a className="hier-pin" href={project.url} target="_blank" rel="noreferrer">Source repository</a>
-          {project.demoUrl && <a className="hier-pin" href={project.demoUrl} target="_blank" rel="noreferrer">Open live demo</a>}
-        </div>
+        {(project.url || project.demoUrl) && (
+          <div className="sheet-pins">
+            {project.url && <a className="hier-pin" href={project.url} target="_blank" rel="noreferrer">Source repository</a>}
+            {project.demoUrl && <a className="hier-pin" href={project.demoUrl} target="_blank" rel="noreferrer">Open live demo</a>}
+          </div>
+        )}
       </div>
       <p className="sheet-file">
         <span>File: {project.slug}</span>
@@ -230,7 +232,7 @@ function App() {
           <section ref={workRef} className="work section" id="work" aria-labelledby="work-title">
             <div className="work-head">
               <NetLabel id="work-title">projects</NetLabel>
-              <p>Five projects across energy, health, cities, and agriculture, newest first.</p>
+              <p>Six projects across energy, health, cities, agriculture, and food, newest first.</p>
             </div>
             <ol className="sheet-bus">
               {orderedProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
