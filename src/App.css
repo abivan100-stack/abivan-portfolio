@@ -25,6 +25,11 @@
 .site-header nav { display: flex; align-items: center; gap: clamp(18px, 2.8vw, 38px); }
 .site-header nav a,
 .site-footer a { color: var(--ink-soft); font-size: .84rem; text-decoration: none; transition: color 180ms ease; }
+.site-header nav a:not(.github-nav-link) { position: relative; }
+.site-header nav a:not(.github-nav-link)::after { position: absolute; right: 0; bottom: -8px; left: 0; height: 2px; background: var(--blue); content: ''; transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
+.site-header nav a:not(.github-nav-link).is-active { color: var(--blue-deep); }
+.site-header nav a:not(.github-nav-link).is-active::after,
+.site-header nav a:not(.github-nav-link):focus-visible::after { transform: scaleX(1); }
 .site-header nav a.github-nav-link { display: inline-flex; align-items: center; gap: 7px; }
 .github-mark { width: 15px; height: 15px; flex: 0 0 auto; }
 .site-header nav a:hover,
@@ -70,7 +75,10 @@
 .work-top h2 { margin: 13px 0 0; font-family: var(--display); font-size: clamp(3rem, 6.8vw, 6.2rem); font-weight: 600; line-height: .96; letter-spacing: -.075em; }
 .work-top > p { max-width: 290px; margin: 0 0 5px; color: var(--quiet); font-size: .86rem; line-height: 1.65; }
 .project-list { border-top: 1px solid var(--line); }
-.project-row { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(35px, 9vw, 130px); padding: 29px 0 33px; border-bottom: 1px solid var(--line); }
+.project-row { position: relative; display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(35px, 9vw, 130px); padding: 29px 0 33px; border-bottom: 1px solid var(--line); }
+.project-row::before { position: absolute; top: 0; bottom: 0; left: -12px; width: 2px; background: var(--blue); content: ''; transform: scaleY(0); transform-origin: bottom; transition: transform 220ms ease; }
+.project-row:hover::before,
+.project-row:focus-within::before { transform: scaleY(1); }
 .project-name { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; }
 .project-type { color: var(--blue); font-size: .72rem; font-weight: 700; letter-spacing: .03em; }
 .project-name h3 { margin: 0; font-family: var(--display); font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 600; letter-spacing: -.05em; line-height: 1.22; }
@@ -90,8 +98,9 @@
 .closing-note h2 { position: relative; z-index: 1; margin: 21px 0 0; font-family: var(--display); font-size: clamp(3.1rem, 7vw, 6.4rem); font-weight: 600; line-height: .98; letter-spacing: -.075em; }
 .closing-note h2::first-line { color: white; }
 .closing-links { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin: 74px 13% 0 0; }
-.closing-note .closing-email { padding: 15px 19px; color: var(--ink); background: var(--signal); font-size: .83rem; font-weight: 700; text-decoration: none; transition: background-color 180ms ease; }
-.closing-note .closing-email:hover { background: white; }
+.closing-note .closing-email { padding: 15px 19px; color: var(--ink); background: var(--signal); font-size: .83rem; font-weight: 700; text-decoration: none; transition: background-color 180ms ease, transform 180ms ease; }
+.closing-note .closing-email:hover { background: white; transform: translateY(-2px); }
+.closing-note .closing-email:active { transform: translateY(0) scale(.99); }
 .closing-note .closing-github { padding-bottom: 4px; color: white; border-bottom: 1px solid #ffffff70; font-size: .83rem; text-decoration: none; }
 .closing-note .closing-github:hover { color: var(--signal); }
 .closing-note :focus-visible { outline-color: var(--signal); }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { motion, MotionConfig, useReducedMotion } from 'motion/react'
 import projects from './data/projects.json'
 import './App.css'
@@ -27,8 +28,26 @@ function ProjectRow({ project }: { project: Project }) {
 
 function App() {
   const reduceMotion = useReducedMotion()
+  const [activeSection, setActiveSection] = useState<string | null>(null)
   const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
   const entrance = (delay: number) => reduceMotion ? {} : { initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0, transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const } } }
+
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return
+
+    const sections = ['about', 'work', 'contact']
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null)
+    const observer = new IntersectionObserver((entries) => {
+      const current = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+      if (current) setActiveSection(current.target.id)
+    }, { rootMargin: '-20% 0px -30% 0px', threshold: 0 })
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <MotionConfig reducedMotion="user">
@@ -36,9 +55,9 @@ function App() {
         <header className="site-header">
           <a className="wordmark" href="#top" aria-label="Abivan, back to top">abivan<span aria-hidden="true">.</span></a>
           <nav aria-label="Main navigation">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" className={activeSection === 'about' ? 'is-active' : undefined} aria-current={activeSection === 'about' ? 'location' : undefined}>About</a>
+            <a href="#work" className={activeSection === 'work' ? 'is-active' : undefined} aria-current={activeSection === 'work' ? 'location' : undefined}>Work</a>
+            <a href="#contact" className={activeSection === 'contact' ? 'is-active' : undefined} aria-current={activeSection === 'contact' ? 'location' : undefined}>Contact</a>
             <a className="github-nav-link" href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">
               <svg className="github-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.68-3.76-1.32-3.76-1.32-.5-1.3-1.24-1.64-1.24-1.64-1.01-.7.08-.69.08-.69 1.12.08 1.7 1.15 1.7 1.15 1 .1.76 2.04 3.3 2.04.29-.72.72-1.22 1.23-1.5-2.48-.28-5.09-1.24-5.09-5.51 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.28-2.61 5.22-5.1 5.5.4.35.76 1.03.76 2.08v3.1c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
