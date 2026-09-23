@@ -33,7 +33,7 @@ function ProjectSheet({ project }: { project: Project }) {
   return (
     <li className="sub-sheet">
       <h3 className="sheet-name">
-        <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a>
+        {project.url ? <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a> : projectTitle}
       </h3>
       <div className="sheet-box">
         {projectSubtitle && <p className="sheet-subtitle">{projectSubtitle}</p>}
@@ -44,10 +44,12 @@ function ProjectSheet({ project }: { project: Project }) {
         {project.recognition && (
           <p className="sheet-recognition"><span>Results &amp; Recognition</span> {project.recognition}</p>
         )}
-        <div className="sheet-pins">
-          <a className="hier-pin" href={project.url} target="_blank" rel="noreferrer">Source repository</a>
-          {project.demoUrl && <a className="hier-pin" href={project.demoUrl} target="_blank" rel="noreferrer">Open live demo</a>}
-        </div>
+        {(project.url || project.demoUrl) && (
+          <div className="sheet-pins">
+            {project.url && <a className="hier-pin" href={project.url} target="_blank" rel="noreferrer">Source repository</a>}
+            {project.demoUrl && <a className="hier-pin" href={project.demoUrl} target="_blank" rel="noreferrer">Open live demo</a>}
+          </div>
+        )}
       </div>
       <p className="sheet-file">
         <span>File: {project.slug}</span>

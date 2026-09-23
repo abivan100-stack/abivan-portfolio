@@ -63,5 +63,18 @@
     "topics": [],
     "stars": 0,
     "updatedAt": "2026-07-30T08:10:33Z"
+  },
+  {
+    "slug": "freshsense",
+    "name": "FreshSense -- Automated Food Spoilage Detection System",
+    "summary": "An ESP32 build that checks food for spoilage on a conveyor belt. An IR sensor stops each item under two gas sensors, which compare its reading against a clean-air baseline the system calibrates at start-up. The verdict, FRESH or ROTTEN, shows on an LCD and is sent to the Blynk IoT cloud for remote monitoring. Built as a three-person team project.",
+    "contextNote": null,
+    "recognition": "Winner, school-level expo",
+    "url": null,
+    "demoUrl": null,
+    "language": "Arduino C++",
+    "topics": [],
+    "stars": 0,
+    "updatedAt": "2026-02-13T00:00:00Z"
   }
 ]
