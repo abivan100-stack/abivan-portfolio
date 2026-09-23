@@ -147,7 +147,7 @@ function App() {
       <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
         <div className="work-head">
           <NetLabel id="work-title">projects</NetLabel>
-          <p>Four highlights, newest first.</p>
+          <p>Five highlights, newest first.</p>
         </div>
         <ol className="sheet-bus">
           {featuredProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
