@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { motion, MotionConfig, useReducedMotion } from 'motion/react'
 import projects from './data/projects.json'
 import './App.css'
@@ -28,7 +27,6 @@ function ProjectRow({ project }: { project: Project }) {
 
 function App() {
   const reduceMotion = useReducedMotion()
-  const [armMoved, setArmMoved] = useState(false)
   const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
   const entrance = (delay: number) => reduceMotion ? {} : { initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0, transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const } } }
 
@@ -60,26 +58,11 @@ function App() {
                 <p className="hero-description">I turn ideas into software, experiments, and things that move.</p>
               </motion.div>
             </div>
-            <motion.aside className="hero-study" {...entrance(0.3)} aria-label="Interactive motion sketch">
-              <div className="study-heading"><span>Motion sketch</span><span>{armMoved ? '02 / 02' : '01 / 02'}</span></div>
-              <svg className="study-diagram" viewBox="0 0 300 210" role="img" aria-label="A simple two-joint robotic arm drawing">
-                <path className="study-ground" d="M18 178H282" />
-                <path className="study-guide" d="M70 166V24M18 166H282" />
-                <circle className="study-radius" cx="70" cy="166" r="51" />
-                <motion.g initial={false} animate={{ rotate: armMoved ? -14 : 12 }} transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 95, damping: 17 }} style={{ transformOrigin: '70px 166px' }}>
-                  <path className="study-arm" d="M70 166L160 101" />
-                  <circle className="study-joint" cx="160" cy="101" r="9" />
-                  <circle className="study-joint-core" cx="160" cy="101" r="3" />
-                  <motion.g initial={false} animate={{ rotate: armMoved ? 24 : -16 }} transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 95, damping: 17 }} style={{ transformOrigin: '160px 101px' }}>
-                    <path className="study-arm" d="M160 101L231 57" />
-                    <path className="study-tool" d="M229 45L241 57L229 69M241 57L251 57" />
-                  </motion.g>
-                </motion.g>
-                <circle className="study-base" cx="70" cy="166" r="13" />
-                <circle className="study-base-core" cx="70" cy="166" r="4" />
-                <text x="27" y="199">BASE</text><text x="242" y="199">REACH</text>
-              </svg>
-              <div className="study-footer"><p>A little experiment in movement.</p><button type="button" onClick={() => setArmMoved((value) => !value)}>{armMoved ? 'Reset arm' : 'Move arm'}</button></div>
+            <motion.aside className="hero-note" {...entrance(0.3)} aria-label="A little about Abivan">
+              <span className="note-symbol" aria-hidden="true"><span /><span /><span /></span>
+              <p>Exploring robotics, code, and the ideas that bring them together.</p>
+              <a href="#about">A little about me <span aria-hidden="true">↓</span></a>
+              <span className="note-index" aria-hidden="true">AB / 01</span>
             </motion.aside>
           </section>
 
