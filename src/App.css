@@ -23,6 +23,8 @@
 .site-header nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 42px); }
 .site-header nav a,
 .site-footer a { color: var(--ink-soft); font-size: .84rem; text-decoration: none; transition: color 180ms ease; }
+.site-header nav a.github-nav-link { display: inline-flex; align-items: center; gap: 7px; }
+.github-mark { width: 15px; height: 15px; flex: 0 0 auto; }
 .site-header nav a:hover,
 .site-footer a:hover { color: var(--blue); }
 .site-header nav a span { color: var(--blue); font-size: .75em; }
@@ -48,8 +50,6 @@
 .hero-note > a span { transition: transform 180ms ease; }
 .hero-note > a:hover span { transform: translateY(4px); }
 .note-index { position: absolute; top: 36px; right: 28px; color: #ffffffa3; font-size: .65rem; letter-spacing: .07em; }
-.scroll-cue { position: absolute; bottom: 30px; left: 0; display: flex; align-items: center; gap: 10px; color: var(--quiet); font-size: .7rem; text-decoration: none; }
-.scroll-cue span { width: 27px; height: 1px; background: var(--blue); }
 
 .section-wrap { width: min(100%, 1100px); margin-inline: auto; }
 .about-section { padding-block: clamp(88px, 11vw, 148px) clamp(100px, 12vw, 164px); display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(55px, 11vw, 170px); border-top: 1px solid var(--line); }
@@ -90,9 +90,12 @@
 .closing-kicker { color: #cbc9d5; font-size: .8rem; }
 .closing-note h2 { position: relative; z-index: 1; margin: 21px 0 0; font-size: clamp(3.1rem, 7vw, 6.4rem); font-weight: 600; line-height: .94; letter-spacing: -.085em; }
 .closing-note h2::first-line { color: white; }
-.closing-note a { position: relative; z-index: 2; margin: 74px 13% 0 0; padding: 15px 19px; color: var(--ink); background: var(--acid); font-size: .83rem; font-weight: 700; text-decoration: none; transition: background-color 180ms ease; }
-.closing-note a:hover { background: white; }
-.closing-note a span { margin-left: 15px; }
+.closing-links { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin: 74px 13% 0 0; }
+.closing-note .closing-email { padding: 15px 19px; color: var(--ink); background: var(--acid); font-size: .83rem; font-weight: 700; text-decoration: none; transition: background-color 180ms ease; }
+.closing-note .closing-email:hover { background: white; }
+.closing-note .closing-github { padding-bottom: 4px; color: white; border-bottom: 1px solid #ffffff70; font-size: .83rem; text-decoration: none; }
+.closing-note .closing-github:hover { color: var(--acid); }
+.closing-links a span { margin-left: 12px; }
 .closing-orbit { position: absolute; right: 12%; bottom: -151px; width: 350px; height: 350px; border: 1px solid #ffffff24; border-radius: 50%; }
 .closing-orbit i { position: absolute; inset: 29px; border: 1px solid #ffffff1d; border-radius: 50%; }
 .closing-orbit i:nth-child(2) { inset: 58px; }
@@ -110,7 +113,7 @@
   .hero-role { flex-basis: 135px; }
   .about-section { gap: 50px; }
   .project-row { gap: 45px; }
-  .closing-note a { margin-right: 5%; }
+  .closing-links { margin-right: 5%; }
 }
 @media (max-width: 760px) {
   .hero { grid-template-columns: minmax(0, 1fr); }
@@ -129,7 +132,6 @@
   .hero-description { max-width: 390px; font-size: 1.05rem; }
   .hero-note { width: auto; min-height: 235px; padding: 24px; }
   .hero-note > p { margin-top: 30px; }
-  .scroll-cue { bottom: 31px; }
   .about-section { padding-block: 74px 88px; grid-template-columns: 1fr; gap: 22px; }
   .section-side h2 { margin-top: 14px; font-size: 3rem; }
   .section-side h2 br { display: none; }
@@ -146,7 +148,7 @@
   .closing-note { margin-inline: -21px; padding-inline: 21px; }
   .closing-inner { min-height: 390px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 30px; }
   .closing-note h2 { font-size: clamp(3.5rem, 14vw, 5.4rem); }
-  .closing-note a { margin: 0; }
+  .closing-links { margin: 0; }
   .closing-orbit { right: -140px; bottom: -144px; }
   .site-footer { min-height: 77px; flex-wrap: wrap; padding-block: 15px; font-size: .68rem; }
   .site-footer > span:nth-child(2) { display: none; }
