@@ -4,28 +4,10 @@ import './App.css'
 
 type Project = (typeof projects)[number]
 
-function BuildTrace() {
-  const reduceMotion = useReducedMotion()
-
-  return (
-    <div className="build-trace" aria-hidden="true">
-      <svg viewBox="0 0 420 360" fill="none">
-        <motion.path className="trace-line trace-line-main" d="M28 266C78 263 79 151 143 130C195 113 225 153 252 203C280 254 327 272 390 226" pathLength={1} initial={reduceMotion ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.35, delay: 0.35, ease: 'easeInOut' }} />
-        <motion.path className="trace-line trace-line-second" d="M55 302C100 233 138 191 193 190C252 189 284 133 353 72" pathLength={1} initial={reduceMotion ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.15, delay: 0.55, ease: 'easeInOut' }} />
-        <motion.path className="trace-line trace-line-third" d="M66 75C122 94 150 53 204 66C265 81 264 135 316 161C348 177 372 158 395 128" pathLength={1} initial={reduceMotion ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 0.7, ease: 'easeInOut' }} />
-        <circle className="trace-point trace-point-one" cx="28" cy="266" r="4" />
-        <circle className="trace-point trace-point-two" cx="353" cy="72" r="4" />
-        <circle className="trace-point trace-point-three" cx="395" cy="128" r="4" />
-      </svg>
-      <span className="trace-caption">Ideas take shape</span>
-    </div>
-  )
-}
-
 function ProjectRow({ project }: { project: Project }) {
   return (
     <article className="project-row">
-      <div className="project-name-block">
+      <div className="project-heading">
         <h3>{project.name}</h3>
         {project.language && <span className="project-language">{project.language}</span>}
       </div>
@@ -33,8 +15,8 @@ function ProjectRow({ project }: { project: Project }) {
         <p>{project.summary || 'The repository does not include a project description yet.'}</p>
         {project.contextNote && project.contextNote.trim() !== project.summary.trim() && <p className="project-context">{project.contextNote}</p>}
         <div className="project-links">
-          <a href={project.url} target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a>
-          {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noreferrer">Live demo <span aria-hidden="true">↗</span></a>}
+          <a href={project.url} target="_blank" rel="noreferrer">Repository</a>
+          {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noreferrer">Live demo</a>}
         </div>
       </div>
     </article>
@@ -49,38 +31,38 @@ function App() {
     <MotionConfig reducedMotion="user">
       <div className="site-shell">
         <header className="site-header" id="top">
-          <a className="wordmark" href="#top" aria-label="Abivan, back to top">Abivan<span>.</span></a>
+          <a className="wordmark" href="#top" aria-label="Abivan, back to top">Abivan<span className="wordmark-dot" /></a>
           <nav aria-label="Main navigation">
             <a href="#about">About</a>
             <a href="#work">Selected work</a>
-            <a href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">GitHub</a>
           </nav>
         </header>
 
         <main>
-          <motion.section className="personal-intro" aria-labelledby="intro-title"
-            initial={reduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.75, ease: 'easeOut' }}>
-            <div className="intro-copy">
-              <p className="location-line"><span className="location-dot" aria-hidden="true" />Based in Chennai</p>
-              <h1 id="intro-title">Hi, I’m<br /><span>Abivan.</span></h1>
-              <p className="intro-description">I build useful digital tools.</p>
-              <a className="intro-link" href="#about">A little about me <span aria-hidden="true">↓</span></a>
+          <section className="personal-intro" aria-labelledby="intro-title">
+            <h1 id="intro-title">Abivan</h1>
+            <motion.div className="signature-rule" aria-hidden="true"
+              initial={reduceMotion ? false : { scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }} />
+            <div className="intro-details">
+              <div className="intro-role">
+                <p>Software developer</p>
+                <span>Based in Chennai</span>
+              </div>
+              <p className="intro-description">I build practical digital products, from clear interfaces to the systems behind them.</p>
+              <a className="intro-link" href="#about">About Abivan</a>
             </div>
-            <BuildTrace />
-          </motion.section>
+          </section>
 
-          <motion.section className="about-section" id="about" aria-labelledby="about-title"
-            initial={reduceMotion ? false : { opacity: 0 }}
-            whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}>
+          <section className="about-section" id="about" aria-labelledby="about-title">
             <h2 id="about-title">About Abivan</h2>
             <div className="about-copy">
-              <p>I’m Abivan, a software developer based in Chennai. I build useful digital tools, shaping both the experience people see and the systems that make it work.</p>
-              <p>My projects span energy, health, fitness, agriculture and civic data.</p>
+              <p>I’m Abivan, a software developer in Chennai. I build practical digital products, bringing together clear interfaces and the systems behind them.</p>
+              <p>Recent work spans energy, health, fitness, agriculture and civic technology.</p>
             </div>
-          </motion.section>
+          </section>
 
           <section className="work-section" id="work" aria-labelledby="work-title">
             <div className="work-heading">
@@ -93,8 +75,11 @@ function App() {
           </section>
 
           <section className="closing-note" aria-label="GitHub profile">
-            <p>The full project history lives on GitHub.</p>
-            <a href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">Visit Abivan on GitHub <span aria-hidden="true">↗</span></a>
+            <div>
+              <h2>More of my work</h2>
+              <p>Browse the complete project history on GitHub.</p>
+            </div>
+            <a href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">Visit GitHub profile</a>
           </section>
         </main>
 

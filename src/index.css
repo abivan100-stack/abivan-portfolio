@@ -1,21 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
   font-weight: 400;
-  background: #f1f0e9;
-  color: #202236;
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'DM Mono', Consolas, monospace;
+  background: #f7f8fa;
+  color: #162237;
   scroll-behavior: smooth;
 }
 
 * { box-sizing: border-box; }
 body { min-width: 320px; min-height: 100vh; margin: 0; }
 button, a { font: inherit; }
-::selection { color: #f4f3ef; background: #347c6d; }
+::selection { color: #fff; background: #3158d4; }
