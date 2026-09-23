@@ -34,7 +34,14 @@
 
 /* Header */
 .site-header { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-.wordmark { color: var(--navy); font-family: var(--mono); font-size: 1.1rem; font-weight: 700; font-stretch: 112.5%; font-variation-settings: 'wdth' 112.5; letter-spacing: -.03em; text-decoration: none; }
+.wordmark { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); font-family: var(--mono); font-size: 1.1rem; font-weight: 700; font-stretch: 112.5%; font-variation-settings: 'wdth' 112.5; letter-spacing: -.03em; text-decoration: none; }
+/* Wordmark chip: schematic colours; its pins light up like a highlighted net on hover */
+.wordmark-chip { width: 30px; height: 30px; flex: 0 0 auto; overflow: visible; }
+.wordmark-chip rect { fill: var(--fill); stroke: var(--maroon); stroke-width: 2; }
+.wordmark-pins { stroke: var(--maroon); stroke-width: 2; transition: stroke 160ms ease, filter 160ms ease; }
+.wordmark-chip text { fill: var(--navy); font-family: var(--mono); font-size: 13px; font-weight: 700; }
+.wordmark:hover .wordmark-pins,
+.wordmark:focus-visible .wordmark-pins { stroke: var(--green-hot); filter: drop-shadow(0 0 2px var(--green-hot)); }
 .site-header nav { display: flex; align-items: center; gap: clamp(14px, 2.6vw, 32px); }
 .site-header nav a { padding-block: 4px; color: var(--ink); font-size: .95rem; text-decoration: underline 2px transparent; text-underline-offset: 6px; transition: color 160ms ease, text-decoration-color 160ms ease; }
 .site-header nav a:hover,

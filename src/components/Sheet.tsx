@@ -17,7 +17,15 @@ export function PageFrame({ homeHref, nav, footer, children }: { homeHref: strin
 
       <div className="sheet">
         <header className="site-header">
-          <a className="wordmark" href={homeHref} aria-label="Abivan, home">abivan</a>
+          <a className="wordmark" href={homeHref} aria-label="Abivan Vijay, home">
+            {/* A tiny U1: the same chip as the hero and the tab icon */}
+            <svg className="wordmark-chip" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <path className="wordmark-pins" d="M1 10h7M1 16h7M1 22h7M24 10h7M24 16h7M24 22h7" />
+              <rect x="8" y="3" width="16" height="26" />
+              <text x="16" y="20.5" textAnchor="middle">a</text>
+            </svg>
+            <span>Abivan Vijay</span>
+          </a>
           <nav aria-label="Main navigation">
             {nav.map((item) => (
               <a
