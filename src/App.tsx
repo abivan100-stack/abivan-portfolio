@@ -52,6 +52,12 @@ function ProjectSheet({ project }: { project: Project }) {
         {project.contextNote && project.contextNote.trim() !== project.summary.trim() && (
           <p className="sheet-context">{project.contextNote}</p>
         )}
+        {project.recognition && (
+          <p className="sheet-recognition">
+            <span className="recognition-label">Results &amp; Recognition</span>
+            {project.recognition}
+          </p>
+        )}
         <div className="sheet-pins">
           <a className="hier-pin" href={project.url} target="_blank" rel="noreferrer">Source repository</a>
           {project.demoUrl && <a className="hier-pin" href={project.demoUrl} target="_blank" rel="noreferrer">Open live demo</a>}

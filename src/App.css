@@ -250,6 +250,8 @@
 .sheet-box p { max-width: 66ch; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
 .sheet-box p.sheet-subtitle { margin-bottom: .45rem; color: var(--navy); font-size: 1.12rem; font-weight: 700; line-height: 1.35; }
 .sheet-box p.sheet-context { margin-top: .6rem; font-size: .9rem; font-style: italic; }
+.sheet-box p.sheet-recognition { margin-top: .9rem; padding: .6rem .85rem .65rem; border-left: 3px solid var(--green); background: var(--fill); color: var(--navy); font-size: .96rem; font-weight: 600; line-height: 1.5; }
+.recognition-label { display: block; margin-bottom: .2rem; color: var(--maroon); font-family: var(--mono); font-size: .7rem; font-weight: 600; }
 .sheet-pins { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 1.1rem; }
 .hier-pin {
   padding: .45em 1.5em .45em .8em;

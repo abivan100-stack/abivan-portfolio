@@ -10,6 +10,12 @@ const selectedRepositories = [
   'pulse-fit',
   'agrifly',
 ]
+// Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
+const recognitionByRepository = {
+  'c.r.a.s.h': 'Selected for the National Robotics Championship (NRC)',
+  'volt-ledger': "Presented at the school's Shark Tank-style pitch competition, with all 14 branches competing",
+  vault: 'Consolation prize at PEC Hacks 4.0 (hackathon)',
+}
 const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'Spike_Fit', 'abivan-portfolio']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
@@ -188,6 +194,7 @@ try {
       name: cleanName(readmeTitle || repository.name),
       summary: cleanDescription(summary, repository.name),
       contextNote: repository.name.toLowerCase() === 'vault' ? null : contextNote ? cleanDescription(contextNote, repository.name) : null,
+      recognition: recognitionByRepository[repository.name.toLowerCase()] ?? null,
       url: repository.html_url,
       demoUrl: repository.homepage || null,
       language: repository.language,
