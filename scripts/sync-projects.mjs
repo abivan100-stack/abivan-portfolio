@@ -51,6 +51,22 @@ const offlineProjects = [
     stars: 0,
     updatedAt: '2025-11-19T00:00:00Z',
   },
+  {
+    slug: 'robotics-for-good',
+    name: 'Robotics for Good -- Autonomous Public-Health Response Robot',
+    summary: 'A fully autonomous LEGO SPIKE Prime robot for the Robotics for Good Youth Challenge 2026–2027, run by the ITU with make+learn. In 2-minute matches that simulate a public-health emergency response, it moves samples to a lab and closes a quarantine zone with upright beams, then delivers medical kits and colour-sorts patient cylinders to the hospital, primary care centres and recovery zone. Competing in the Senior category.',
+    contextNote: null,
+    recognitions: [
+      { text: 'Selected for the national round, Senior category', dates: ['2026-09-22'] },
+      { text: 'National round in Delhi', dates: ['2026-10-10'] },
+    ],
+    url: null,
+    demoUrl: null,
+    language: 'SPIKE word blocks',
+    topics: [],
+    stars: 0,
+    updatedAt: '2026-09-23T00:00:00Z',
+  },
 ]
 // README notes that describe repo housekeeping rather than the project (Spike_Fit's note is about a
 // design-reference folder, not the app), so they are not shown.

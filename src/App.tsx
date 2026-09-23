@@ -42,6 +42,10 @@ const projectAnchor = (slug: string) => `project-${slug}`
 
 type Recognition = { text: string; dates: string[] }
 
+// A result dated after today (visitor's local date) is still to come; it turns into a normal entry
+// on its own once the day arrives.
+const isUpcoming = (dates: string[]) => dates[0] > new Date().toLocaleDateString('en-CA')
+
 // Every result across all projects, oldest first, for the timeline.
 const milestones = projects
   .flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
@@ -76,7 +80,12 @@ function ProjectSheet({ project, index }: { project: Project; index: number }) {
           <div className="sheet-recognition">
             <span className="recognition-label">Results &amp; Recognition</span>
             <ul>
-              {(project.recognitions as Recognition[]).map((recognition) => <li key={recognition.text}>{recognition.text}</li>)}
+              {(project.recognitions as Recognition[]).map((recognition) => (
+                <li key={recognition.text}>
+                  {recognition.text}
+                  {isUpcoming(recognition.dates) && <span className="upcoming-tag">Upcoming: {formatDateRange(recognition.dates)}</span>}
+                </li>
+              ))}
             </ul>
           </div>
         )}
@@ -264,10 +273,13 @@ function App() {
             </div>
             <ol className="tp-wire">
               {milestones.map((milestone, index) => (
-                <li className="tp" key={`${milestone.slug}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
+                <li className={isUpcoming(milestone.dates) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
                   <span className="tp-ref" aria-hidden="true">TP{index + 1}</span>
                   <span className="tp-mark" aria-hidden="true" />
-                  <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>
+                  <div className="tp-when">
+                    <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>
+                    {isUpcoming(milestone.dates) && <span className="upcoming-tag">Upcoming</span>}
+                  </div>
                   <a className="tp-project" href={`#${projectAnchor(milestone.slug)}`}>{milestone.title}</a>
                   <p>{milestone.text}</p>
                 </li>
@@ -278,7 +290,7 @@ function App() {
           <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
             <div className="work-head">
               <NetLabel id="work-title">projects</NetLabel>
-              <p>Seven projects across energy, health, sport, cities, food, and home safety, newest first.</p>
+              <p>Eight projects across robotics, energy, health, sport, cities, food, and home safety, newest first.</p>
             </div>
             <ol className="sheet-bus">
               {orderedProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
