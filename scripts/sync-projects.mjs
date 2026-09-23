@@ -115,6 +115,12 @@ const offlineProjects = [
 // design-reference folder, not the app), so they are not shown.
 const hiddenContextNotes = new Set(['vault', 'spike_fit'])
 // Repos whose README is only a title get their wording here instead, taken from the live page.
+// Live demos for repos with no website set on GitHub. A repo's own website link always wins.
+const fallbackDemoUrls = {
+  'c.r.a.s.h': 'https://c-r-a-s-h.onrender.com',
+  'spike_fit': 'https://spike-fit.onrender.com',
+  'rutu-gaikwad-fansite': 'https://rutu-31.onrender.com',
+}
 const readmeOverrides = {
   'cr7-fan-page': {
     name: 'CR7 -- Kinetic Fan Tribute',
@@ -305,7 +311,7 @@ try {
       ...readmeOverrides[repository.name.toLowerCase()],
       recognitions: recognitionsByRepository[repository.name.toLowerCase()] ?? [],
       url: repository.html_url,
-      demoUrl: repository.homepage || null,
+      demoUrl: repository.homepage || fallbackDemoUrls[repository.name.toLowerCase()] || null,
       language: repository.language,
       topics: repository.topics ?? [],
       stars: repository.stargazers_count,
