@@ -9,9 +9,8 @@ const selectedRepositories = [
   'C.R.A.S.H',
   'pulse-fit',
   'agrifly',
-  'Spike_Fit',
 ]
-const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'abivan-portfolio']
+const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'Spike_Fit', 'abivan-portfolio']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
   Accept: 'application/vnd.github+json',

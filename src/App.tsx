@@ -53,13 +53,13 @@ function App() {
               <motion.p className="hero-location" {...entrance(0.05)}><span className="location-mark" aria-hidden="true" /> Chennai, India</motion.p>
               <motion.h1 id="intro-title" {...entrance(0.14)}>Hello,<br />I’m Abivan<span className="hero-period">.</span></motion.h1>
               <motion.div className="hero-bottom" {...entrance(0.26)}>
-                <p className="hero-role">Software developer</p>
-                <p className="hero-description">I make thoughtful software for the systems and people we depend on.</p>
+                <p className="hero-role">Robotics enthusiast &amp; vibe coder</p>
+                <p className="hero-description">I turn ideas into software, experiments, and things that move.</p>
               </motion.div>
             </div>
             <motion.aside className="hero-note" {...entrance(0.3)} aria-label="A little about Abivan">
               <span className="note-symbol" aria-hidden="true"><span /><span /><span /></span>
-              <p>From the first sketch to the details that make a product work.</p>
+              <p>Exploring robotics, code, and the ideas that bring them together.</p>
               <a href="#about">A little about me <span aria-hidden="true">↓</span></a>
               <span className="note-index" aria-hidden="true">AB / 01</span>
             </motion.aside>
@@ -72,8 +72,8 @@ function App() {
               <h2 id="about-title">A bit<br />about me</h2>
             </div>
             <motion.div className="about-copy" initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }}>
-              <p className="about-lead">I’m a software developer based in Chennai, drawn to the point where a useful idea becomes something people can rely on.</p>
-              <p>My work moves between the interface and the systems behind it. I’ve built projects around energy, health, fitness, agriculture and safer streets, with care for how each one works in practice.</p>
+              <p className="about-lead">I’m Abivan, a 14-year-old robotics enthusiast and vibe coder based in Chennai.</p>
+              <p>I study at Velammal Academy, Nolambur. Claude Code and Codex are my main coding tools; I use them to explore ideas, build software, and experiment with how hardware and code can work together.</p>
               <a className="text-link" href="https://github.com/abivan100-stack" target="_blank" rel="noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a>
             </motion.div>
           </section>

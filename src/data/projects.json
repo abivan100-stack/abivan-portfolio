@@ -58,17 +58,5 @@
     "topics": [],
     "stars": 0,
     "updatedAt": "2026-07-30T08:10:33Z"
-  },
-  {
-    "slug": "Spike_Fit",
-    "name": "Spikefit — The Fitting Room",
-    "summary": "A rule-based, deterministic track-spike fitting tool. Answer a short guided quiz (or jump straight to your event), and get scored, explained spike recommendations — no external APIs, no ML, just a transparent rules engine over a real shoe catalog.",
-    "contextNote": "project/ contains the original Claude Design handoff bundle (Spikefit.dc.html + assets) that the app/ implementation was built from. It's a static prototype, not runnable — kept for design reference only.",
-    "url": "https://github.com/abivan100-stack/Spike_Fit",
-    "demoUrl": null,
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 0,
-    "updatedAt": "2026-07-17T17:37:53Z"
   }
 ]
