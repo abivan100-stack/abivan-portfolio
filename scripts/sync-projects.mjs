@@ -114,14 +114,19 @@ const offlineProjects = [
 // README notes that describe repo housekeeping rather than the project (Spike_Fit's note is about a
 // design-reference folder, not the app), so they are not shown.
 const hiddenContextNotes = new Set(['vault', 'spike_fit'])
-// Repos whose README is only a title get their wording here instead, taken from the live page.
+// Wording that replaces what a README gives: a better description when the README is only a title, or a
+// project renamed since its repo was created.
 // Live demos for repos with no website set on GitHub. A repo's own website link always wins.
 const fallbackDemoUrls = {
   'c.r.a.s.h': 'https://c-r-a-s-h.onrender.com',
   'spike_fit': 'https://spike-fit.onrender.com',
   'rutu-gaikwad-fansite': 'https://rutu-31.onrender.com',
+  'grammar-agent-project-1-': 'https://write-wise-wbxl.onrender.com',
 }
 const readmeOverrides = {
+  'grammar-agent-project-1-': {
+    name: 'WriteWise AI -- Writing Studio',
+  },
   'cr7-fan-page': {
     name: 'CR7 -- Kinetic Fan Tribute',
     summary: 'An unofficial kinetic tribute to Cristiano Ronaldo, set entirely in type. It walks through his honours and records, each club era from Sporting CP to Al Nassr, and the chase for 1,000 career goals, with a free-kick section to try.',
