@@ -60,7 +60,9 @@
 .about-copy { max-width: 680px; padding-top: 25px; }
 .about-copy p { margin: 0; color: #5b5a61; font-size: 1rem; line-height: 1.85; }
 .about-copy p.about-lead { margin: 0 0 27px; color: var(--ink); font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.42; letter-spacing: -.04em; }
-.text-link { display: inline-flex; align-items: center; gap: 14px; margin-top: 30px; padding-bottom: 6px; color: var(--blue-deep); border-bottom: 1px solid #414fe060; font-size: .84rem; text-decoration: none; }
+.text-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; padding: 11px 15px; color: #fff; background: var(--blue); font-size: .84rem; font-weight: 600; text-decoration: none; transition: background-color 160ms ease, transform 160ms ease; }
+.text-link .github-mark { width: 17px; height: 17px; }
+.text-link:hover { color: #fff; background: var(--blue-deep); transform: translateY(-1px); }
 
 .work-section { margin-inline: calc(0px - clamp(22px, 7.2vw, 116px)); padding: clamp(64px, 8vw, 100px) clamp(22px, 7.2vw, 116px) 64px; background: var(--paper-light); }
 .work-top { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 44px; }
