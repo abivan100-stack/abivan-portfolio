@@ -75,7 +75,7 @@ const offlineProjects = [
     summary: 'A two-unit ESP32 system for sanitation workers who enter manholes. The clip-on worker unit reads an MQ136 hydrogen sulfide sensor and an MQ4 methane sensor every second, shows the levels on an OLED, and sounds a buzzer at warning and danger thresholds. It sends its status over ESP-NOW, with no router or internet needed, to a receiver held by the supervisor at the manhole opening, which raises its own alarm until the supervisor resets it.',
     contextNote: null,
     recognitions: [
-      { text: 'Participated in Young Environmental Scientist (YES) 2026, run by IWMA with IIT Madras', dates: ['2026-08-17'] },
+      { text: 'Participated in Young Environmental Scientist 2026, run by IWMA with IIT Madras', dates: ['2026-08-17'] },
     ],
     url: null,
     demoUrl: null,
