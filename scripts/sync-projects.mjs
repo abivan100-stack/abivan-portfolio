@@ -36,6 +36,21 @@ const offlineProjects = [
     stars: 0,
     updatedAt: '2026-02-13T00:00:00Z',
   },
+  {
+    slug: 'smart-guard',
+    name: 'Smart Guard -- Smart Home Multi-Sensor System',
+    summary: 'An ESP32 smart home model that puts security and home monitoring in one unit. An RFID reader checks each card against a list of known IDs and shows a welcome message or Access Denied. A DHT22 tracks temperature and humidity, a capacitive probe measures soil moisture, an MQ2 sensor reads gas levels, and a rain sensor detects water, all shown on an OLED screen with the time from a DS3231 clock. Built as a three-person team project.',
+    contextNote: null,
+    recognitions: [
+      { text: 'Participated in the expo held by SRM University, Ramapuram', dates: ['2025-11-29'] },
+    ],
+    url: null,
+    demoUrl: null,
+    language: 'Arduino C++',
+    topics: [],
+    stars: 0,
+    updatedAt: '2025-11-19T00:00:00Z',
+  },
 ]
 const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'Spike_Fit', 'abivan-portfolio']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
