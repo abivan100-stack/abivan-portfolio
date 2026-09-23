@@ -278,7 +278,7 @@ function App() {
           <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
             <div className="work-head">
               <NetLabel id="work-title">projects</NetLabel>
-              <p>Seven projects across energy, health, cities, agriculture, food, and home safety, newest first.</p>
+              <p>Six projects across energy, health, cities, food, and home safety, newest first.</p>
             </div>
             <ol className="sheet-bus">
               {orderedProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}

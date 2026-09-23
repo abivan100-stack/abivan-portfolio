@@ -74,19 +74,6 @@
     "updatedAt": "2026-08-05T15:16:32Z"
   },
   {
-    "slug": "agrifly",
-    "name": "Agrifly -- Field Intelligence Survey Sheet",
-    "summary": "A landing page for Agrifly, a precision-agriculture concept: \"a survey that reads every parcel of your farm on a set cadence. You can act on current conditions as they unfold.\"",
-    "contextNote": null,
-    "recognitions": [],
-    "url": "https://github.com/abivan100-stack/agrifly",
-    "demoUrl": null,
-    "language": "HTML",
-    "topics": [],
-    "stars": 0,
-    "updatedAt": "2026-07-30T08:10:33Z"
-  },
-  {
     "slug": "freshsense",
     "name": "FreshSense -- Automated Food Spoilage Detection System",
     "summary": "An ESP32 build that checks food for spoilage on a conveyor belt. An IR sensor stops each item under two gas sensors, which compare its reading against a clean-air baseline the system calibrates at start-up. The verdict, FRESH or ROTTEN, shows on an LCD and is sent to the Blynk IoT cloud for remote monitoring. Built as a three-person team project.",

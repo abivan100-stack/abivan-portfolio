@@ -8,7 +8,6 @@ const selectedRepositories = [
   'vault',
   'C.R.A.S.H',
   'pulse-fit',
-  'agrifly',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
 // Each project lists its results oldest first. dates holds the event day, or the first and last
@@ -52,7 +51,7 @@ const offlineProjects = [
     updatedAt: '2025-11-19T00:00:00Z',
   },
 ]
-const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'Spike_Fit', 'abivan-portfolio']
+const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'Spike_Fit', 'abivan-portfolio', 'agrifly']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
   Accept: 'application/vnd.github+json',
