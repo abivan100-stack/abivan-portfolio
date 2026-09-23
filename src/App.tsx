@@ -4,10 +4,20 @@ import './App.css'
 
 type Project = (typeof projects)[number]
 
-function PersonalMark() {
+function BuildTrace() {
+  const reduceMotion = useReducedMotion()
+
   return (
-    <div className="personal-mark" role="img" aria-label="A. monogram for Abivan">
-      <span className="mark-initial" aria-hidden="true">A<span>.</span></span>
+    <div className="build-trace" aria-hidden="true">
+      <svg viewBox="0 0 420 360" fill="none">
+        <motion.path className="trace-line trace-line-main" d="M28 266C78 263 79 151 143 130C195 113 225 153 252 203C280 254 327 272 390 226" pathLength={1} initial={reduceMotion ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.35, delay: 0.35, ease: 'easeInOut' }} />
+        <motion.path className="trace-line trace-line-second" d="M55 302C100 233 138 191 193 190C252 189 284 133 353 72" pathLength={1} initial={reduceMotion ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.15, delay: 0.55, ease: 'easeInOut' }} />
+        <motion.path className="trace-line trace-line-third" d="M66 75C122 94 150 53 204 66C265 81 264 135 316 161C348 177 372 158 395 128" pathLength={1} initial={reduceMotion ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 0.7, ease: 'easeInOut' }} />
+        <circle className="trace-point trace-point-one" cx="28" cy="266" r="4" />
+        <circle className="trace-point trace-point-two" cx="353" cy="72" r="4" />
+        <circle className="trace-point trace-point-three" cx="395" cy="128" r="4" />
+      </svg>
+      <span className="trace-caption">Ideas take shape</span>
     </div>
   )
 }
@@ -38,7 +48,7 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="site-shell">
-        <header className="site-header">
+        <header className="site-header" id="top">
           <a className="wordmark" href="#top" aria-label="Abivan, back to top">Abivan<span>.</span></a>
           <nav aria-label="Main navigation">
             <a href="#about">About</a>
@@ -47,7 +57,7 @@ function App() {
           </nav>
         </header>
 
-        <main id="top">
+        <main>
           <motion.section className="personal-intro" aria-labelledby="intro-title"
             initial={reduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -58,7 +68,7 @@ function App() {
               <p className="intro-description">I build useful digital tools.</p>
               <a className="intro-link" href="#about">A little about me <span aria-hidden="true">↓</span></a>
             </div>
-            <PersonalMark />
+            <BuildTrace />
           </motion.section>
 
           <motion.section className="about-section" id="about" aria-labelledby="about-title"
