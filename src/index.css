@@ -1,19 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* Martian Mono's width axis runs 75 to 112.5 on Google Fonts (served as font-stretch: 75% 112.5%). */
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap');
 
+/* Palette taken from KiCad's classic schematic colours. */
 :root {
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  --paper: #ffffff;
+  --grid: #d5d9e0;
+  --navy: #000084;
+  --ink: #1a1c3a;
+  --muted: #555a73;
+  --maroon: #840000;
+  --green: #008400;
+  --green-hot: #00b400;
+  --teal: #006f6f;
+  --fill: #ffffc2;
+  --magenta: #840084;
+  --magenta-tint: #f6e6f6;
+  --mono: 'Martian Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --text: 'Atkinson Hyperlegible Next', 'Segoe UI', sans-serif;
+
+  font-family: var(--text);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  background: #f1f4f3;
-  color: #182327;
+  color: var(--ink);
+  background: var(--paper);
   scroll-behavior: smooth;
 }
 
 * { box-sizing: border-box; }
-body { min-width: 0; min-height: 100vh; margin: 0; }
+body { min-width: 0; min-height: 100vh; margin: 0; background: var(--paper); }
 button, a { font: inherit; }
-::selection { color: #fff; background: #5548ef; }
+::selection { color: var(--paper); background: var(--magenta); }
+:focus-visible { outline: 2px solid var(--magenta); outline-offset: 3px; }

@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#5548ef" />
-  <text x="9" y="48" fill="#fff" font-family="Arial, sans-serif" font-size="47" font-weight="700" letter-spacing="-5">a</text>
-  <circle cx="51" cy="45" r="4" fill="#d5ed77" />
+  <rect width="64" height="64" fill="#ffffff" />
+  <g stroke="#840000" stroke-width="4">
+    <path d="M2 20h12M2 32h12M2 44h12M50 20h12M50 32h12M50 44h12" />
+    <rect x="14" y="8" width="36" height="48" fill="#ffffc2" />
+  </g>
+  <text x="32" y="41" fill="#000084" font-family="Consolas, monospace" font-size="24" font-weight="700" text-anchor="middle">a</text>
 </svg>
