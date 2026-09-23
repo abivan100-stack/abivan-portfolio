@@ -260,7 +260,8 @@
 .tp { position: relative; padding-top: calc(var(--tp-y) + 26px); }
 .tp-ref { position: absolute; top: calc(var(--tp-y) - 34px); left: 0; color: var(--teal); font-family: var(--mono); font-size: .75rem; font-weight: 700; }
 .tp-mark { position: absolute; top: calc(var(--tp-y) - 8px); left: 0; width: 16px; height: 16px; border: 2px solid var(--maroon); border-radius: 50%; background: var(--paper); transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
-.tp:has(a.tp-project:hover) .tp-mark,
+/* Hovering anywhere on a result lights its test point, linked or not */
+.tp:hover .tp-mark,
 .tp:focus-within .tp-mark { border-color: var(--green); background: var(--green-hot); box-shadow: 0 0 8px var(--green-hot); }
 .tp-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .5rem; }
 .tp time { color: var(--maroon); font-family: var(--mono); font-size: .78rem; }
