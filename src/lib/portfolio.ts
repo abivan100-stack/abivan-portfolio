@@ -11,6 +11,7 @@ export const EMAIL = 'abivan100@gmail.com'
 // Page URLs respect Vite's base path, so the site still works if it is served from a subfolder.
 export const HOME_URL = import.meta.env.BASE_URL
 export const PROJECTS_URL = `${import.meta.env.BASE_URL}projects/`
+export const TOOLKIT_URL = `${import.meta.env.BASE_URL}toolkit/`
 
 export const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })

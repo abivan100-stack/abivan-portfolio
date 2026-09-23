@@ -6,11 +6,12 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Two real pages, so /projects/ works on any static host without rewrite rules.
+    // Real pages, so /projects/ and /toolkit/ work on any static host without rewrite rules.
     rollupOptions: {
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         projects: fileURLToPath(new URL('./projects/index.html', import.meta.url)),
+        toolkit: fileURLToPath(new URL('./toolkit/index.html', import.meta.url)),
       },
     },
   },

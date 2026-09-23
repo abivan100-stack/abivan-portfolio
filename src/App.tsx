@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties } from 'react'
 import { NetLabel, PageFrame, ProjectSheet } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import {
-  EMAIL, GITHUB_URL, PROJECTS_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref, toolkit,
+  EMAIL, GITHUB_URL, PROJECTS_URL, TOOLKIT_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
 } from './lib/portfolio'
 import './App.css'
 
@@ -58,6 +58,7 @@ function App() {
   const nav = [
     { href: '#about', label: 'About', active: activeSection === 'about' },
     { href: '#work', label: 'Projects', active: activeSection === 'work' },
+    { href: TOOLKIT_URL, label: 'Toolkit' },
     { href: '#contact', label: 'Contact', active: activeSection === 'contact' },
   ]
 
@@ -144,37 +145,6 @@ function App() {
         </ol>
       </section>
 
-      <section className="toolkit section" id="toolkit" aria-labelledby="toolkit-title">
-        <div className="toolkit-head">
-          <NetLabel id="toolkit-title">toolkit</NetLabel>
-          <p>A bill of materials for my builds: the boards, parts, and software they use. Qty is how many projects use each one.</p>
-        </div>
-        <table className="bom">
-          <thead>
-            <tr><th scope="col">Item</th><th scope="col">Part</th><th scope="col">Qty</th><th scope="col">Used in</th></tr>
-          </thead>
-          {[...new Set(toolkit.map((row) => row.group))].map((group) => (
-            <tbody key={group}>
-              <tr className="bom-group"><th scope="colgroup" colSpan={4}>{group}</th></tr>
-              {toolkit.map((row, index) => row.group === group && (
-                <tr key={row.part}>
-                  <td className="bom-item">{index + 1}</td>
-                  <td><span className="bom-part">{row.part}</span><span className="bom-note">{row.note}</span></td>
-                  <td className="bom-qty">{row.qty}</td>
-                  <td className="bom-used">
-                    {row.used
-                      ? row.used.map((project, i) => (
-                          <span key={project.slug}>{i > 0 && ', '}<a href={projectHref(project.slug, true)}>{project.title}</a></span>
-                        ))
-                      : 'Every project'}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          ))}
-        </table>
-      </section>
-
       <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
         <div className="work-head">
           <NetLabel id="work-title">projects</NetLabel>
@@ -200,7 +170,7 @@ function App() {
             <div><dt>GitHub</dt><dd><a href={GITHUB_URL} target="_blank" rel="noreferrer">abivan100-stack</a></dd></div>
             <div><dt>Location</dt><dd>Chennai, India</dd></div>
             <div><dt>Updated</dt><dd>{lastUpdated}</dd></div>
-            <div><dt>Sheet</dt><dd>1 of 2</dd></div>
+            <div><dt>Sheet</dt><dd>1 of 3</dd></div>
           </dl>
         </div>
       </section>

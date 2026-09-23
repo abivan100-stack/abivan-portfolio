@@ -1,9 +1,9 @@
 import { NetLabel, PageFrame, ProjectSheet } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
-import { GITHUB_URL, HOME_URL, orderedProjects } from './lib/portfolio'
+import { GITHUB_URL, HOME_URL, TOOLKIT_URL, orderedProjects } from './lib/portfolio'
 import './App.css'
 
-// Sheet 2 of 2: every project, as sub-sheets on one bus. Reached from "See all projects" on the home page.
+// Sheet 2 of 3: every project, as sub-sheets on one bus. Reached from "See all projects" on the home page.
 function ProjectsPage() {
   usePowerUp()
   useNetFlash()
@@ -11,6 +11,7 @@ function ProjectsPage() {
   const nav = [
     { href: `${HOME_URL}#about`, label: 'About' },
     { href: '#all-projects', label: 'Projects', active: true, current: 'page' as const },
+    { href: TOOLKIT_URL, label: 'Toolkit' },
     { href: `${HOME_URL}#contact`, label: 'Contact' },
   ]
 
@@ -18,7 +19,7 @@ function ProjectsPage() {
     <PageFrame
       homeHref={HOME_URL}
       nav={nav}
-      footer={<><span>Sheet 2 of 2, drawn by Abivan in Chennai</span><a href="#top">Back to top</a></>}
+      footer={<><span>Sheet 2 of 3, drawn by Abivan in Chennai</span><a href="#top">Back to top</a></>}
     >
       <section className="work section" id="all-projects" aria-labelledby="all-projects-title" data-power-up>
         <nav className="sheet-path" aria-label="Breadcrumb">
