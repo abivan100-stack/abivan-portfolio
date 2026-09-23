@@ -61,19 +61,6 @@
     "updatedAt": "2026-08-19T14:02:59Z"
   },
   {
-    "slug": "pulse-fit",
-    "name": "pulse-fit",
-    "summary": "Nine inputs. The engine derives body composition, energy demand, a training prescription, heart-rate ceilings and a recovery target. No wearable required.",
-    "contextNote": null,
-    "recognitions": [],
-    "url": "https://github.com/abivan100-stack/pulse-fit",
-    "demoUrl": null,
-    "language": "HTML",
-    "topics": [],
-    "stars": 0,
-    "updatedAt": "2026-08-05T15:16:32Z"
-  },
-  {
     "slug": "Spike_Fit",
     "name": "Spikefit -- The Fitting Room",
     "summary": "A rule-based, deterministic track-spike fitting tool. Answer a short guided quiz (or jump straight to your event), and get scored, explained spike recommendations. No external APIs, no ML, just a transparent rules engine over a real shoe catalog.",

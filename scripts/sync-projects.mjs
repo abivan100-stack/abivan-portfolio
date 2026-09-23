@@ -7,7 +7,6 @@ const selectedRepositories = [
   'volt-ledger',
   'vault',
   'C.R.A.S.H',
-  'pulse-fit',
   'Spike_Fit',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
@@ -86,7 +85,7 @@ const offlineProjects = [
 // README notes that describe repo housekeeping rather than the project (Spike_Fit's note is about a
 // design-reference folder, not the app), so they are not shown.
 const hiddenContextNotes = new Set(['vault', 'spike_fit'])
-const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'abivan-portfolio', 'agrifly']
+const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'CR7-fan-page', 'rutu-gaikwad-fansite', 'abivan-portfolio', 'agrifly', 'pulse-fit']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
   Accept: 'application/vnd.github+json',
