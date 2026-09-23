@@ -251,7 +251,7 @@
 /* Timeline: results in date order as test points on one wire */
 .timeline { --tp-y: 44px; }
 .timeline-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px; }
-.timeline-head p { max-width: 44ch; margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; }
+.timeline-head p { max-width: 54ch; margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; }
 /* Columns wrap as results are added; each point draws its own wire segment across the gap, so every row stays wired */
 .timeline { --tp-gap: 28px; }
 .tp-wire { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 44px var(--tp-gap); margin: 40px 0 0; padding: 0; list-style: none; }
