@@ -102,27 +102,22 @@
 
 .personal-mark {
   width: min(100%, 330px);
+  aspect-ratio: 1;
   justify-self: center;
-  position: relative;
-  color: #777184;
-}
-.personal-mark svg { display: block; width: 100%; overflow: visible; }
-.mark-orbit { fill: none; stroke: #c9c5ce; stroke-width: 1; stroke-dasharray: 2 7; }
-.mark-orbit-inner { stroke: #dfddd8; stroke-dasharray: none; }
-.mark-letter { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.mark-inscription { fill: none; stroke: #b6b1bd; stroke-width: 1; }
-.mark-spark { fill: var(--accent); }
-.personal-mark span {
-  position: absolute;
-  inset: 0;
   display: grid;
-  place-content: center;
-  color: #615c6b;
-  font-family: var(--font-mono);
-  font-size: .72rem;
-  line-height: 1.6;
-  text-align: center;
-  transform: translateY(47px);
+  place-items: center;
+}
+.mark-initial {
+  color: #d9ded7;
+  font-family: var(--font-display);
+  font-size: clamp(15rem, 25vw, 20rem);
+  font-weight: 500;
+  letter-spacing: -.14em;
+  line-height: .8;
+  transform: translateX(-.07em);
+}
+.mark-initial span {
+  color: var(--accent);
 }
 
 .about-section {

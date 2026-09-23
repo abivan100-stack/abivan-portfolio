@@ -6,15 +6,8 @@ type Project = (typeof projects)[number]
 
 function PersonalMark() {
   return (
-    <div className="personal-mark" role="img" aria-label="Geometric A monogram for Abivan">
-      <svg viewBox="0 0 340 340" aria-hidden="true">
-        <circle className="mark-orbit" cx="170" cy="170" r="148" />
-        <circle className="mark-orbit mark-orbit-inner" cx="170" cy="170" r="128" />
-        <path className="mark-letter" d="M88 260 170 74l82 186M119 190h102" />
-        <path className="mark-inscription" d="M44 170h18m216 0h18M170 22v18m0 260v18" />
-        <circle className="mark-spark" cx="268" cy="90" r="5" />
-      </svg>
-      <span>Abivan<br />Chennai</span>
+    <div className="personal-mark" role="img" aria-label="A. monogram for Abivan">
+      <span className="mark-initial" aria-hidden="true">A<span>.</span></span>
     </div>
   )
 }
@@ -62,7 +55,7 @@ function App() {
             <div className="intro-copy">
               <p className="location-line"><span className="location-dot" aria-hidden="true" />Based in Chennai</p>
               <h1 id="intro-title">Hi, I’m<br /><span>Abivan.</span></h1>
-              <p className="intro-description">Software builder, based in Chennai.</p>
+              <p className="intro-description">I build useful digital tools.</p>
               <a className="intro-link" href="#about">A little about me <span aria-hidden="true">↓</span></a>
             </div>
             <PersonalMark />
@@ -74,8 +67,8 @@ function App() {
             transition={{ duration: 0.55, ease: 'easeOut' }}>
             <h2 id="about-title">About Abivan</h2>
             <div className="about-copy">
-              <p>I’m Abivan, a software builder based in Chennai. I work on web experiences and digital tools, moving between ideas, interface design, and the systems underneath.</p>
-              <p>This portfolio brings a selection of that work together in one place.</p>
+              <p>I’m Abivan, a software developer based in Chennai. I build useful digital tools, shaping both the experience people see and the systems that make it work.</p>
+              <p>My projects span energy, health, fitness, agriculture and civic data.</p>
             </div>
           </motion.section>
 
