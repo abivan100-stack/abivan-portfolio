@@ -203,5 +203,31 @@
     "topics": [],
     "stars": 0,
     "updatedAt": "2026-08-13T00:00:00Z"
+  },
+  {
+    "slug": "landmine-shoe",
+    "name": "Landmine Detection Shoe -- Metal-Sensing Prototype",
+    "summary": "An early prototype of a shoe that senses buried metal. An ESP32 sends short pulses through a coil and reads the response, calibrates a baseline away from metal at start-up, then reports how far each new reading moves from that baseline.",
+    "contextNote": null,
+    "recognitions": [],
+    "url": null,
+    "demoUrl": null,
+    "language": "Arduino C++",
+    "topics": [],
+    "stars": 0,
+    "updatedAt": "2026-04-28T00:00:00Z"
+  },
+  {
+    "slug": "rfid-door-lock",
+    "name": "RFID Door Lock -- Card-Operated Servo Lock",
+    "summary": "An Arduino door lock opened with RFID cards. Scanning a known card turns a servo between open and locked and greets the card holder by name on a 16x2 LCD; an unknown card gets Access Denied.",
+    "contextNote": null,
+    "recognitions": [],
+    "url": null,
+    "demoUrl": null,
+    "language": "Arduino C++",
+    "topics": [],
+    "stars": 0,
+    "updatedAt": "2024-11-29T00:00:00Z"
   }
 ]
