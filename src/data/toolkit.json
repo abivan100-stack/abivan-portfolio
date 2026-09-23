@@ -1,14 +1,11 @@
 [
-  { "group": "Hardware", "part": "ESP32", "note": "WiFi and Bluetooth microcontroller", "projects": ["freshsense", "smart-guard", "sewer-gas-detector", "landmine-shoe", "vault"] },
-  { "group": "Hardware", "part": "Arduino", "note": "Microcontroller board", "projects": ["rfid-door-lock"] },
+  { "group": "Hardware", "part": "Arduino and ESP32", "note": "Microcontroller boards", "projects": ["freshsense", "smart-guard", "sewer-gas-detector", "landmine-shoe", "vault", "rfid-door-lock"] },
   { "group": "Hardware", "part": "LEGO SPIKE Prime", "note": "Competition robot kit", "projects": ["robotics-for-good"] },
   { "group": "Hardware", "part": "Sensors and modules", "note": "Gas, climate, RFID, displays, servos", "projects": ["freshsense", "smart-guard", "sewer-gas-detector", "vault", "rfid-door-lock", "landmine-shoe"] },
   { "group": "Hardware", "part": "Wireless and IoT", "note": "WiFi, ESP-NOW, Blynk", "projects": ["vault", "sewer-gas-detector", "freshsense"] },
-  { "group": "Software", "part": "JavaScript and HTML", "note": "Web pages and front ends", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "CR7-fan-page", "rutu-gaikwad-fansite", "Spike_Fit", "freshsense"] },
-  { "group": "Software", "part": "TypeScript, React, Vite", "note": "Web apps", "projects": ["volt-ledger", "vault", "Spike_Fit"] },
-  { "group": "Software", "part": "Python", "note": "FastAPI and Flask backends", "projects": ["C.R.A.S.H", "grammar-agent-project-1-"] },
-  { "group": "Software", "part": "Node.js and Express", "note": "API servers", "projects": ["vault"] },
-  { "group": "Software", "part": "MongoDB and Supabase", "note": "Databases", "projects": ["volt-ledger", "C.R.A.S.H", "vault"] },
+  { "group": "Software", "part": "JavaScript, TypeScript and HTML", "note": "Web apps, pages and front ends", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "CR7-fan-page", "rutu-gaikwad-fansite", "Spike_Fit", "freshsense", "volt-ledger", "vault"] },
+  { "group": "Software", "part": "Python and Node.js", "note": "FastAPI, Flask and Express backends", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "vault"] },
+  { "group": "Software", "part": "MongoDB and Supabase", "note": "Databases", "projects": ["volt-ledger", "C.R.A.S.H", "vault", "grammar-agent-project-1-"] },
   { "group": "Software", "part": "APIs and API keys", "note": "Claude API, Resend, device keys", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "volt-ledger", "vault"] },
   { "group": "Software", "part": "Render and Vercel", "note": "Hosting and deploys", "projects": ["volt-ledger", "C.R.A.S.H", "Spike_Fit", "CR7-fan-page", "rutu-gaikwad-fansite"] },
   { "group": "Software", "part": "Claude Code and Codex", "note": "AI coding tools", "projects": "all" }

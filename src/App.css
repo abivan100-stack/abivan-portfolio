@@ -310,7 +310,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px;
   width: 100%;
-  min-height: 124px;
+  min-height: 140px;
   padding: 12px 12px 34px;
   border: 2px solid var(--navy);
   background: var(--paper);
