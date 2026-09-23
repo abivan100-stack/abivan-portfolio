@@ -157,8 +157,10 @@ async function readProjectSnapshot() {
   }
 }
 
+// README titles read "Name — Subtitle". The site splits title from subtitle on " -- ", so the
+// em dash becomes that separator (which also keeps em dashes out of the page copy).
 function cleanName(text = '') {
-  return text.replace(/\s*—\s*/g, ': ')
+  return text.replace(/\s*—\s*/g, ' -- ')
 }
 
 function cleanDescription(text = '', repositoryName = '') {
