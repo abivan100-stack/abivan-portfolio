@@ -70,17 +70,5 @@
     "topics": [],
     "stars": 0,
     "updatedAt": "2026-07-17T17:37:53Z"
-  },
-  {
-    "slug": "rutu-gaikwad-fansite",
-    "name": "GAIKWAD — Interactive Tribute Microsite",
-    "summary": "A single-page, scroll-driven fan tribute to top-order batter Ruturaj Gaikwad (No. 31). Built as one self-contained interactive experience: animated hero, pinned scroll-scrubbed storytelling, live canvas visualisations, a playable trivia quiz, and four switchable colour themes.",
-    "contextNote": "Unofficial fan project. Not affiliated with, endorsed by, or connected to any player, club, league, or board. All statistics shown are illustrative / approximate, as of mid-2026 and are used for design and demonstration purposes only.",
-    "url": "https://github.com/abivan100-stack/rutu-gaikwad-fansite",
-    "demoUrl": null,
-    "language": "HTML",
-    "topics": [],
-    "stars": 0,
-    "updatedAt": "2026-07-13T11:58:10Z"
   }
 ]

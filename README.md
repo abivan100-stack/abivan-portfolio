@@ -1,6 +1,6 @@
 # Abivan's personal portfolio
 
-A minimalist personal portfolio for Abivan, with a short introduction, About section, and selected work backed by public GitHub repositories.
+A personal portfolio for Abivan with an editorial visual identity, a concise About section, and selected work backed by public GitHub repositories. Fan pages and football prediction projects are intentionally excluded from the portfolio index.
 
 ## Develop locally
 
