@@ -48,6 +48,7 @@
 .chip-ref { top: 0; font-weight: 700; }
 .chip-value { bottom: 0; }
 .chip-body {
+  position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   min-height: 440px;
@@ -99,6 +100,87 @@
   line-height: .92;
 }
 .chip-description { max-width: 32ch; margin: 1.3em 0 0; color: var(--ink); font-size: clamp(1.1rem, 1.7vw, 1.35rem); line-height: 1.5; }
+
+/* Schematic / Board switch, like flipping between KiCad's two editors */
+.view-switch { display: flex; justify-content: flex-end; margin-bottom: 18px; }
+.view-switch button {
+  padding: 7px 14px;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: .72rem;
+  cursor: pointer;
+  transition: color 200ms ease, background-color 200ms ease;
+}
+.view-switch button + button { border-left: 0; }
+.view-switch button:hover { background: var(--fill); }
+.view-switch button[aria-pressed='true'] { color: var(--paper); background: var(--navy); }
+
+/* Board view: the same U1, fabricated. Every colour change eases so the flip reads as one move. */
+.hero { --mask: #17613a; --mask-edge: #0e4a2b; --copper: #d4a94f; --copper-hot: #ffd479; --silk: #f2f2ea; --package: #232326; --etch: #a9a9a3; }
+.chip,
+.chip-body,
+.chip-ref,
+.chip-value,
+.pin-name,
+.pin-num,
+.chip-location,
+.chip-core h1,
+.chip-description,
+.pins-in li::before,
+.pins-out .pin-name::after { transition: color 320ms ease, background-color 320ms ease, border-color 320ms ease, box-shadow 320ms ease; }
+
+.is-board .chip {
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 18px 18px, var(--mask-edge) 4px, var(--copper) 4.5px, var(--copper) 8px, transparent 8.5px),
+    radial-gradient(circle at calc(100% - 18px) 18px, var(--mask-edge) 4px, var(--copper) 4.5px, var(--copper) 8px, transparent 8.5px),
+    radial-gradient(circle at 18px calc(100% - 18px), var(--mask-edge) 4px, var(--copper) 4.5px, var(--copper) 8px, transparent 8.5px),
+    radial-gradient(circle at calc(100% - 18px) calc(100% - 18px), var(--mask-edge) 4px, var(--copper) 4.5px, var(--copper) 8px, transparent 8.5px),
+    var(--mask);
+  box-shadow: inset 0 0 0 2px var(--mask-edge);
+}
+.is-board .chip-ref,
+.is-board .chip-value,
+.is-board .pin-num { color: var(--silk); }
+.is-board .chip-ref { top: 10px; }
+.is-board .chip-value { bottom: 8px; }
+.is-board .chip-body { border-color: var(--package); background: var(--package); box-shadow: inset 0 0 0 1px #3a3a3e, 0 3px 0 #0b3320; }
+/* Pin-1 dimple moulded into the package */
+.chip-body::before { position: absolute; top: 14px; left: 14px; width: 12px; height: 12px; border-radius: 50%; background: #18181a; box-shadow: inset 1px 1px 2px #000; content: ''; opacity: 0; transition: opacity 320ms ease; }
+.is-board .chip-body::before { opacity: 1; }
+.is-board .pin-name,
+.is-board .chip-location { color: var(--etch); }
+.is-board .chip-core h1 { color: #c9c9c3; }
+.is-board .chip-description { color: #deded8; }
+.is-board .pins-in li::before,
+.is-board .pins-out .pin-name::after { width: calc(var(--stub) - 15px); height: 6px; margin-top: -3px; background: var(--copper); }
+.is-board .pins-out .pin-name:hover,
+.is-board .pins-out .pin-name:focus-visible { color: var(--copper-hot); }
+.is-board .pins-out .pin-name:hover::after,
+.is-board .pins-out .pin-name:focus-visible::after { background: var(--copper-hot); box-shadow: 0 0 8px var(--copper-hot); }
+.is-board :focus-visible { outline-color: var(--copper-hot); }
+
+/* Vias where each trace leaves the pin; hidden in the schematic */
+.pins-in li::after,
+.pins-out .pin-name::before {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--mask-edge) 3px, var(--copper) 3.5px);
+  content: '';
+  opacity: 0;
+  transform: scale(.4);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+.pins-in li::after { right: calc(100% + var(--edge) + var(--stub) - 22px); }
+.pins-out .pin-name::before { left: calc(100% + var(--edge) + var(--stub) - 22px); }
+.is-board .pins-in li::after,
+.is-board .pins-out .pin-name::before { opacity: 1; transform: scale(1); transition-delay: calc(var(--i) * 40ms + 120ms); }
 
 /* Section shell and global net labels */
 .section { scroll-margin-top: 16px; padding-block: clamp(56px, 7vw, 100px); }
@@ -228,6 +310,17 @@
   .pins-out .pin-num { right: auto; left: calc(50% + 6px); margin: 0; }
   .pins-in .pin-num { bottom: calc(100% + var(--edge) + 4px); }
   .pins-out .pin-num { top: calc(100% + var(--edge) + 4px); bottom: auto; }
+  .is-board .pins-in li::before,
+  .is-board .pins-out .pin-name::after { width: 6px; height: calc(var(--stub) - 7px); margin: 0 0 0 -3px; }
+  .pins-in li::after,
+  .pins-out .pin-name::before { top: auto; right: auto; left: 50%; margin: 0 0 0 -7px; }
+  .pins-in li::after { bottom: calc(100% + var(--edge) + var(--stub) - 14px); }
+  .pins-out .pin-name::before { top: calc(100% + var(--edge) + var(--stub) - 14px); }
+  .is-board .chip { padding-inline: 12px; padding-bottom: 12px; }
+  .is-board .chip-ref { right: 34px; }
+  .is-board .chip-value { padding-inline: 20px; }
+  .view-switch { margin-bottom: 12px; }
+  .chip-body::before { top: 6px; left: 6px; width: 8px; height: 8px; }
   .chip-core { padding: 20px 16px 24px; }
   .chip-location { margin-bottom: 1em; }
 

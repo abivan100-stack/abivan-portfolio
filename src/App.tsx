@@ -14,6 +14,17 @@ const outputPins = [
   { num: 6, name: 'contact', href: '#contact' },
   { num: 5, name: 'GitHub', href: GITHUB_URL, external: true },
 ]
+type HeroView = 'schematic' | 'board'
+const VIEW_KEY = 'u1-view'
+
+const readSavedView = (): HeroView => {
+  try {
+    return localStorage.getItem(VIEW_KEY) === 'board' ? 'board' : 'schematic'
+  } catch {
+    return 'schematic'
+  }
+}
+
 const rulerNumbers = [1, 2, 3, 4, 5, 6, 7, 8]
 const rulerLetters = ['A', 'B', 'C', 'D', 'E', 'F']
 
@@ -57,6 +68,7 @@ function ProjectSheet({ project }: { project: Project }) {
 
 function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [heroView, setHeroView] = useState<HeroView>(readSavedView)
   const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
   const lastUpdated = orderedProjects[0] ? formatDate(orderedProjects[0].updatedAt) : ''
 
@@ -76,6 +88,14 @@ function App() {
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(VIEW_KEY, heroView)
+    } catch {
+      // Storage can be unavailable (private windows, blocked site data); the toggle still works for this visit.
+    }
+  }, [heroView])
 
   const navLink = (id: string, label: string) => (
     <a
@@ -106,7 +126,14 @@ function App() {
         </header>
 
         <main>
-          <section className="hero" aria-labelledby="intro-title">
+          <section className={`hero is-${heroView}`} aria-labelledby="intro-title">
+            <div className="view-switch" role="group" aria-label="Show U1 as">
+              {(['schematic', 'board'] as const).map((view) => (
+                <button key={view} type="button" aria-pressed={heroView === view} onClick={() => setHeroView(view)}>
+                  {view === 'schematic' ? 'Schematic' : 'Board'}
+                </button>
+              ))}
+            </div>
             <div className="chip">
               <span className="chip-ref" aria-hidden="true">U1</span>
               <div className="chip-body">
