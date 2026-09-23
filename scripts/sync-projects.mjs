@@ -106,6 +106,17 @@ function htmlProjectSummary(html = '') {
   return text.includes('{{') ? '' : text
 }
 
+function cleanName(text = '') {
+  return text.replace(/\s*—\s*/g, ': ')
+}
+
+function cleanDescription(text = '') {
+  return text
+    .replace(/\s+—\s+/g, '. ')
+    .replace(/not on what is happening now, not on what already went wrong/gi, 'so you can act on current conditions as they unfold')
+    .replace(/([.!?]\s+)([a-z])/g, (_, punctuation, letter) => `${punctuation}${letter.toUpperCase()}`)
+}
+
 try {
   const allRepositories = await getJson(
     `https://api.github.com/users/${owner}/repos?per_page=100&type=owner&sort=updated`,
@@ -153,9 +164,9 @@ try {
 
     return {
       slug: repository.name,
-      name: readmeTitle || repository.name,
-      summary,
-      contextNote,
+      name: cleanName(readmeTitle || repository.name),
+      summary: cleanDescription(summary),
+      contextNote: contextNote ? cleanDescription(contextNote) : null,
       url: repository.html_url,
       demoUrl: repository.homepage || null,
       language: repository.language,

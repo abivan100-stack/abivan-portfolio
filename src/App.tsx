@@ -6,6 +6,7 @@ type Project = (typeof projects)[number]
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const reduceMotion = useReducedMotion()
+  const [projectTitle, projectSubtitle] = project.name.split(/\s+--\s+/, 2)
   return (
     <motion.article
       className="project-row"
@@ -16,10 +17,11 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
     >
       <div className="project-name">
         <span className="project-type">{project.language || 'Project'}</span>
-        <h3>{project.name}</h3>
+        <h3>{projectSubtitle ? projectTitle : project.name}</h3>
+        {projectSubtitle && <span className="project-subtitle">{projectSubtitle}</span>}
       </div>
       <div className="project-detail">
-        <p>{project.summary || 'The repository does not include a project description yet.'}</p>
+        <p>{project.summary || 'Project description coming soon.'}</p>
         {project.contextNote && project.contextNote.trim() !== project.summary.trim() && <p className="project-context">{project.contextNote}</p>}
         <div className="project-links">
           <a href={project.url} target="_blank" rel="noreferrer">Source repository <span aria-hidden="true">↗</span></a>

@@ -3,7 +3,7 @@
     "slug": "volt-ledger",
     "name": "Volt",
     "summary": "A transparent, tamper-evident ledger for peer-to-peer rooftop-solar energy trading.",
-    "contextNote": "Built for the Open Energy Challenge 2026. All data is simulated — nothing real was metered or billed.",
+    "contextNote": "Built for the Open Energy Challenge 2026. All data is simulated. Nothing real was metered or billed.",
     "url": "https://github.com/abivan100-stack/volt-ledger",
     "demoUrl": "https://volt-ledger.vercel.app",
     "language": "TypeScript",
@@ -25,7 +25,7 @@
   },
   {
     "slug": "C.R.A.S.H",
-    "name": "CRASH — Chennai Road Accident Safety Hub",
+    "name": "CRASH: Chennai Road Accident Safety Hub",
     "summary": "A single-origin web application that maps road accidents across Greater Chennai, ranks the deadliest junctions by severity-weighted risk score, and turns every hotspot into an evidence-based intervention recommendation. Includes analytics dashboards, area comparison, citizen reporting, Monte Carlo simulation, and an AI data assistant.",
     "contextNote": null,
     "url": "https://github.com/abivan100-stack/C.R.A.S.H",
@@ -38,7 +38,7 @@
   {
     "slug": "pulse-fit",
     "name": "pulse-fit",
-    "summary": "Nine inputs. The engine derives body composition, energy demand, a training prescription, heart-rate ceilings and a recovery target — no wearable required.",
+    "summary": "Nine inputs. The engine derives body composition, energy demand, a training prescription, heart-rate ceilings and a recovery target. No wearable required.",
     "contextNote": null,
     "url": "https://github.com/abivan100-stack/pulse-fit",
     "demoUrl": null,
@@ -49,8 +49,8 @@
   },
   {
     "slug": "agrifly",
-    "name": "Agrifly — Field Intelligence Survey Sheet",
-    "summary": "A landing page for Agrifly, a precision-agriculture concept: \"a survey that reads every parcel of your farm on a set cadence — so you act on what is happening now, not on what already went wrong.\"",
+    "name": "Agrifly: Field Intelligence Survey Sheet",
+    "summary": "A landing page for Agrifly, a precision-agriculture concept: \"a survey that reads every parcel of your farm on a set cadence. So you act on what is happening now, not on what already went wrong.\"",
     "contextNote": null,
     "url": "https://github.com/abivan100-stack/agrifly",
     "demoUrl": null,

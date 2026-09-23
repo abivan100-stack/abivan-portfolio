@@ -73,6 +73,7 @@
 .project-name { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; }
 .project-type { color: var(--blue); font-size: .72rem; font-weight: 700; letter-spacing: .03em; }
 .project-name h3 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 600; letter-spacing: -.055em; line-height: 1.22; transition: color 180ms ease; }
+.project-subtitle { margin-top: -7px; color: var(--quiet); font-size: .78rem; letter-spacing: .015em; }
 .project-row:hover .project-name h3 { color: var(--blue); }
 .project-detail > p { max-width: 610px; margin: 0; color: var(--ink-soft); font-size: .92rem; line-height: 1.75; }
 .project-detail > p.project-context { margin-top: 8px; color: var(--quiet); font-size: .78rem; }
