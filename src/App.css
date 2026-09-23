@@ -260,7 +260,7 @@
 .tp { position: relative; padding-top: calc(var(--tp-y) + 26px); }
 .tp-ref { position: absolute; top: calc(var(--tp-y) - 34px); left: 0; color: var(--teal); font-family: var(--mono); font-size: .75rem; font-weight: 700; }
 .tp-mark { position: absolute; top: calc(var(--tp-y) - 8px); left: 0; width: 16px; height: 16px; border: 2px solid var(--maroon); border-radius: 50%; background: var(--paper); transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
-.tp:has(.tp-project:hover) .tp-mark,
+.tp:has(a.tp-project:hover) .tp-mark,
 .tp:focus-within .tp-mark { border-color: var(--green); background: var(--green-hot); box-shadow: 0 0 8px var(--green-hot); }
 .tp-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .5rem; }
 .tp time { color: var(--maroon); font-family: var(--mono); font-size: .78rem; }
@@ -271,7 +271,7 @@
 .tp:has(+ .is-upcoming)::before,
 .tp.is-upcoming::before { background: repeating-linear-gradient(90deg, var(--green) 0 6px, transparent 6px 11px); }
 .tp-project { display: inline-block; margin-top: .35rem; color: var(--teal); font-family: var(--mono); font-size: 1.25rem; font-weight: 600; letter-spacing: -.02em; text-decoration: underline 2px transparent; text-underline-offset: 5px; transition: text-decoration-color 160ms ease; }
-.tp-project:hover { text-decoration-color: currentColor; }
+a.tp-project:hover { text-decoration-color: currentColor; }
 .tp p { max-width: 30ch; margin: .4rem 0 0; color: var(--navy); font-size: .98rem; font-weight: 600; line-height: 1.45; }
 
 /* Timeline power-up: the wire draws left to right, then each test point lands in order */

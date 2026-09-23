@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import projects from './data/projects.json'
+import events from './data/events.json'
 import './App.css'
 
 type Project = (typeof projects)[number]
@@ -46,14 +47,16 @@ type Recognition = { text: string; dates: string[] }
 // on its own once the day arrives.
 const isUpcoming = (dates: string[]) => dates[0] > new Date().toLocaleDateString('en-CA')
 
-// Every result across all projects, oldest first, for the timeline.
-const milestones = projects
-  .flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
+// Every result across all projects, plus events not tied to a project (events.json), oldest first,
+// for the timeline. A project milestone links to its sheet; an event has no slug and no link.
+const milestones: (Recognition & { slug: string | null; title: string })[] = [
+  ...projects.flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
     ...recognition,
     slug: project.slug,
     title: project.name.split(/\s+--\s+/, 1)[0],
-  })))
-  .sort((a, b) => a.dates[0].localeCompare(b.dates[0]))
+  }))),
+  ...events.map((event) => ({ ...event, slug: null })),
+].sort((a, b) => a.dates[0].localeCompare(b.dates[0]))
 
 function NetLabel({ id, children }: { id: string; children: string }) {
   return (
@@ -273,14 +276,16 @@ function App() {
             </div>
             <ol className="tp-wire">
               {milestones.map((milestone, index) => (
-                <li className={isUpcoming(milestone.dates) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
+                <li className={isUpcoming(milestone.dates) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
                   <span className="tp-ref" aria-hidden="true">TP{index + 1}</span>
                   <span className="tp-mark" aria-hidden="true" />
                   <div className="tp-when">
                     <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>
                     {isUpcoming(milestone.dates) && <span className="upcoming-tag">Upcoming</span>}
                   </div>
-                  <a className="tp-project" href={`#${projectAnchor(milestone.slug)}`}>{milestone.title}</a>
+                  {milestone.slug
+                    ? <a className="tp-project" href={`#${projectAnchor(milestone.slug)}`}>{milestone.title}</a>
+                    : <span className="tp-project">{milestone.title}</span>}
                   <p>{milestone.text}</p>
                 </li>
               ))}
