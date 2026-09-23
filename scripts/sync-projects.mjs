@@ -11,10 +11,11 @@ const selectedRepositories = [
   'agrifly',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
+// dates holds the event day, or the first and last day of a multi-day event (YYYY-MM-DD).
 const recognitionByRepository = {
-  'c.r.a.s.h': 'Selected for the National Robotics Championship (NRC)',
-  'volt-ledger': "Presented at the school's Shark Tank-style pitch competition, with all 14 branches competing",
-  vault: 'Consolation prize at PEC Hacks 4.0 (hackathon)',
+  'c.r.a.s.h': { text: 'Selected for the National Robotics Championship (NRC)', dates: ['2026-07-22'] },
+  'volt-ledger': { text: "Presented at the school's Shark Tank-style pitch competition, with all 14 branches competing", dates: ['2026-08-22'] },
+  vault: { text: 'Consolation prize at PEC Hacks 4.0 (hackathon)', dates: ['2026-08-29', '2026-08-30'] },
 }
 // Projects without a public GitHub repository, listed as-is alongside the synced ones.
 const offlineProjects = [
@@ -24,6 +25,7 @@ const offlineProjects = [
     summary: 'An ESP32 build that checks food for spoilage on a conveyor belt. An IR sensor stops each item under two gas sensors, which compare its reading against a clean-air baseline the system calibrates at start-up. The verdict, FRESH or ROTTEN, shows on an LCD and is sent to the Blynk IoT cloud for remote monitoring. Built as a three-person team project.',
     contextNote: null,
     recognition: 'Winner, school-level expo',
+    recognitionDates: ['2026-02-16'],
     url: null,
     demoUrl: null,
     language: 'Arduino C++',
@@ -210,7 +212,8 @@ try {
       name: cleanName(readmeTitle || repository.name),
       summary: cleanDescription(summary, repository.name),
       contextNote: repository.name.toLowerCase() === 'vault' ? null : contextNote ? cleanDescription(contextNote, repository.name) : null,
-      recognition: recognitionByRepository[repository.name.toLowerCase()] ?? null,
+      recognition: recognitionByRepository[repository.name.toLowerCase()]?.text ?? null,
+      recognitionDates: recognitionByRepository[repository.name.toLowerCase()]?.dates ?? null,
       url: repository.html_url,
       demoUrl: repository.homepage || null,
       language: repository.language,

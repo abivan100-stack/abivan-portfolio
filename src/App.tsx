@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import projects from './data/projects.json'
 import './App.css'
 
@@ -31,6 +31,26 @@ const rulerLetters = ['A', 'B', 'C', 'D', 'E', 'F']
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 
+// One day, or a first and last day: "29–30 Aug 2026" within a month, otherwise both dates in full.
+const formatDateRange = ([first, last]: string[]) => {
+  if (!last || last === first) return formatDate(first)
+  if (first.slice(0, 7) === last.slice(0, 7)) return `${Number(first.slice(8))}–${formatDate(last)}`
+  return `${formatDate(first)} to ${formatDate(last)}`
+}
+
+const projectAnchor = (slug: string) => `project-${slug}`
+
+// Every dated result, oldest first, for the timeline.
+const milestones = projects
+  .filter((project) => project.recognition && project.recognitionDates?.length)
+  .map((project) => ({
+    slug: project.slug,
+    title: project.name.split(/\s+--\s+/, 1)[0],
+    text: project.recognition as string,
+    dates: project.recognitionDates as string[],
+  }))
+  .sort((a, b) => a.dates[0].localeCompare(b.dates[0]))
+
 function NetLabel({ id, children }: { id: string; children: string }) {
   return (
     <h2 className="net-label" id={id}>
@@ -42,7 +62,7 @@ function NetLabel({ id, children }: { id: string; children: string }) {
 function ProjectSheet({ project, index }: { project: Project; index: number }) {
   const [projectTitle, projectSubtitle] = project.name.split(/\s+--\s+/, 2)
   return (
-    <li className="sub-sheet" style={{ '--n': index } as CSSProperties}>
+    <li className="sub-sheet" id={projectAnchor(project.slug)} style={{ '--n': index } as CSSProperties}>
       <h3 className="sheet-name">
         {project.url ? <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a> : projectTitle}
       </h3>
@@ -77,7 +97,6 @@ function ProjectSheet({ project, index }: { project: Project; index: number }) {
 function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [heroView, setHeroView] = useState<HeroView>(readSavedView)
-  const workRef = useRef<HTMLElement>(null)
   const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
   const lastUpdated = orderedProjects[0] ? formatDate(orderedProjects[0].updatedAt) : ''
 
@@ -106,19 +125,22 @@ function App() {
     }
   }, [heroView])
 
-  // The projects bus is drawn in the first time it scrolls into view. Wires are only hidden once JS
-  // has armed the section, so without IntersectionObserver or with reduced motion they simply show.
+  // Wires in [data-power-up] sections (the timeline and the projects bus) are drawn in the first time each
+  // scrolls into view. They are only hidden once JS has armed them, so without IntersectionObserver or
+  // with reduced motion they simply show.
   useEffect(() => {
-    const work = workRef.current
-    if (!work || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const sections = [...document.querySelectorAll<HTMLElement>('[data-power-up]')]
+    if (!sections.length || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    work.classList.add('is-armed')
+    sections.forEach((section) => section.classList.add('is-armed'))
     const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return
-      work.classList.add('is-live')
-      observer.disconnect()
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-live')
+        observer.unobserve(entry.target)
+      })
     }, { threshold: 0.12 })
-    observer.observe(work)
+    sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
   }, [])
 
@@ -128,15 +150,19 @@ function App() {
       const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null
       const id = link?.getAttribute('href')?.slice(1)
       const target = id ? document.getElementById(id) : null
-      // Only section links have a label to highlight; #top wraps the whole page.
-      const label = target?.tagName === 'SECTION' ? target.querySelector<HTMLElement>('.net-label') : null
-      if (!label) return
-      label.classList.remove('is-flashing')
-      void label.offsetWidth // restart the animation if the same label is clicked twice
-      label.classList.add('is-flashing')
+      // Section links flash the section's net label and timeline links flash the project's sheet;
+      // #top wraps the whole page, so it flashes nothing.
+      const flashed = target?.tagName === 'SECTION'
+        ? target.querySelector<HTMLElement>('.net-label')
+        : target?.classList.contains('sub-sheet') ? target : null
+      if (!flashed) return
+      flashed.classList.remove('is-flashing')
+      void flashed.offsetWidth // restart the animation if the same link is clicked twice
+      flashed.classList.add('is-flashing')
     }
     const onAnimationEnd = (event: AnimationEvent) => {
-      if (event.animationName === 'net-flash' && event.target instanceof Element) event.target.classList.remove('is-flashing')
+      if (!['net-flash', 'sheet-flash'].includes(event.animationName) || !(event.target instanceof Element)) return
+      event.target.closest('.is-flashing')?.classList.remove('is-flashing')
     }
     document.addEventListener('click', onClick)
     document.addEventListener('animationend', onAnimationEnd)
@@ -229,7 +255,25 @@ function App() {
             </div>
           </section>
 
-          <section ref={workRef} className="work section" id="work" aria-labelledby="work-title">
+          <section className="timeline section" id="timeline" aria-labelledby="timeline-title" data-power-up>
+            <div className="timeline-head">
+              <NetLabel id="timeline-title">timeline</NetLabel>
+              <p>Results and recognition so far, in order.</p>
+            </div>
+            <ol className="tp-wire">
+              {milestones.map((milestone, index) => (
+                <li className="tp" key={milestone.slug} style={{ '--n': index } as CSSProperties}>
+                  <span className="tp-ref" aria-hidden="true">TP{index + 1}</span>
+                  <span className="tp-mark" aria-hidden="true" />
+                  <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>
+                  <a className="tp-project" href={`#${projectAnchor(milestone.slug)}`}>{milestone.title}</a>
+                  <p>{milestone.text}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
             <div className="work-head">
               <NetLabel id="work-title">projects</NetLabel>
               <p>Six projects across energy, health, cities, agriculture, and food, newest first.</p>

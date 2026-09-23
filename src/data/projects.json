@@ -5,6 +5,9 @@
     "summary": "A transparent, tamper-evident ledger for peer-to-peer rooftop-solar energy trading.",
     "contextNote": "Built for the Open Energy Challenge 2026. All data is simulated. Nothing real was metered or billed.",
     "recognition": "Presented at the school's Shark Tank-style pitch competition, with all 14 branches competing",
+    "recognitionDates": [
+      "2026-08-22"
+    ],
     "url": "https://github.com/abivan100-stack/volt-ledger",
     "demoUrl": "https://volt-ledger.vercel.app",
     "language": "TypeScript",
@@ -18,6 +21,10 @@
     "summary": "A hardware and software project for monitoring a vaccine shipment's cold chain. It simulates a temperature corridor in the browser, records events to a hash-chained ledger that can be verified after the fact, and tracks one box from loading bay to handoff.",
     "contextNote": null,
     "recognition": "Consolation prize at PEC Hacks 4.0 (hackathon)",
+    "recognitionDates": [
+      "2026-08-29",
+      "2026-08-30"
+    ],
     "url": "https://github.com/abivan100-stack/vault",
     "demoUrl": null,
     "language": "TypeScript",
@@ -31,6 +38,9 @@
     "summary": "A single-origin web application that maps road accidents across Greater Chennai, ranks the deadliest junctions by severity-weighted risk score, and turns every hotspot into an evidence-based intervention recommendation. Includes analytics dashboards, area comparison, citizen reporting, Monte Carlo simulation, and an AI data assistant.",
     "contextNote": null,
     "recognition": "Selected for the National Robotics Championship (NRC)",
+    "recognitionDates": [
+      "2026-07-22"
+    ],
     "url": "https://github.com/abivan100-stack/C.R.A.S.H",
     "demoUrl": null,
     "language": "JavaScript",
@@ -44,6 +54,7 @@
     "summary": "Nine inputs. The engine derives body composition, energy demand, a training prescription, heart-rate ceilings and a recovery target. No wearable required.",
     "contextNote": null,
     "recognition": null,
+    "recognitionDates": null,
     "url": "https://github.com/abivan100-stack/pulse-fit",
     "demoUrl": null,
     "language": "HTML",
@@ -57,6 +68,7 @@
     "summary": "A landing page for Agrifly, a precision-agriculture concept: \"a survey that reads every parcel of your farm on a set cadence. You can act on current conditions as they unfold.\"",
     "contextNote": null,
     "recognition": null,
+    "recognitionDates": null,
     "url": "https://github.com/abivan100-stack/agrifly",
     "demoUrl": null,
     "language": "HTML",
@@ -70,6 +82,9 @@
     "summary": "An ESP32 build that checks food for spoilage on a conveyor belt. An IR sensor stops each item under two gas sensors, which compare its reading against a clean-air baseline the system calibrates at start-up. The verdict, FRESH or ROTTEN, shows on an LCD and is sent to the Blynk IoT cloud for remote monitoring. Built as a three-person team project.",
     "contextNote": null,
     "recognition": "Winner, school-level expo",
+    "recognitionDates": [
+      "2026-02-16"
+    ],
     "url": null,
     "demoUrl": null,
     "language": "Arduino C++",

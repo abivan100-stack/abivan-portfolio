@@ -248,6 +248,37 @@
 @keyframes net-flash { 0%, 100% { background: var(--teal); } 20%, 65% { background: var(--green-hot); } }
 @keyframes net-flash-fill { 0%, 100% { background: var(--paper); } 20%, 65% { background: #e8ffe9; } }
 
+/* Timeline: results in date order as test points on one wire */
+.timeline { --tp-y: 44px; }
+.timeline-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px; }
+.timeline-head p { max-width: 44ch; margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; }
+.tp-wire { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0 28px; margin: 40px 0 0; padding: 0; list-style: none; }
+.tp-wire::before { position: absolute; top: var(--tp-y); right: 0; left: 0; height: 2px; margin-top: -1px; background: var(--green); content: ''; }
+.tp { position: relative; padding-top: calc(var(--tp-y) + 26px); }
+.tp-ref { position: absolute; top: calc(var(--tp-y) - 34px); left: 0; color: var(--teal); font-family: var(--mono); font-size: .75rem; font-weight: 700; }
+.tp-mark { position: absolute; top: calc(var(--tp-y) - 8px); left: 0; width: 16px; height: 16px; border: 2px solid var(--maroon); border-radius: 50%; background: var(--paper); transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+.tp:has(.tp-project:hover) .tp-mark,
+.tp:focus-within .tp-mark { border-color: var(--green); background: var(--green-hot); box-shadow: 0 0 8px var(--green-hot); }
+.tp time { display: block; color: var(--maroon); font-family: var(--mono); font-size: .78rem; }
+.tp-project { display: inline-block; margin-top: .35rem; color: var(--teal); font-family: var(--mono); font-size: 1.25rem; font-weight: 600; letter-spacing: -.02em; text-decoration: underline 2px transparent; text-underline-offset: 5px; transition: text-decoration-color 160ms ease; }
+.tp-project:hover { text-decoration-color: currentColor; }
+.tp p { max-width: 30ch; margin: .4rem 0 0; color: var(--navy); font-size: .98rem; font-weight: 600; line-height: 1.45; }
+
+/* Timeline power-up: the wire draws left to right, then each test point lands in order */
+.timeline.is-armed .tp-wire::before { clip-path: inset(0 100% 0 0); }
+.timeline.is-armed .tp-mark,
+.timeline.is-armed .tp-ref { opacity: 0; transform: scale(.4); }
+.timeline.is-live .tp-wire::before { animation: wire-right 900ms ease-out forwards; }
+.timeline.is-live .tp-mark,
+.timeline.is-live .tp-ref { animation: tp-land 260ms ease-out forwards; animation-delay: calc(180ms + var(--n) * 200ms); }
+@keyframes wire-right { 99% { clip-path: inset(0); } 100% { clip-path: none; } }
+@keyframes tp-land { to { opacity: 1; transform: none; } }
+
+/* A timeline link flashes the project sheet it lands on */
+.sub-sheet { scroll-margin-top: 24px; }
+.sub-sheet.is-flashing .sheet-box { animation: sheet-flash 1100ms ease-out 350ms; }
+@keyframes sheet-flash { 0%, 100% { border-color: var(--magenta); box-shadow: none; } 20%, 65% { border-color: var(--green-hot); box-shadow: 0 0 0 4px #e8ffe9; } }
+
 /* About */
 .about-copy { max-width: 62ch; }
 .about-copy p { margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
@@ -391,6 +422,13 @@
 
   .about,
   .contact { grid-template-columns: minmax(0, 1fr); }
+  .tp-wire { grid-auto-flow: row; gap: 32px; margin-top: 32px; padding-left: 36px; }
+  .tp-wire::before { top: 0; bottom: 0; left: 7px; width: 2px; height: auto; margin: 0 0 0 -1px; }
+  .tp { padding-top: 0; }
+  .tp-ref { position: static; display: block; }
+  .tp-mark { top: 0; left: -37px; }
+  .timeline.is-armed .tp-wire::before { clip-path: inset(0 0 100% 0); }
+  .timeline.is-live .tp-wire::before { animation-name: wire-down; }
   .work { --bus-x: 14px; --indent: 36px; --wire-y: 3.5rem; --gap: 40px; }
   .work-head p { order: -1; }
   .sheet-name { font-size: 1.25rem; }
@@ -412,5 +450,8 @@
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
   .work.is-armed .sheet-bus::before,
   .work.is-armed .sub-sheet::before,
-  .work.is-armed .sub-sheet::after { clip-path: none; }
+  .work.is-armed .sub-sheet::after,
+  .timeline.is-armed .tp-wire::before { clip-path: none; }
+  .timeline.is-armed .tp-mark,
+  .timeline.is-armed .tp-ref { opacity: 1; transform: none; }
 }
