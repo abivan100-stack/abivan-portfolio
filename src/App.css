@@ -242,6 +242,12 @@
 }
 .net-label span { display: block; padding: .3em .7em .32em 1.05em; background: var(--paper); clip-path: polygon(calc(.7em - 1px) 0, 100% 0, 100% 100%, calc(.7em - 1px) 100%, 0 50%); }
 
+/* Net highlight: starts once the smooth scroll has mostly arrived */
+.net-label.is-flashing { animation: net-flash 1100ms ease-out 350ms; }
+.net-label.is-flashing span { animation: net-flash-fill 1100ms ease-out 350ms; }
+@keyframes net-flash { 0%, 100% { background: var(--teal); } 20%, 65% { background: var(--green-hot); } }
+@keyframes net-flash-fill { 0%, 100% { background: var(--paper); } 20%, 65% { background: #e8ffe9; } }
+
 /* About */
 .about-copy { max-width: 62ch; }
 .about-copy p { margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }

@@ -120,6 +120,30 @@ function App() {
     return () => observer.disconnect()
   }, [])
 
+  // Following an in-page link highlights the destination's net label, the way KiCad highlights a net you click.
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null
+      const id = link?.getAttribute('href')?.slice(1)
+      const target = id ? document.getElementById(id) : null
+      // Only section links have a label to highlight; #top wraps the whole page.
+      const label = target?.tagName === 'SECTION' ? target.querySelector<HTMLElement>('.net-label') : null
+      if (!label) return
+      label.classList.remove('is-flashing')
+      void label.offsetWidth // restart the animation if the same label is clicked twice
+      label.classList.add('is-flashing')
+    }
+    const onAnimationEnd = (event: AnimationEvent) => {
+      if (event.animationName === 'net-flash' && event.target instanceof Element) event.target.classList.remove('is-flashing')
+    }
+    document.addEventListener('click', onClick)
+    document.addEventListener('animationend', onAnimationEnd)
+    return () => {
+      document.removeEventListener('click', onClick)
+      document.removeEventListener('animationend', onAnimationEnd)
+    }
+  }, [])
+
   const navLink = (id: string, label: string) => (
     <a
       href={`#${id}`}
