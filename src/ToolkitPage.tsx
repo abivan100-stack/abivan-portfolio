@@ -1,10 +1,10 @@
-import { BomTable } from './components/BomTable'
+import { PartsDrawers } from './components/PartsDrawers'
 import { NetLabel, PageFrame } from './components/Sheet'
 import { useNetFlash } from './lib/hooks'
 import { HOME_URL, PROJECTS_URL } from './lib/portfolio'
 import './App.css'
 
-// Sheet 3 of 3: the toolkit as a bill of materials. Reached from the Toolkit link in the header.
+// Sheet 3 of 3: the toolkit as a parts cabinet. Reached from the Toolkit link in the header.
 // "Back to top" targets #top, which PageFrame (components/Sheet.tsx) puts on its outer frame.
 function ToolkitPage() {
   useNetFlash()
@@ -30,9 +30,9 @@ function ToolkitPage() {
         </nav>
         <div className="toolkit-head">
           <NetLabel id="toolkit-title">toolkit</NetLabel>
-          <p>A bill of materials for my builds: the boards, parts, and software they use. Qty is how many projects use each one.</p>
+          <p>The boards, parts, and software my builds use, sorted into drawers. The number on each drawer is how many projects use it; open one to see them.</p>
         </div>
-        <BomTable onHome={false} />
+        <PartsDrawers />
         <div className="work-outro toolkit-outro">
           <a className="hier-pin see-all back" href={HOME_URL}>Back to home</a>
           <a className="hier-pin see-all" href={PROJECTS_URL}>See all projects</a>

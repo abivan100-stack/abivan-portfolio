@@ -34,3 +34,5 @@ body { min-width: 0; min-height: 100vh; margin: 0; background: var(--paper); }
 button, a { font: inherit; }
 ::selection { color: var(--paper); background: var(--magenta); }
 :focus-visible { outline: 2px solid var(--magenta); outline-offset: 3px; }
+/* Text for screen readers only */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
