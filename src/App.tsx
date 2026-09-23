@@ -40,15 +40,15 @@ const formatDateRange = ([first, last]: string[]) => {
 
 const projectAnchor = (slug: string) => `project-${slug}`
 
-// Every dated result, oldest first, for the timeline.
+type Recognition = { text: string; dates: string[] }
+
+// Every result across all projects, oldest first, for the timeline.
 const milestones = projects
-  .filter((project) => project.recognition && project.recognitionDates?.length)
-  .map((project) => ({
+  .flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
+    ...recognition,
     slug: project.slug,
     title: project.name.split(/\s+--\s+/, 1)[0],
-    text: project.recognition as string,
-    dates: project.recognitionDates as string[],
-  }))
+  })))
   .sort((a, b) => a.dates[0].localeCompare(b.dates[0]))
 
 function NetLabel({ id, children }: { id: string; children: string }) {
@@ -72,11 +72,13 @@ function ProjectSheet({ project, index }: { project: Project; index: number }) {
         {project.contextNote && project.contextNote.trim() !== project.summary.trim() && (
           <p className="sheet-context">{project.contextNote}</p>
         )}
-        {project.recognition && (
-          <p className="sheet-recognition">
+        {project.recognitions.length > 0 && (
+          <div className="sheet-recognition">
             <span className="recognition-label">Results &amp; Recognition</span>
-            {project.recognition}
-          </p>
+            <ul>
+              {(project.recognitions as Recognition[]).map((recognition) => <li key={recognition.text}>{recognition.text}</li>)}
+            </ul>
+          </div>
         )}
         {(project.url || project.demoUrl) && (
           <div className="sheet-pins">
@@ -262,7 +264,7 @@ function App() {
             </div>
             <ol className="tp-wire">
               {milestones.map((milestone, index) => (
-                <li className="tp" key={milestone.slug} style={{ '--n': index } as CSSProperties}>
+                <li className="tp" key={`${milestone.slug}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
                   <span className="tp-ref" aria-hidden="true">TP{index + 1}</span>
                   <span className="tp-mark" aria-hidden="true" />
                   <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>
