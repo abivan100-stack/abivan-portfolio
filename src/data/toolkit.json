@@ -3,10 +3,10 @@
   { "group": "Hardware", "part": "LEGO SPIKE Prime", "note": "Competition robot kit", "projects": ["robotics-for-good"] },
   { "group": "Hardware", "part": "Sensors and modules", "note": "Gas, climate, RFID, displays, servos", "projects": ["freshsense", "smart-guard", "sewer-gas-detector", "vault", "rfid-door-lock", "landmine-shoe"] },
   { "group": "Hardware", "part": "Wireless and IoT", "note": "WiFi, ESP-NOW, Blynk", "projects": ["vault", "sewer-gas-detector", "freshsense"] },
-  { "group": "Software", "part": "JavaScript, TypeScript and HTML", "note": "Web apps, pages and front ends", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "rutu-gaikwad-fansite", "freshsense", "volt-ledger", "vault"] },
-  { "group": "Software", "part": "Python and Node.js", "note": "FastAPI, Flask and Express backends", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "vault"] },
-  { "group": "Software", "part": "MongoDB and Supabase", "note": "Databases", "projects": ["volt-ledger", "C.R.A.S.H", "vault", "grammar-agent-project-1-"] },
-  { "group": "Software", "part": "APIs and API keys", "note": "Claude API, Resend, device keys", "projects": ["C.R.A.S.H", "grammar-agent-project-1-", "volt-ledger", "vault"] },
+  { "group": "Software", "part": "JavaScript, TypeScript and HTML", "note": "Web apps, pages and front ends", "projects": ["C.R.A.S.H", "Write-Wise", "rutu-gaikwad-fansite", "freshsense", "volt-ledger", "vault"] },
+  { "group": "Software", "part": "Python and Node.js", "note": "FastAPI, Flask and Express backends", "projects": ["C.R.A.S.H", "Write-Wise", "vault"] },
+  { "group": "Software", "part": "MongoDB and Supabase", "note": "Databases", "projects": ["volt-ledger", "C.R.A.S.H", "vault", "Write-Wise"] },
+  { "group": "Software", "part": "APIs and API keys", "note": "Claude API, Resend, device keys", "projects": ["C.R.A.S.H", "Write-Wise", "volt-ledger", "vault"] },
   { "group": "Software", "part": "Render and Vercel", "note": "Hosting and deploys", "projects": ["volt-ledger", "C.R.A.S.H", "rutu-gaikwad-fansite"] },
   { "group": "Software", "part": "Claude Code and Codex", "note": "AI coding tools", "projects": "all" }
 ]

@@ -68,12 +68,12 @@
     "updatedAt": "2026-08-19T14:02:59Z"
   },
   {
-    "slug": "grammar-agent-project-1-",
+    "slug": "Write-Wise",
     "name": "WriteWise AI -- Writing Studio",
     "summary": "An AI-powered grammar analysis agent built with Flask + Claude.",
     "contextNote": null,
     "recognitions": [],
-    "url": "https://github.com/abivan100-stack/grammar-agent-project-1-",
+    "url": "https://github.com/abivan100-stack/Write-Wise",
     "demoUrl": "https://write-wise-wbxl.onrender.com",
     "language": "JavaScript",
     "topics": [],

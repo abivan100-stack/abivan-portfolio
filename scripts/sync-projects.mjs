@@ -7,7 +7,7 @@ const selectedRepositories = [
   'volt-ledger',
   'vault',
   'C.R.A.S.H',
-  'grammar-agent-project-1-',
+  'Write-Wise',
   'rutu-gaikwad-fansite',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
@@ -120,10 +120,10 @@ const hiddenContextNotes = new Set(['vault'])
 const fallbackDemoUrls = {
   'c.r.a.s.h': 'https://c-r-a-s-h.onrender.com',
   'rutu-gaikwad-fansite': 'https://rutu-31.onrender.com',
-  'grammar-agent-project-1-': 'https://write-wise-wbxl.onrender.com',
+  'write-wise': 'https://write-wise-wbxl.onrender.com',
 }
 const readmeOverrides = {
-  'grammar-agent-project-1-': {
+  'write-wise': {
     name: 'WriteWise AI -- Writing Studio',
   },
 }
@@ -138,6 +138,7 @@ const apiHeaders = {
 async function getJson(url) {
   const response = await fetch(url, { headers: apiHeaders })
   if (!response.ok) {
+    await response.body?.cancel()
     throw new Error(`GitHub returned ${response.status} for ${url}`)
   }
   return response.json()
@@ -252,9 +253,14 @@ function cleanDescription(text = '', repositoryName = '') {
 try {
   const savedProjects = await readProjectSnapshot()
   const savedByName = new Map(savedProjects.map((project) => [project.slug.toLowerCase(), project]))
-  const allRepositories = await getJson(
-    `https://api.github.com/users/${owner}/repos?per_page=100&type=owner&sort=updated`,
-  )
+  const allRepositories = []
+  for (let page = 1; ; page += 1) {
+    const repositories = await getJson(
+      `https://api.github.com/users/${owner}/repos?per_page=100&page=${page}&type=owner&sort=updated`,
+    )
+    allRepositories.push(...repositories)
+    if (repositories.length < 100) break
+  }
   const byName = new Map(allRepositories.map((repo) => [repo.name.toLowerCase(), repo]))
 
   if (selectedRepositories.some((slug) => excludedRepositories.some((excluded) => excluded.toLowerCase() === slug.toLowerCase()))) {
@@ -322,14 +328,19 @@ try {
   await writeFile(outputPath, `${JSON.stringify([...projects, ...offlineProjects], null, 2)}\n`)
   console.log(`Wrote ${projects.length + offlineProjects.length} verified project records to ${outputPath}`)
 } catch (error) {
-  const hasSnapshot = await access(outputPath).then(() => true).catch(() => false)
-  if (!hasSnapshot) throw error
-  const snapshot = JSON.parse(await readFile(outputPath, 'utf8'))
-  if (!Array.isArray(snapshot)) throw error
-  const offlineSlugs = new Set(offlineProjects.map((project) => project.slug))
-  const syncedRecords = snapshot.filter((project) => !offlineSlugs.has(project.slug))
-  const syncedSlugs = new Set(syncedRecords.map((project) => project.slug.toLowerCase()))
-  if (syncedRecords.length !== selectedRepositories.length || selectedRepositories.some((slug) => !syncedSlugs.has(slug.toLowerCase()))) throw error
-  await writeFile(outputPath, `${JSON.stringify([...syncedRecords, ...offlineProjects], null, 2)}\n`)
-  console.warn(`GitHub refresh failed (${error.message}); retaining the committed project snapshot.`)
+  if (process.env.ALLOW_STALE_PROJECT_SNAPSHOT !== '1') {
+    console.error(`GitHub project sync failed: ${error.message}. To intentionally use the committed snapshot offline, set ALLOW_STALE_PROJECT_SNAPSHOT=1.`)
+    process.exitCode = 1
+  } else {
+    const hasSnapshot = await access(outputPath).then(() => true).catch(() => false)
+    if (!hasSnapshot) throw error
+    const snapshot = JSON.parse(await readFile(outputPath, 'utf8'))
+    if (!Array.isArray(snapshot)) throw error
+    const offlineSlugs = new Set(offlineProjects.map((project) => project.slug))
+    const syncedRecords = snapshot.filter((project) => !offlineSlugs.has(project.slug))
+    const syncedSlugs = new Set(syncedRecords.map((project) => project.slug.toLowerCase()))
+    if (syncedRecords.length !== selectedRepositories.length || selectedRepositories.some((slug) => !syncedSlugs.has(slug.toLowerCase()))) throw error
+    await writeFile(outputPath, `${JSON.stringify([...syncedRecords, ...offlineProjects], null, 2)}\n`)
+    console.warn(`GitHub refresh failed (${error.message}); retaining the committed project snapshot.`)
+  }
 }
