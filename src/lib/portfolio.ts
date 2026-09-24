@@ -33,7 +33,7 @@ export const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updated
 export const lastUpdated = orderedProjects[0] ? formatDate(orderedProjects[0].updatedAt) : ''
 
 // The home page shows these; every project is on the projects page.
-const FEATURED_SLUGS = new Set(['c.r.a.s.h', 'freshsense', 'vault', 'volt-ledger'])
+const FEATURED_SLUGS = new Set(['robotics-for-good', 'c.r.a.s.h', 'freshsense', 'vault', 'volt-ledger'])
 export const featuredProjects = orderedProjects.filter((project) => FEATURED_SLUGS.has(project.slug.toLowerCase()))
 
 // Links to a project's sheet: on the home page for featured projects, otherwise on the projects page.
