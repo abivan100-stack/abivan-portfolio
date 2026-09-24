@@ -13,8 +13,15 @@ export const HOME_URL = import.meta.env.BASE_URL
 export const PROJECTS_URL = `${import.meta.env.BASE_URL}projects/`
 export const TOOLKIT_URL = `${import.meta.env.BASE_URL}toolkit/`
 
-export const formatDate = (iso: string) =>
-  new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+// Written out by hand rather than with toLocaleDateString, which gives "Sept" in some browsers and "Sep"
+// in others (and in Node), so every page shows the same date wherever it is rendered.
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+// "2026-09-07" or "2026-09-07T10:20:23Z" becomes "7 Sep 2026" (the UTC calendar day).
+export const formatDate = (iso: string) => {
+  const [year, month, day] = iso.slice(0, 10).split('-').map(Number)
+  return `${day} ${MONTHS[month - 1]} ${year}`
+}
 
 // One day, or a first and last day: "29–30 Aug 2026" within a month, otherwise both dates in full.
 export const formatDateRange = ([first, last]: string[]) => {
