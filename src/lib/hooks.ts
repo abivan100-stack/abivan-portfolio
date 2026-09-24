@@ -9,7 +9,14 @@ export function usePowerUp() {
     const sections = [...document.querySelectorAll<HTMLElement>('[data-power-up]')]
     if (!sections.length || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    sections.forEach((section) => section.classList.add('is-armed'))
+    const arrivalTarget = document.getElementById(readHashFragment())
+    const arrivalBus = arrivalTarget?.classList.contains('sub-sheet')
+      ? arrivalTarget.closest<HTMLElement>('.work[data-power-up]')
+      : null
+    const animatedSections = sections.filter((section) => section !== arrivalBus)
+    if (!animatedSections.length) return
+
+    animatedSections.forEach((section) => section.classList.add('is-armed'))
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return
@@ -17,7 +24,7 @@ export function usePowerUp() {
         observer.unobserve(entry.target)
       })
     }, { threshold: 0.12 })
-    sections.forEach((section) => observer.observe(section))
+    animatedSections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
   }, [])
 }
