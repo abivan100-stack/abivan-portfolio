@@ -49,7 +49,8 @@
       header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
+        /* The headline and the last contact line share a baseline */
+        align-items: last baseline;
         gap: 8mm;
         padding-bottom: 3.6mm;
         border-bottom: 1.6pt solid var(--green);
@@ -64,11 +65,14 @@
       section {
         display: grid;
         grid-template-columns: var(--gutter) 1fr;
+        /* Each heading sits on the baseline of its section's first line */
+        align-items: baseline;
         padding-top: 3.2mm;
         margin-top: 3.2mm;
         border-top: .6pt solid var(--rule);
       }
-      header + section { border-top: 0; margin-top: 1mm; }
+      /* The same space under the green rule as under each hairline */
+      header + section { border-top: 0; margin-top: 0; }
       h2 { color: var(--navy); font-size: 10.2pt; font-weight: 700; line-height: 1.3; }
 
       /* Dated rows: text on the left, date right-aligned on the same baseline */
@@ -87,6 +91,7 @@
 
       /* Skills */
       /* Labels sit inline so each one shares a line with its own list, even in plain-text parsers */
+      /* Lists break only between their semicolon groups, and wrapped ones split into two even lines */
       .skills li { text-wrap: balance; }
       .skills li + li { margin-top: .5mm; }
       .label { font-weight: 600; }
@@ -180,8 +185,8 @@
       <section>
         <h2>Skills</h2>
         <ul class="skills">
-          <li><span class="label">Hardware:</span> <span>Arduino, ESP32, LEGO SPIKE Prime; gas, climate and RFID sensors, displays, servos; <span class="nowrap">Wi-Fi</span>, <span class="nowrap">ESP-NOW</span>, Blynk IoT</span></li>
-          <li><span class="label">Software:</span> <span>JavaScript, TypeScript, HTML, Python, Node.js; FastAPI, Flask, Express; MongoDB, Supabase; Claude API</span></li>
+          <li><span class="label">Hardware:</span> <span><span class="nowrap">Arduino, ESP32, LEGO SPIKE Prime;</span> <span class="nowrap">gas, climate and RFID sensors, displays, servos;</span> <span class="nowrap">Wi-Fi, ESP-NOW, Blynk IoT</span></span></li>
+          <li><span class="label">Software:</span> <span><span class="nowrap">JavaScript, TypeScript, HTML, Python, Node.js;</span> <span class="nowrap">FastAPI, Flask, Express;</span> <span class="nowrap">MongoDB, Supabase;</span> <span class="nowrap">Claude API</span></span></li>
           <li><span class="label">Tools:</span> <span>Claude Code, Codex, Git/GitHub, Render, Vercel</span></li>
         </ul>
       </section>
