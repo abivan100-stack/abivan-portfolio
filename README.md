@@ -26,5 +26,4 @@ npm run lint
 
 - React and TypeScript
 - Vite
-- Motion for React
 - GitHub REST API for build-time project metadata
