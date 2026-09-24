@@ -30,21 +30,35 @@ function App() {
   usePowerUp()
   useNetFlash()
 
+  // The nav highlights the last section whose top has passed a line 35% down the viewport. The hero and
+  // the timeline have no nav link, so nothing is highlighted over them. Contact is too short to reach
+  // the line, so it wins once the page is scrolled to the bottom.
   useEffect(() => {
-    if (!('IntersectionObserver' in window)) return
+    const ids = ['about', 'timeline', 'work', 'contact']
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const line = window.innerHeight * 0.35
+      let current: string | null = null
+      for (const id of ids) {
+        const section = document.getElementById(id)
+        if (section && section.getBoundingClientRect().top <= line) current = id
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = 'contact'
+      setActiveSection(current === 'timeline' ? null : current)
+    }
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
 
-    const sections = ['about', 'work', 'contact']
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-    const observer = new IntersectionObserver((entries) => {
-      const current = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-      if (current) setActiveSection(current.target.id)
-    }, { rootMargin: '-20% 0px -30% 0px', threshold: 0 })
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+    update()
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+    }
   }, [])
 
   useEffect(() => {
