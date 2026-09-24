@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NetLabel, NewTabLink, PageFrame, ProjectSheet } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
+import { readHashFragment } from './lib/hash-fragment'
 import { GITHUB_URL, getProjectCategories, HOME_URL, TOOLKIT_URL, orderedProjects, type ProjectCategory } from './lib/portfolio'
 import './App.css'
 import './ProjectsPage.css'
@@ -15,12 +16,7 @@ function ProjectsPage() {
   useNetFlash()
 
   const chooseFilter = (category: 'All' | ProjectCategory) => {
-    let id = window.location.hash.slice(1)
-    try {
-      id = decodeURIComponent(id)
-    } catch {
-      id = ''
-    }
+    const id = readHashFragment()
     const linkedProject = orderedProjects.find((project) => `project-${project.slug}` === id)
     if (category !== 'All' && linkedProject && !getProjectCategories(linkedProject.slug).includes(category)) {
       setFilter('All')

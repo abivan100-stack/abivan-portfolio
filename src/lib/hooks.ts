@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { readHashFragment } from './hash-fragment'
 
 // Wires in [data-power-up] sections (the timeline and the projects bus) are drawn in the first time each
 // scrolls into view. They are only hidden once JS has armed them, so without IntersectionObserver or
@@ -39,7 +40,7 @@ function flashTarget(id: string) {
 // the browser's own jump to the hash, so that jump would otherwise miss.
 export function useNetFlash() {
   useEffect(() => {
-    const arrivedAt = decodeURIComponent(window.location.hash.slice(1))
+    const arrivedAt = readHashFragment()
     if (arrivedAt) {
       document.getElementById(arrivedAt)?.scrollIntoView({ behavior: 'instant' })
       flashTarget(arrivedAt)
@@ -47,7 +48,7 @@ export function useNetFlash() {
 
     const onClick = (event: MouseEvent) => {
       const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null
-      const id = link?.getAttribute('href')?.slice(1)
+      const id = link ? readHashFragment(link.getAttribute('href') ?? '') : ''
       if (id) flashTarget(id)
     }
     const onAnimationEnd = (event: AnimationEvent) => {
