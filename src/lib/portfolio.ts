@@ -55,7 +55,7 @@ export const milestones: (Recognition & { slug: string | null; title: string })[
 // those projects, so it stays right as projects are added; unknown slugs are skipped rather than
 // rendered as broken links.
 type ToolkitRow = { group: string; part: string; note: string; projects: string[] | 'all' }
-// Keyed by lower-cased slug so toolkit.json matches regardless of letter case (repo names like Spike_Fit).
+// Keyed by lower-cased slug so toolkit.json matches regardless of letter case (repo names like C.R.A.S.H).
 const projectsBySlug = new Map(projects.map((project) => [
   project.slug.toLowerCase(),
   { slug: project.slug, title: project.name.split(/\s+--\s+/, 1)[0] },

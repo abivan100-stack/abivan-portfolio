@@ -1,6 +1,6 @@
 # Abivan's personal portfolio
 
-A personal portfolio for Abivan, drawn as a KiCad-style schematic sheet. The LeBron fan page and the EPL predictor are intentionally excluded from the portfolio index.
+A personal portfolio for Abivan, drawn as a KiCad-style schematic sheet. The LeBron and CR7 fan pages, Spike Fit and the EPL predictor are intentionally excluded from the portfolio index.
 
 The site has three pages: the home page (`index.html`) shows a few highlighted projects, the projects page (`projects/index.html`, served at `/projects/`) lists every project, and the toolkit page (`toolkit/index.html`, at `/toolkit/`) is a bill of materials of the boards, parts and software used, kept in `src/data/toolkit.json`. All are built as real pages, so no host rewrite rules are needed. Projects come from public GitHub repositories plus hand-listed builds without a repo; results and dates live in `scripts/sync-projects.mjs`, and timeline events not tied to a project live in `src/data/events.json`.
 

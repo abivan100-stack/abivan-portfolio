@@ -68,19 +68,6 @@
     "updatedAt": "2026-08-19T14:02:59Z"
   },
   {
-    "slug": "Spike_Fit",
-    "name": "Spikefit -- The Fitting Room",
-    "summary": "A rule-based, deterministic track-spike fitting tool. Answer a short guided quiz (or jump straight to your event), and get scored, explained spike recommendations. No external APIs, no ML, just a transparent rules engine over a real shoe catalog.",
-    "contextNote": null,
-    "recognitions": [],
-    "url": "https://github.com/abivan100-stack/Spike_Fit",
-    "demoUrl": "https://spike-fit.onrender.com",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 0,
-    "updatedAt": "2026-07-17T17:37:53Z"
-  },
-  {
     "slug": "grammar-agent-project-1-",
     "name": "WriteWise AI -- Writing Studio",
     "summary": "An AI-powered grammar analysis agent built with Flask + Claude.",
@@ -92,19 +79,6 @@
     "topics": [],
     "stars": 0,
     "updatedAt": "2026-04-23T07:26:19Z"
-  },
-  {
-    "slug": "CR7-fan-page",
-    "name": "CR7 -- Kinetic Fan Tribute",
-    "summary": "An unofficial kinetic tribute to Cristiano Ronaldo, set entirely in type. It walks through his honours and records, each club era from Sporting CP to Al Nassr, and the chase for 1,000 career goals, with a free-kick section to try.",
-    "contextNote": "Unofficial fan project. Not affiliated with the player or any club.",
-    "recognitions": [],
-    "url": "https://github.com/abivan100-stack/CR7-fan-page",
-    "demoUrl": "https://cr7-fan-page-rho.vercel.app",
-    "language": "HTML",
-    "topics": [],
-    "stars": 0,
-    "updatedAt": "2026-08-13T17:13:09Z"
   },
   {
     "slug": "rutu-gaikwad-fansite",

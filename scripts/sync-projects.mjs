@@ -7,9 +7,7 @@ const selectedRepositories = [
   'volt-ledger',
   'vault',
   'C.R.A.S.H',
-  'Spike_Fit',
   'grammar-agent-project-1-',
-  'CR7-fan-page',
   'rutu-gaikwad-fansite',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
@@ -114,15 +112,13 @@ const offlineProjects = [
     updatedAt: '2024-11-29T00:00:00Z',
   },
 ]
-// README notes that describe repo housekeeping rather than the project (Spike_Fit's note is about a
-// design-reference folder, not the app), so they are not shown.
-const hiddenContextNotes = new Set(['vault', 'spike_fit'])
+// README notes that describe repo housekeeping rather than the project, so they are not shown.
+const hiddenContextNotes = new Set(['vault'])
 // Wording that replaces what a README gives: a better description when the README is only a title, or a
 // project renamed since its repo was created.
 // Live demos for repos with no website set on GitHub. A repo's own website link always wins.
 const fallbackDemoUrls = {
   'c.r.a.s.h': 'https://c-r-a-s-h.onrender.com',
-  'spike_fit': 'https://spike-fit.onrender.com',
   'rutu-gaikwad-fansite': 'https://rutu-31.onrender.com',
   'grammar-agent-project-1-': 'https://write-wise-wbxl.onrender.com',
 }
@@ -130,13 +126,8 @@ const readmeOverrides = {
   'grammar-agent-project-1-': {
     name: 'WriteWise AI -- Writing Studio',
   },
-  'cr7-fan-page': {
-    name: 'CR7 -- Kinetic Fan Tribute',
-    summary: 'An unofficial kinetic tribute to Cristiano Ronaldo, set entirely in type. It walks through his honours and records, each club era from Sporting CP to Al Nassr, and the chase for 1,000 career goals, with a free-kick section to try.',
-    contextNote: 'Unofficial fan project. Not affiliated with the player or any club.',
-  },
 }
-const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'abivan-portfolio', 'agrifly', 'pulse-fit', 'raghav-dev-portfolio']
+const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'spike_fit', 'cr7-fan-page', 'abivan-portfolio', 'agrifly', 'pulse-fit', 'raghav-dev-portfolio']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
   Accept: 'application/vnd.github+json',
