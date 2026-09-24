@@ -16,6 +16,13 @@
   --fill: #ffffc2;
   --magenta: #840084;
   --magenta-tint: #f6e6f6;
+  /* Type scale: six steps from 12px to 24px. Headings that scale with the viewport keep their own clamp(). */
+  --fs-xs: .75rem;
+  --fs-sm: .875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
   --mono: 'Martian Mono', ui-monospace, 'Cascadia Mono', monospace;
   --text: 'Atkinson Hyperlegible Next', 'Segoe UI', sans-serif;
 
