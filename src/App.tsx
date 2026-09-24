@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { NetLabel, NewTabLink, PageFrame, ProjectSheet } from './components/Sheet'
+import { GitHubActivity } from './components/GitHubActivity'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import { useToday } from './lib/useToday'
 import { type HeroView, VIEW_KEY } from './lib/hero-view'
@@ -156,6 +157,7 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
         <ol className="sheet-bus">
           {featuredProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
         </ol>
+        <GitHubActivity />
         <div className="work-outro">
           <a className="hier-pin see-all" href={PROJECTS_URL}>See all {orderedProjects.length} projects</a>
           <p>More experiments live on <NewTabLink href={GITHUB_URL}>my GitHub</NewTabLink>.</p>
