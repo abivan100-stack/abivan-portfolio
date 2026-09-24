@@ -131,7 +131,7 @@ function App() {
       <section className="about section" id="about" aria-labelledby="about-title">
         <NetLabel id="about-title">about</NetLabel>
         <div className="about-copy">
-          <p className="about-lead">I’m Abivan, a 14-year-old robotics enthusiast and vibe coder based in Chennai.</p>
+          <p className="about-lead">I build robots, ESP32 hardware and web apps, and take them to competitions and expos.</p>
           <p>I study at Velammal Academy, Nolambur. Claude Code and Codex are my main coding tools; I use them to explore ideas, build software, and experiment with how hardware and code can work together.</p>
         </div>
       </section>
@@ -178,7 +178,7 @@ function App() {
         <NetLabel id="contact-title">contact</NetLabel>
         <div className="title-block">
           <div className="tb-main">
-            <p className="tb-heading">Have a project in mind? I’d love to hear about it.</p>
+            <p className="tb-heading">Want to know more about a build? Email me.</p>
             <a className="tb-email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
           </div>
           <dl className="tb-grid">
