@@ -1,5 +1,5 @@
 import type { AnchorHTMLAttributes, CSSProperties, ReactNode } from 'react'
-import { formatDate, formatDateRange, isUpcoming, projectAnchor, GITHUB_URL, type Project, type Recognition } from '../lib/portfolio'
+import { formatDate, formatDateRange, isUpcoming, projectAnchor, CV_URL, GITHUB_URL, type Project, type Recognition } from '../lib/portfolio'
 import { useToday } from '../lib/useToday'
 
 const rulerNumbers = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -50,6 +50,8 @@ export function PageFrame({ homeHref, nav, footer, children }: { homeHref: strin
                 {item.label}
               </a>
             ))}
+            {/* On every page, where people look for a CV first */}
+            <NewTabLink href={CV_URL}>CV<span className="visually-hidden">, PDF</span></NewTabLink>
             <NewTabLink href={GITHUB_URL}>GitHub</NewTabLink>
           </nav>
         </header>

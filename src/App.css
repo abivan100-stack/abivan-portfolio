@@ -441,6 +441,9 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .tb-heading { max-width: 20ch; text-wrap: balance; margin: 0 0 1.1rem; color: var(--navy); font-size: clamp(1.7rem, 3.4vw, 2.6rem); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; }
 .tb-email { color: var(--navy); font-family: var(--text); font-size: var(--fs-md); font-weight: 600; overflow-wrap: anywhere; text-decoration: underline 2px var(--green); text-underline-offset: 6px; }
 .tb-email:hover { background: var(--fill); }
+.tb-cv { margin: .9rem 0 0; color: var(--muted); font-size: var(--fs-sm); }
+.tb-cv a { color: var(--navy); font-weight: 600; text-decoration: underline 1px var(--green); text-underline-offset: 4px; }
+.tb-cv a:hover { color: var(--green); }
 .tb-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin: 0; background: var(--navy); }
 .tb-grid div { padding: .75rem 1rem .85rem; background: var(--paper); }
 .tb-grid dt { color: var(--muted); font-size: var(--fs-xs); }
@@ -529,9 +532,15 @@ a.tp-project:hover { text-decoration-color: currentColor; }
   .title-block { justify-self: stretch; }
 }
 
-@media (max-width: 420px) {
+/* The nav drops below the wordmark before its six links can push the page sideways (they overflow below about 485px) */
+@media (max-width: 520px) {
   .site-header { flex-wrap: wrap; row-gap: 6px; padding-block: 14px 10px; }
   .site-header nav { width: 100%; justify-content: space-between; gap: 8px; }
+}
+
+/* Six links need about 275px to sit in one row with room between them, so narrower phones get two rows of three */
+@media (max-width: 359px) {
+  .site-header nav { display: grid; grid-template-columns: repeat(3, auto); row-gap: 2px; }
 }
 
 @media (max-width: 380px) {

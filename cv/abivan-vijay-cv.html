@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Abivan Vijay | CV</title>
+    <meta name="author" content="Abivan Vijay" />
+    <meta name="description" content="CV of Abivan Vijay: robotics, embedded hardware and web applications." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <!-- Print source for public/abivan-vijay-cv.pdf. Edit here, then run `npm run cv`. -->
+    <style>
+      /* Colours from the site's KiCad palette (src/index.css). Barlow, a DIN-style grotesk, reads like a
+         datasheet; it is a static font, so Chrome embeds it as real text that CV parsers can read. */
+      :root {
+        --ink: #1a1c3a;
+        --muted: #555a73;
+        --navy: #000084;
+        --green: #008400;
+        --rule: #c9ccd8;
+        --gutter: 28mm;
+      }
+
+      @page { size: A4; margin: 0; }
+      * { box-sizing: border-box; }
+      html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #fff;
+        font-family: Barlow, 'Segoe UI', Arial, sans-serif;
+        font-size: 9.4pt;
+        line-height: 1.34;
+      }
+      .page {
+        display: flex;
+        flex-direction: column;
+        width: 210mm;
+        height: 297mm;
+        padding: 13mm 15mm 10mm;
+        overflow: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      p, ul, h1, h2 { margin: 0; }
+      ul { padding: 0; list-style: none; }
+      b { font-weight: 600; }
+
+      /* Header: name on the left, contact details stacked on the right */
+      header {
+        display: flex;
+        justify-content: space-between;
+        /* The headline and the last contact line share a baseline */
+        align-items: last baseline;
+        gap: 8mm;
+        padding-bottom: 3.6mm;
+        border-bottom: 1.6pt solid var(--green);
+      }
+      h1 { color: var(--navy); font-size: 26pt; font-weight: 700; line-height: 1; letter-spacing: -.01em; }
+      .headline { margin-top: 1.8mm; font-size: 11.5pt; }
+      .contact { color: var(--muted); font-size: 8.8pt; line-height: 1.36; text-align: right; }
+      /* Hyphenated terms stay on one line */
+      .nowrap { white-space: nowrap; }
+
+      /* Sections: the heading hangs in a left column, all content shares one vertical edge */
+      section {
+        display: grid;
+        grid-template-columns: var(--gutter) 1fr;
+        /* Each heading sits on the baseline of its section's first line */
+        align-items: baseline;
+        padding-top: 3.2mm;
+        margin-top: 3.2mm;
+        border-top: .6pt solid var(--rule);
+      }
+      /* The same space under the green rule as under each hairline */
+      header + section { border-top: 0; margin-top: 0; }
+      h2 { color: var(--navy); font-size: 10.2pt; font-weight: 700; line-height: 1.3; }
+
+      /* Dated rows: text on the left, date right-aligned on the same baseline */
+      .rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 5mm; }
+      .rows li + li { margin-top: .6mm; }
+      .when { flex: 0 0 auto; color: var(--muted); font-size: 8.8pt; white-space: nowrap; font-variant-numeric: tabular-nums; }
+      .upcoming { color: var(--green); font-weight: 600; }
+
+      /* Projects */
+      .projects > li + li { margin-top: 1.7mm; }
+      .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 5mm; }
+      .project-name { font-weight: 700; }
+      .role { margin-left: 1.6mm; color: var(--muted); font-style: italic; }
+      .stack { flex: 0 0 auto; color: var(--muted); font-size: 8.8pt; }
+      .also { margin-top: 1.7mm; }
+
+      /* Skills */
+      /* Labels sit inline so each one shares a line with its own list, even in plain-text parsers */
+      /* Lists break only between their semicolon groups, and wrapped ones split into two even lines */
+      .skills li { text-wrap: balance; }
+      .skills li + li { margin-top: .5mm; }
+      .label { font-weight: 600; }
+      /* Keeps H2S from pushing its line apart */
+      sub { font-size: .72em; line-height: 0; vertical-align: -.25em; }
+
+      /* Title-block footer, the one nod to the site's schematic sheets */
+      footer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: auto;
+        border: .8pt solid var(--navy);
+        color: var(--muted);
+        font-size: 8pt;
+      }
+      footer div { padding: 1.1mm 2.6mm 1.3mm; }
+      footer div + div { border-left: .8pt solid var(--navy); }
+      footer b { display: block; color: var(--navy); font-size: 8.8pt; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div>
+          <h1>Abivan Vijay</h1>
+          <p class="headline">Robotics, embedded hardware and web applications</p>
+        </div>
+        <ul class="contact">
+          <li>Chennai, India</li>
+          <li><a href="tel:+919840408614">+91 98404 08614</a></li>
+          <li><a href="mailto:abivan100@gmail.com">abivan100@gmail.com</a></li>
+          <li><a href="https://github.com/abivan100-stack">github.com/abivan100-stack</a></li>
+          <li><a href="https://abivan-dev.vercel.app/">abivan-dev.vercel.app</a></li>
+        </ul>
+      </header>
+
+      <section>
+        <h2>Profile</h2>
+        <p>Student builder who designs and builds ESP32 hardware, autonomous robots and full-stack web applications, and takes them to national competitions, hackathons and expos. Uses AI coding tools <span class="nowrap">(Claude Code,</span> Codex) to take ideas from prototype to working build quickly.</p>
+      </section>
+
+      <section>
+        <h2>Achievements</h2>
+        <ul class="rows">
+          <li><span><b>National Robotics Championship 2026</b>, Delhi: drone soccer and <span class="nowrap">innovation contest</span></span><span class="when"><span class="upcoming">Upcoming</span> 20–21 Nov 2026</span></li>
+          <li><span><b>Robotics for Good Youth Challenge</b> (ITU): national round, Delhi</span><span class="when"><span class="upcoming">Upcoming</span> 10 Oct 2026</span></li>
+          <li><span><b>Robotics for Good Youth Challenge</b>: selected for the national round, Senior category</span><span class="when">Sep 2026</span></li>
+          <li><span><b>PEC Hacks 4.0</b>: Consolation Prize, Vault (team lead)</span><span class="when">Aug 2026</span></li>
+          <li><span><b>School Shark Tank-style pitch competition</b>: presented Volt, with all 14 branches competing</span><span class="when">Aug 2026</span></li>
+          <li><span><b>Young Environmental Scientist 2026</b> (IWMA with IIT Madras): participant, Sewer Gas Detector</span><span class="when">Aug 2026</span></li>
+          <li><span><b>National Robotics Championship</b>: selected with CRASH, after qualifying at the SRM zonals</span><span class="when">Jul 2026</span></li>
+          <li><span><b>School-level expo</b>: Winner, FreshSense</span><span class="when">Feb 2026</span></li>
+          <li><span><b>RoboWunder International Competition</b>: participant at the Regionals, FreshSense</span><span class="when">Jan 2026</span></li>
+          <li><span><b>SRM University, Ramapuram expo</b>: participant, Smart Guard</span><span class="when">Nov 2025</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <div>
+          <ul class="projects">
+            <li>
+              <div class="project-head"><p><span class="project-name">CRASH: Chennai Road Accident Safety Hub</span><span class="role">Team project</span></p><span class="stack">JavaScript, Python</span></div>
+              <p>Web app that maps road accidents across Greater Chennai, ranks junctions by a severity-weighted risk score and recommends interventions, with analytics dashboards, Monte Carlo simulation and an <span class="nowrap">AI data assistant</span>.</p>
+            </li>
+            <li>
+              <div class="project-head"><p><span class="project-name">Robotics for Good: Public-Health Response Robot</span><span class="role">Team project</span></p><span class="stack">LEGO SPIKE Prime</span></div>
+              <p>Fully autonomous robot that runs 2-minute simulated emergency-response missions: moving samples, closing a quarantine zone, delivering medical kits and colour-sorting patients.</p>
+            </li>
+            <li>
+              <div class="project-head"><p><span class="project-name">Vault: Cold-Chain Integrity Console</span><span class="role">Team lead</span></p><span class="stack">TypeScript, ESP32</span></div>
+              <p>Monitors a vaccine shipment’s cold chain and records every event to a hash-chained ledger that can be verified afterwards.</p>
+            </li>
+            <li>
+              <div class="project-head"><p><span class="project-name">Sewer Gas Detector</span><span class="role">Team project</span></p><span class="stack">ESP32, ESP-NOW</span></div>
+              <p>Two-unit wearable for sanitation workers: reads H<sub>2</sub>S and methane every second, alarms at set thresholds, and relays to a supervisor unit over <span class="nowrap">ESP-NOW</span> with no internet needed.</p>
+            </li>
+            <li>
+              <div class="project-head"><p><span class="project-name">FreshSense: Food Spoilage Detection</span><span class="role">Team lead, 3 members</span></p><span class="stack">ESP32, Blynk IoT</span></div>
+              <p>ESP32 conveyor system that classifies food as FRESH or ROTTEN using gas sensors and a <span class="nowrap">self-calibrated</span> baseline, with remote monitoring through Blynk IoT.</p>
+            </li>
+            <li>
+              <div class="project-head"><p><span class="project-name">Volt: Peer-to-Peer Solar Energy Ledger</span><span class="role">Team project</span></p><span class="stack">TypeScript, Python</span></div>
+              <p>Transparent, tamper-evident ledger for rooftop-solar energy trading, built for the <span class="nowrap">Open Energy Challenge 2026</span>.</p>
+            </li>
+          </ul>
+          <p class="also"><span class="label">Also built:</span> Smart Guard (team lead, 3 members), WriteWise AI (Flask + Claude), Landmine Detection Shoe (prototype), RFID&nbsp;Door&nbsp;Lock.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <ul class="skills">
+          <li><span class="label">Hardware:</span> <span><span class="nowrap">Arduino, ESP32, LEGO SPIKE Prime;</span> <span class="nowrap">gas, climate and RFID sensors, displays, servos;</span> <span class="nowrap">Wi-Fi, ESP-NOW, Blynk IoT</span></span></li>
+          <li><span class="label">Software:</span> <span><span class="nowrap">JavaScript, TypeScript, HTML, Python, Node.js;</span> <span class="nowrap">FastAPI, Flask, Express;</span> <span class="nowrap">MongoDB, Supabase;</span> <span class="nowrap">Claude API</span></span></li>
+          <li><span class="label">Tools:</span> <span>Claude Code, Codex, Git/GitHub, Render, Vercel</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <ul class="rows"><li><span><b>Velammal Academy</b>, Nolambur, Chennai: Grade 9, CBSE (age 14)</span><span class="when">2026–27</span></li></ul>
+      </section>
+
+      <footer>
+        <div>Title<b>Abivan Vijay, CV</b></div>
+        <div>Portfolio<b>abivan-dev.vercel.app</b></div>
+        <div>Updated<b>Sep 2026</b></div>
+        <div>Sheet<b>1 of 1</b></div>
+      </footer>
+    </div>
+  </body>
+</html>
