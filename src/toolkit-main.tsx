@@ -1,10 +1,5 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 import './index.css'
 import ToolkitPage from './ToolkitPage.tsx'
+import { mountPage } from './lib/mount'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ToolkitPage />
-  </StrictMode>,
-)
+mountPage(<ToolkitPage />)

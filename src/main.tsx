@@ -1,10 +1,6 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
+import { readSavedView } from './lib/hero-view'
+import { mountPage } from './lib/mount'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+mountPage(<App initialView={readSavedView()} />)

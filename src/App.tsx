@@ -1,6 +1,8 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { NetLabel, NewTabLink, PageFrame, ProjectSheet } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
+import { useToday } from './lib/useToday'
+import { type HeroView, VIEW_KEY } from './lib/hero-view'
 import {
   EMAIL, GITHUB_URL, PROJECTS_URL, TOOLKIT_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
 } from './lib/portfolio'
@@ -13,20 +15,10 @@ const outputPins = [
   { num: 6, name: 'contact', href: '#contact' },
   { num: 5, name: 'GitHub', href: GITHUB_URL, external: true },
 ]
-type HeroView = 'schematic' | 'board'
-const VIEW_KEY = 'u1-view'
-
-const readSavedView = (): HeroView => {
-  try {
-    return localStorage.getItem(VIEW_KEY) === 'board' ? 'board' : 'schematic'
-  } catch {
-    return 'schematic'
-  }
-}
-
-function App() {
+function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
+  const today = useToday()
   const [activeSection, setActiveSection] = useState<string | null>(null)
-  const [heroView, setHeroView] = useState<HeroView>(readSavedView)
+  const [heroView, setHeroView] = useState<HeroView>(initialView)
   usePowerUp()
   useNetFlash()
 
@@ -140,12 +132,12 @@ function App() {
         {/* TP numbers count in date order, so a result keeps its number as newer ones are added in front */}
         <ol className="tp-wire">
           {milestones.map((milestone, index) => (
-            <li className={isUpcoming(milestone.dates) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
+            <li className={isUpcoming(milestone.dates, today) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
               <span className="tp-ref" aria-hidden="true">TP{milestones.length - index}</span>
               <span className="tp-mark" aria-hidden="true" />
               <div className="tp-when">
                 <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>
-                {isUpcoming(milestone.dates) && <span className="upcoming-tag">Upcoming</span>}
+                {isUpcoming(milestone.dates, today) && <span className="upcoming-tag">Upcoming</span>}
               </div>
               {milestone.slug
                 ? <a className="tp-project" href={projectHref(milestone.slug, true)}>{milestone.title}</a>

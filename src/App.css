@@ -4,6 +4,7 @@
   grid-template-columns: 22px minmax(0, 1fr) 22px;
   grid-template-rows: 22px minmax(0, 1fr) 22px;
   min-height: calc(100vh - 28px);
+  min-height: calc(100svh - 28px);
   margin: 14px;
   border: 1.5px solid var(--navy);
 }
@@ -399,7 +400,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .sheet-box { padding: 1.35rem 1.6rem 1.3rem; border: 2px solid var(--magenta); background: var(--paper); }
 .sheet-box p { max-width: 66ch; margin: 0; color: var(--muted); font-size: var(--fs-base); line-height: 1.65; }
 .sheet-box p.sheet-subtitle { margin-bottom: .45rem; color: var(--navy); font-size: var(--fs-md); font-weight: 700; line-height: 1.35; }
-.sheet-box p.sheet-context { margin-top: .6rem; font-size: var(--fs-sm); font-style: italic; }
+.sheet-box p.sheet-context { margin-top: .6rem; font-size: var(--fs-sm); }
 .sheet-recognition { max-width: 66ch; margin-top: .9rem; padding: .6rem .85rem .65rem; border-left: 3px solid var(--green); background: var(--fill); color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.5; }
 .sheet-recognition ul { margin: 0; padding: 0; list-style: none; }
 .sheet-recognition li + li { margin-top: .3rem; }
@@ -461,9 +462,9 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 
 /* Small screens: pins move to the top and bottom edges */
 @media (max-width: 700px) {
-  .frame { display: block; min-height: 0; margin: 0; border: 0; }
+  .frame { display: block; min-height: 100vh; min-height: 100svh; margin: 0; padding: 8px; border: 2px solid var(--navy); }
   .ruler { display: none; }
-  .sheet { min-height: 100vh; padding-inline: 16px; border: 0; }
+  .sheet { min-height: calc(100vh - 20px); min-height: calc(100svh - 20px); padding-inline: 16px; border: 1px solid var(--navy); }
   .site-header { min-height: 64px; }
   .site-header nav { gap: 14px; }
   .site-header nav a { font-size: var(--fs-sm); }

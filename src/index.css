@@ -1,7 +1,3 @@
-/* Martian Mono's width axis runs 75 to 112.5 on Google Fonts (served as font-stretch: 75% 112.5%). */
-@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap');
-
 /* Palette taken from KiCad's classic schematic colours. */
 :root {
   --paper: #ffffff;
@@ -38,7 +34,7 @@
 }
 
 * { box-sizing: border-box; }
-body { min-width: 0; min-height: 100vh; margin: 0; background: var(--paper); }
+body { min-width: 0; min-height: 100vh; min-height: 100svh; margin: 0; background: var(--paper); }
 button, a { font: inherit; }
 ::selection { color: var(--paper); background: var(--magenta); }
 :focus-visible { outline: 2px solid var(--magenta); outline-offset: 3px; }

@@ -1,5 +1,6 @@
 import type { AnchorHTMLAttributes, CSSProperties, ReactNode } from 'react'
 import { formatDate, formatDateRange, isUpcoming, projectAnchor, GITHUB_URL, type Project, type Recognition } from '../lib/portfolio'
+import { useToday } from '../lib/useToday'
 
 const rulerNumbers = [1, 2, 3, 4, 5, 6, 7, 8]
 const rulerLetters = ['A', 'B', 'C', 'D', 'E', 'F']
@@ -73,6 +74,7 @@ export function NetLabel({ id, level = 2, children }: { id: string; level?: 1 | 
 
 // headingLevel is one below the section heading: 3 under the home page's h2, 2 under the projects page's h1.
 export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Project; index: number; headingLevel?: 2 | 3 }) {
+  const today = useToday()
   const [projectTitle, projectSubtitle] = project.name.split(/\s+--\s+/, 2)
   const Heading = headingLevel === 2 ? 'h2' : 'h3'
   return (
@@ -92,7 +94,7 @@ export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Pr
               {(project.recognitions as Recognition[]).map((recognition) => (
                 <li key={recognition.text}>
                   {recognition.text}
-                  {isUpcoming(recognition.dates) && <span className="upcoming-tag">Upcoming: {formatDateRange(recognition.dates)}</span>}
+                  {isUpcoming(recognition.dates, today) && <span className="upcoming-tag">Upcoming: {formatDateRange(recognition.dates)}</span>}
                 </li>
               ))}
             </ul>

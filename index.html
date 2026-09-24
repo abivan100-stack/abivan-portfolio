@@ -4,12 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="Abivan is a 14-year-old robotics enthusiast and vibe coder in Chennai, exploring ideas through software and robotics." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@200..800&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap" rel="stylesheet" />
+    <meta name="description" content="Abivan Vijay builds robots, ESP32 hardware, and web apps in Chennai, India. Explore his projects, results, and tools." />
+    <meta property="og:title" content="Abivan Vijay | Robotics, Hardware and Software" />
+    <meta property="og:description" content="Abivan Vijay builds robots, ESP32 hardware, and web apps in Chennai, India. Explore his projects, results, and tools." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Abivan Vijay" />
+    <meta property="og:url" content="https://abivan-dev.vercel.app/" />
+    <meta property="og:image" content="https://abivan-dev.vercel.app/og-u1.png" />
+    <meta property="og:image:alt" content="U1, Abivan's portfolio chip, shown as a fabricated circuit board" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Abivan Vijay | Robotics, Hardware and Software" />
+    <meta name="twitter:description" content="Abivan Vijay builds robots, ESP32 hardware, and web apps in Chennai, India. Explore his projects, results, and tools." />
+    <meta name="twitter:image" content="https://abivan-dev.vercel.app/og-u1.png" />
+    <meta name="twitter:image:alt" content="U1, Abivan's portfolio chip, shown as a fabricated circuit board" />
     <link rel="icon" type="image/svg+xml" href="/chip-icon.svg" />
-    <title>Abivan | Personal Portfolio</title>
+    <title>Abivan Vijay | Robotics, Hardware and Software</title>
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      try {
+        if (localStorage.getItem('u1-view') === 'board') {
+          const hero = document.querySelector('#root .hero');
+          if (hero) {
+            hero.classList.remove('is-schematic');
+            hero.classList.add('is-board');
+            const buttons = hero.querySelectorAll('.view-switch button');
+            buttons.forEach((button, index) => button.setAttribute('aria-pressed', String(index === 1)));
+          }
+        }
+      } catch {}
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

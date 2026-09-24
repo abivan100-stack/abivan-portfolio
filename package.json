@@ -5,13 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run sync:projects && tsc -b && vite build",
+    "build": "npm run sync:projects && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "sync:projects": "node scripts/sync-projects.mjs"
   },
   "dependencies": {
-    "motion": "^13.4.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
