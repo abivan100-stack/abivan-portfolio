@@ -532,9 +532,15 @@ a.tp-project:hover { text-decoration-color: currentColor; }
   .title-block { justify-self: stretch; }
 }
 
-@media (max-width: 420px) {
+/* The nav drops below the wordmark before its six links can push the page sideways (they overflow below about 485px) */
+@media (max-width: 520px) {
   .site-header { flex-wrap: wrap; row-gap: 6px; padding-block: 14px 10px; }
   .site-header nav { width: 100%; justify-content: space-between; gap: 8px; }
+}
+
+/* Six links need about 275px to sit in one row with room between them, so narrower phones get two rows of three */
+@media (max-width: 359px) {
+  .site-header nav { display: grid; grid-template-columns: repeat(3, auto); row-gap: 2px; }
 }
 
 @media (max-width: 380px) {
