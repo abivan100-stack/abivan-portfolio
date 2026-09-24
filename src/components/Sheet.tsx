@@ -1,10 +1,20 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { AnchorHTMLAttributes, CSSProperties, ReactNode } from 'react'
 import { formatDate, formatDateRange, isUpcoming, projectAnchor, GITHUB_URL, type Project, type Recognition } from '../lib/portfolio'
 
 const rulerNumbers = [1, 2, 3, 4, 5, 6, 7, 8]
 const rulerLetters = ['A', 'B', 'C', 'D', 'E', 'F']
 // The sheet's file name, from its title rather than the repo name: "WriteWise AI" becomes writewise-ai.
 const sheetFileName = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
+// A link that opens in a new tab, and says so to screen readers.
+export function NewTabLink({ children, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return (
+    <a {...props} target="_blank" rel="noreferrer">
+      {children}
+      <span className="visually-hidden"> (opens in a new tab)</span>
+    </a>
+  )
+}
 
 export type NavItem = { href: string; label: string; active?: boolean; current?: 'location' | 'page' }
 
@@ -39,7 +49,7 @@ export function PageFrame({ homeHref, nav, footer, children }: { homeHref: strin
                 {item.label}
               </a>
             ))}
-            <a href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a>
+            <NewTabLink href={GITHUB_URL}>GitHub</NewTabLink>
           </nav>
         </header>
 
@@ -90,8 +100,8 @@ export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Pr
         )}
         {(project.url || project.demoUrl) && (
           <div className="sheet-pins">
-            {project.url && <a className="hier-pin" href={project.url} target="_blank" rel="noreferrer">Source repository</a>}
-            {project.demoUrl && <a className="hier-pin" href={project.demoUrl} target="_blank" rel="noreferrer">Open live demo</a>}
+            {project.url && <NewTabLink className="hier-pin" href={project.url}>Source repository</NewTabLink>}
+            {project.demoUrl && <NewTabLink className="hier-pin" href={project.demoUrl}>Open live demo</NewTabLink>}
           </div>
         )}
       </div>

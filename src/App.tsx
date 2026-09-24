@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react'
-import { NetLabel, PageFrame, ProjectSheet } from './components/Sheet'
+import { NetLabel, NewTabLink, PageFrame, ProjectSheet } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import {
   EMAIL, GITHUB_URL, PROJECTS_URL, TOOLKIT_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
@@ -111,13 +111,9 @@ function App() {
               {outputPins.map((pin, i) => (
                 <li key={pin.name} style={{ '--i': i + inputPins.length } as CSSProperties}>
                   <span className="pin-num" aria-hidden="true">{pin.num}</span>
-                  <a
-                    className="pin-name"
-                    href={pin.href}
-                    {...(pin.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                  >
-                    {pin.name}
-                  </a>
+                  {pin.external
+                    ? <NewTabLink className="pin-name" href={pin.href}>{pin.name}</NewTabLink>
+                    : <a className="pin-name" href={pin.href}>{pin.name}</a>}
                   <span className="pulse" aria-hidden="true" />
                 </li>
               ))}
@@ -170,7 +166,7 @@ function App() {
         </ol>
         <div className="work-outro">
           <a className="hier-pin see-all" href={PROJECTS_URL}>See all {orderedProjects.length} projects</a>
-          <p>More experiments live on <a href={GITHUB_URL} target="_blank" rel="noreferrer">my GitHub</a>.</p>
+          <p>More experiments live on <NewTabLink href={GITHUB_URL}>my GitHub</NewTabLink>.</p>
         </div>
       </section>
 
@@ -182,7 +178,7 @@ function App() {
             <a className="tb-email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
           </div>
           <dl className="tb-grid">
-            <div><dt>GitHub</dt><dd><a href={GITHUB_URL} target="_blank" rel="noreferrer">abivan100-stack</a></dd></div>
+            <div><dt>GitHub</dt><dd><NewTabLink href={GITHUB_URL}>abivan100-stack</NewTabLink></dd></div>
             <div><dt>Location</dt><dd>Chennai, India</dd></div>
             <div><dt>Updated</dt><dd>{lastUpdated}</dd></div>
             <div><dt>Sheet</dt><dd>1 of 3</dd></div>

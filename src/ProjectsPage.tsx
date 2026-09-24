@@ -1,4 +1,4 @@
-import { NetLabel, PageFrame, ProjectSheet } from './components/Sheet'
+import { NetLabel, NewTabLink, PageFrame, ProjectSheet } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import { GITHUB_URL, HOME_URL, TOOLKIT_URL, orderedProjects } from './lib/portfolio'
 import './App.css'
@@ -36,7 +36,7 @@ function ProjectsPage() {
         </ol>
         <div className="work-outro">
           <a className="hier-pin see-all back" href={HOME_URL}>Back to home</a>
-          <p>More experiments live on <a href={GITHUB_URL} target="_blank" rel="noreferrer">my GitHub</a>.</p>
+          <p>More experiments live on <NewTabLink href={GITHUB_URL}>my GitHub</NewTabLink>.</p>
         </div>
       </section>
     </PageFrame>
