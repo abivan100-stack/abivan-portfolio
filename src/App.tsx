@@ -149,6 +149,8 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
         </ol>
       </section>
 
+      <GitHubActivity />
+
       <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
         <div className="work-head">
           <NetLabel id="work-title">projects</NetLabel>
@@ -157,7 +159,6 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
         <ol className="sheet-bus">
           {featuredProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
         </ol>
-        <GitHubActivity />
         <div className="work-outro">
           <a className="hier-pin see-all" href={PROJECTS_URL}>See all {orderedProjects.length} projects</a>
           <p>More experiments live on <NewTabLink href={GITHUB_URL}>my GitHub</NewTabLink>.</p>

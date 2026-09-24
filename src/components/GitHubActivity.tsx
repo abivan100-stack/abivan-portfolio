@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
 import { NetLabel } from './Sheet'
 import { GITHUB_URL } from '../lib/portfolio'
 import './GitHubActivity.css'
@@ -63,6 +63,13 @@ function GitHubCalendar({ data }: { data: CalendarData }) {
   const [focusedIndex, setFocusedIndex] = useState(Math.max(0, days.length - 1))
   const [selectedIndex, setSelectedIndex] = useState(Math.max(0, days.length - 1))
   const [activeDay, setActiveDay] = useState(days[days.length - 1])
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  // On narrow screens the calendar scrolls sideways; open it on the latest weeks, where the recent activity is
+  useEffect(() => {
+    const scroller = scrollRef.current
+    if (scroller) scroller.scrollLeft = scroller.scrollWidth
+  }, [])
 
   const monthLabels = data.weeks.map((week, index) => {
     const firstDay = week.days[0]
@@ -96,8 +103,8 @@ function GitHubCalendar({ data }: { data: CalendarData }) {
 
   return (
     <div className="github-calendar-wrap">
-      <p className="github-calendar-period">{dayFormatter.format(dateValue(data.from))} — {dayFormatter.format(dateValue(data.to))}</p>
-      <div className="github-calendar-scroll" role="region" aria-label="Scrollable contribution calendar">
+      <p className="github-calendar-period"><span>{dayFormatter.format(dateValue(data.from))}</span> — <span>{dayFormatter.format(dateValue(data.to))}</span></p>
+      <div className="github-calendar-scroll" ref={scrollRef} role="region" aria-label="Scrollable contribution calendar">
         <div className="github-calendar" style={{ '--week-count': data.weeks.length } as CSSProperties}>
           <div className="github-months" aria-hidden="true">
             {monthLabels.map((month, index) => month && (
@@ -174,7 +181,7 @@ export function GitHubActivity() {
   }, [retry])
 
   return (
-    <section className="github-activity" aria-labelledby="github-activity-title" aria-busy={loading}>
+    <section className="github-activity section" id="activity" aria-labelledby="github-activity-title" aria-busy={loading}>
       <div className="github-activity-head">
         <div>
           <NetLabel id="github-activity-title">GitHub activity</NetLabel>
