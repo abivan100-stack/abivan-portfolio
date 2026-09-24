@@ -8,7 +8,8 @@
     "build": "npm run sync:projects && tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "sync:projects": "node scripts/sync-projects.mjs"
+    "sync:projects": "node scripts/sync-projects.mjs",
+    "cv": "node scripts/build-cv.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
