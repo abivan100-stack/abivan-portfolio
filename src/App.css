@@ -154,7 +154,14 @@
 .view-switch button[aria-pressed='true'] { color: var(--paper); background: var(--navy); }
 
 /* Board view: the same U1, fabricated. Every colour change eases so the flip reads as one move. */
-.hero { --mask: #17613a; --mask-edge: #0e4a2b; --copper: #d4a94f; --copper-hot: #ffd479; --silk: #f2f2ea; --package: #232326; --etch: #a9a9a3; }
+.hero {
+  --mask: #17613a; --mask-edge: #0e4a2b; --mask-shadow: #0b3320;
+  --copper: #d4a94f; --copper-hot: #ffd479;
+  --silk: #f2f2ea; --silk-soft: #deded8;
+  --package: #232326; --package-edge: #3a3a3e; --dimple: #18181a;
+  --etch: #a9a9a3; --etch-bright: #c9c9c3;
+  --led-off: #2f5a3f; --led-on: #8dffb0; --led-glow: #5dff92;
+}
 .chip,
 .chip-body,
 .chip-ref,
@@ -182,14 +189,14 @@
 .is-board .pin-num { color: var(--silk); }
 .is-board .chip-ref { top: 10px; }
 .is-board .chip-value { bottom: 8px; }
-.is-board .chip-body { border-color: var(--package); background: var(--package); box-shadow: inset 0 0 0 1px #3a3a3e, 0 3px 0 #0b3320; }
+.is-board .chip-body { border-color: var(--package); background: var(--package); box-shadow: inset 0 0 0 1px var(--package-edge), 0 3px 0 var(--mask-shadow); }
 /* Pin-1 dimple moulded into the package */
-.chip-body::before { position: absolute; top: 14px; left: 14px; width: 12px; height: 12px; border-radius: 50%; background: #18181a; box-shadow: inset 1px 1px 2px #000; content: ''; opacity: 0; transition: opacity 320ms ease; }
+.chip-body::before { position: absolute; top: 14px; left: 14px; width: 12px; height: 12px; border-radius: 50%; background: var(--dimple); box-shadow: inset 1px 1px 2px black; content: ''; opacity: 0; transition: opacity 320ms ease; }
 .is-board .chip-body::before { opacity: 1; }
 .is-board .pin-name,
 .is-board .chip-location { color: var(--etch); }
-.is-board .chip-core h1 { color: #c9c9c3; }
-.is-board .chip-description { color: #deded8; }
+.is-board .chip-core h1 { color: var(--etch-bright); }
+.is-board .chip-description { color: var(--silk-soft); }
 .is-board .pins-in li::before,
 .is-board .pins-out .pin-name::after { width: calc(var(--stub) - 15px); height: 6px; margin-top: -3px; background: var(--copper); }
 .is-board .pins-out .pin-name:hover,
@@ -222,14 +229,14 @@
 /* D1 status LED: blinks once on power-up, lights while an output pin is hovered or focused */
 .board-led { position: absolute; top: 9px; right: 44px; display: none; align-items: center; gap: 7px; color: var(--silk); font-family: var(--mono); font-size: var(--fs-xs); }
 .is-board .board-led { display: flex; }
-.led { width: 14px; height: 8px; border-radius: 2px; background: #2f5a3f; box-shadow: inset 0 0 0 1px #0b3320; transition: background-color 180ms ease, box-shadow 180ms ease; }
+.led { width: 14px; height: 8px; border-radius: 2px; background: var(--led-off); box-shadow: inset 0 0 0 1px var(--mask-shadow); transition: background-color 180ms ease, box-shadow 180ms ease; }
 .is-board .led { animation: led-power 900ms ease-out 250ms backwards; }
 .chip:has(.pins-out .pin-name:hover) .led,
-.chip:has(.pins-out .pin-name:focus-visible) .led { background: #8dffb0; box-shadow: inset 0 0 0 1px #0b3320, 0 0 10px #5dff92, 0 0 3px #5dff92; }
+.chip:has(.pins-out .pin-name:focus-visible) .led { background: var(--led-on); box-shadow: inset 0 0 0 1px var(--mask-shadow), 0 0 10px var(--led-glow), 0 0 3px var(--led-glow); }
 @keyframes led-power {
-  0%, 100% { background: #2f5a3f; box-shadow: inset 0 0 0 1px #0b3320; }
-  15%, 45% { background: #8dffb0; box-shadow: inset 0 0 0 1px #0b3320, 0 0 10px #5dff92; }
-  30% { background: #2f5a3f; box-shadow: inset 0 0 0 1px #0b3320; }
+  0%, 100% { background: var(--led-off); box-shadow: inset 0 0 0 1px var(--mask-shadow); }
+  15%, 45% { background: var(--led-on); box-shadow: inset 0 0 0 1px var(--mask-shadow), 0 0 10px var(--led-glow); }
+  30% { background: var(--led-off); box-shadow: inset 0 0 0 1px var(--mask-shadow); }
 }
 
 /* Section shell and global net labels */
@@ -254,7 +261,7 @@
 .net-label.is-flashing { animation: net-flash 1100ms ease-out 350ms; }
 .net-label.is-flashing span { animation: net-flash-fill 1100ms ease-out 350ms; }
 @keyframes net-flash { 0%, 100% { background: var(--teal); } 20%, 65% { background: var(--green-hot); } }
-@keyframes net-flash-fill { 0%, 100% { background: var(--paper); } 20%, 65% { background: #e8ffe9; } }
+@keyframes net-flash-fill { 0%, 100% { background: var(--paper); } 20%, 65% { background: var(--green-tint); } }
 
 /* Timeline: results in date order as test points on one wire */
 .timeline { --tp-y: 44px; }
@@ -297,13 +304,14 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 /* A timeline link flashes the project sheet it lands on */
 .sub-sheet { scroll-margin-top: 24px; }
 .sub-sheet.is-flashing .sheet-box { animation: sheet-flash 1100ms ease-out 350ms; }
-@keyframes sheet-flash { 0%, 100% { border-color: var(--magenta); box-shadow: none; } 20%, 65% { border-color: var(--green-hot); box-shadow: 0 0 0 4px #e8ffe9; } }
+@keyframes sheet-flash { 0%, 100% { border-color: var(--magenta); box-shadow: none; } 20%, 65% { border-color: var(--green-hot); box-shadow: 0 0 0 4px var(--green-tint); } }
 
 /* Toolkit: a parts cabinet. Each drawer front carries a label, a quantity stamp and a handle; opening it
    slides out a tray listing the projects that use the part. */
+.cabinets { --cabinet: #e8ebf3; --drawer-shadow: #b9bfd3; --label-edge: #dcd79c; --tray: #f6f7fb; --tray-shadow: #9aa1b8; }
 .cabinets { display: grid; gap: 36px; margin-top: 32px; }
 .cabinet-plate { display: inline-block; margin: 0 0 10px; padding: .25em .75em; border: 1.5px solid var(--maroon); background: var(--fill); color: var(--maroon); font-family: var(--mono); font-size: var(--fs-sm); font-weight: 600; }
-.drawers { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; align-items: start; margin: 0; padding: 12px; border: 2px solid var(--navy); background: #e8ebf3; list-style: none; }
+.drawers { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; align-items: start; margin: 0; padding: 12px; border: 2px solid var(--navy); background: var(--cabinet); list-style: none; }
 .drawer-front {
   position: relative;
   display: grid;
@@ -314,14 +322,14 @@ a.tp-project:hover { text-decoration-color: currentColor; }
   padding: 12px 12px 34px;
   border: 2px solid var(--navy);
   background: var(--paper);
-  box-shadow: 0 4px 0 #b9bfd3;
+  box-shadow: 0 4px 0 var(--drawer-shadow);
   color: var(--ink);
   font: inherit;
   text-align: left;
   cursor: pointer;
   transition: border-color 160ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
-.drawer-label { display: block; padding: .4rem .55rem; border: 1px solid #dcd79c; background: var(--fill); }
+.drawer-label { display: block; padding: .4rem .55rem; border: 1px solid var(--label-edge); background: var(--fill); }
 .drawer-part { display: block; color: var(--navy); font-size: var(--fs-base); font-weight: 700; line-height: 1.25; }
 .drawer-note { display: block; margin-top: .15rem; color: var(--muted); font-size: var(--fs-sm); line-height: 1.35; }
 .drawer-qty { color: var(--navy); font-family: var(--mono); font-size: var(--fs-sm); font-weight: 600; }
@@ -333,12 +341,12 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .drawer-front:focus-visible .drawer-handle,
 .is-open .drawer-handle { border-color: var(--green); background: var(--green-hot); box-shadow: 0 0 6px var(--green-hot); }
 /* Pulled out: the front drops onto its shadow and the tray appears beneath it */
-.is-open .drawer-front { box-shadow: 0 1px 0 #b9bfd3; transform: translateY(3px); }
+.is-open .drawer-front { box-shadow: 0 1px 0 var(--drawer-shadow); transform: translateY(3px); }
 .drawer-tray { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 260ms ease, visibility 0s linear 260ms; }
 .is-open .drawer-tray { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows 260ms ease, visibility 0s; }
 .drawer-tray-inner { min-height: 0; overflow: hidden; }
 .drawer-tray-inner > * { margin: 0; }
-.drawer-tray-inner { margin: 0 6px; border: 2px solid var(--navy); border-top: 0; background: #f6f7fb; box-shadow: inset 0 6px 6px -6px #9aa1b8; }
+.drawer-tray-inner { margin: 0 6px; border: 2px solid var(--navy); border-top: 0; background: var(--tray); box-shadow: inset 0 6px 6px -6px var(--tray-shadow); }
 .is-open .drawer-tray-inner { padding: .8rem .8rem .7rem; }
 .drawer-tray-title { color: var(--muted); font-size: var(--fs-sm); font-weight: 600; }
 .drawer-tray-inner ul { margin-top: .35rem; padding: 0; list-style: none; }
