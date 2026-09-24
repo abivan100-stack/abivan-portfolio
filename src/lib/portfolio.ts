@@ -4,6 +4,7 @@ import toolkitData from '../data/toolkit.json'
 
 export type Project = (typeof projects)[number]
 export type Recognition = { text: string; dates: string[] }
+export type ProjectCategory = 'Hardware' | 'Software'
 
 export const GITHUB_URL = 'https://github.com/abivan100-stack'
 export const EMAIL = 'abivan100@gmail.com'
@@ -32,7 +33,7 @@ export const formatDateRange = ([first, last]: string[]) => {
 
 // A result dated after today (visitor's local date) is still to come; it turns into a normal entry
 // on its own once the day arrives.
-export const isUpcoming = (dates: string[]) => dates[0] > new Date().toLocaleDateString('en-CA')
+export const isUpcoming = (dates: string[], today: string) => dates[0] > today
 
 export const projectAnchor = (slug: string) => `project-${slug}`
 
@@ -74,3 +75,16 @@ export const toolkit = (toolkitData as ToolkitRow[]).map((row) => {
     : row.projects.flatMap((slug) => projectsBySlug.get(slug.toLowerCase()) ?? [])
   return { ...row, used, qty: used ? used.length : projects.length }
 })
+
+const categoriesByProject = new Map<string, Set<ProjectCategory>>()
+for (const row of toolkitData as ToolkitRow[]) {
+  if (row.projects === 'all' || (row.group !== 'Hardware' && row.group !== 'Software')) continue
+  for (const slug of row.projects) {
+    const categories = categoriesByProject.get(slug.toLowerCase()) ?? new Set<ProjectCategory>()
+    categories.add(row.group)
+    categoriesByProject.set(slug.toLowerCase(), categories)
+  }
+}
+
+export const getProjectCategories = (slug: string): ProjectCategory[] =>
+  [...(categoriesByProject.get(slug.toLowerCase()) ?? [])]

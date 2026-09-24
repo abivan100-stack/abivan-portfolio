@@ -1,0 +1,15 @@
+.projects-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-left: auto;
+}
+
+.projects-controls p { max-width: 42ch; }
+.project-filter { margin: 0; flex: 0 0 auto; }
+.project-filter button { padding-inline: 12px; }
+
+@media (max-width: 700px) {
+  .projects-controls { width: 100%; margin-left: 0; }
+}
