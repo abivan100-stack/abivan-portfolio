@@ -28,11 +28,11 @@ function ProjectsPage() {
           <span aria-current="page">projects</span>
         </nav>
         <div className="work-head">
-          <NetLabel id="all-projects-title">projects</NetLabel>
+          <NetLabel id="all-projects-title" level={1}>projects</NetLabel>
           <p>All {orderedProjects.length} projects: robots, hardware builds, web apps, and fan tributes, newest first.</p>
         </div>
         <ol className="sheet-bus">
-          {orderedProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
+          {orderedProjects.map((project, index) => <ProjectSheet project={project} index={index} headingLevel={2} key={project.slug} />)}
         </ol>
         <div className="work-outro">
           <a className="hier-pin see-all back" href={HOME_URL}>Back to home</a>

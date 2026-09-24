@@ -29,7 +29,7 @@ function ToolkitPage() {
           <span aria-current="page">toolkit</span>
         </nav>
         <div className="toolkit-head">
-          <NetLabel id="toolkit-title">toolkit</NetLabel>
+          <NetLabel id="toolkit-title" level={1}>toolkit</NetLabel>
           <p>The boards, parts, and software my builds use, sorted into drawers. The number on each drawer is how many projects use it; open one to see them.</p>
         </div>
         <PartsDrawers />

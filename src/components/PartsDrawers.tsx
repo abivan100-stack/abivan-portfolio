@@ -18,7 +18,7 @@ export function PartsDrawers() {
     <div className="cabinets">
       {[...new Set(toolkit.map((row) => row.group))].map((group) => (
         <section className="cabinet" key={group} aria-labelledby={`cabinet-${idFor(group)}`}>
-          <h3 className="cabinet-plate" id={`cabinet-${idFor(group)}`}>{group}</h3>
+          <h2 className="cabinet-plate" id={`cabinet-${idFor(group)}`}>{group}</h2>
           <ul className="drawers">
             {toolkit.filter((row) => row.group === group).map((row) => {
               const isOpen = openParts.has(row.part)

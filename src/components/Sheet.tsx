@@ -49,21 +49,25 @@ export function PageFrame({ homeHref, nav, footer, children }: { homeHref: strin
   )
 }
 
-export function NetLabel({ id, children }: { id: string; children: string }) {
+// A net label is the section heading. On the projects and toolkit pages it is the page's only h1.
+export function NetLabel({ id, level = 2, children }: { id: string; level?: 1 | 2; children: string }) {
+  const Heading = level === 1 ? 'h1' : 'h2'
   return (
-    <h2 className="net-label" id={id}>
+    <Heading className="net-label" id={id}>
       <span>{children}</span>
-    </h2>
+    </Heading>
   )
 }
 
-export function ProjectSheet({ project, index }: { project: Project; index: number }) {
+// headingLevel is one below the section heading: 3 under the home page's h2, 2 under the projects page's h1.
+export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Project; index: number; headingLevel?: 2 | 3 }) {
   const [projectTitle, projectSubtitle] = project.name.split(/\s+--\s+/, 2)
+  const Heading = headingLevel === 2 ? 'h2' : 'h3'
   return (
     <li className="sub-sheet" id={projectAnchor(project.slug)} style={{ '--n': index } as CSSProperties}>
-      <h3 className="sheet-name">
+      <Heading className="sheet-name">
         {project.url ? <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a> : projectTitle}
-      </h3>
+      </Heading>
       <div className="sheet-box">
         {projectSubtitle && <p className="sheet-subtitle">{projectSubtitle}</p>}
         <p>{project.summary || 'Project description coming soon.'}</p>
