@@ -139,12 +139,13 @@ function App() {
       <section className="timeline section" id="timeline" aria-labelledby="timeline-title" data-power-up>
         <div className="timeline-head">
           <NetLabel id="timeline-title">timeline</NetLabel>
-          <p>Results and recognition so far, in order. Each one is a test point (TP) on the wire, like the numbered probe points on a circuit board.</p>
+          <p>Results and recognition, newest first. Each is a test point (TP) on the wire, numbered in the order it happened, like the probe points on a circuit board.</p>
         </div>
+        {/* TP numbers count in date order, so a result keeps its number as newer ones are added in front */}
         <ol className="tp-wire">
           {milestones.map((milestone, index) => (
             <li className={isUpcoming(milestone.dates) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
-              <span className="tp-ref" aria-hidden="true" title={`Test point ${index + 1}`}>TP{index + 1}</span>
+              <span className="tp-ref" aria-hidden="true">TP{milestones.length - index}</span>
               <span className="tp-mark" aria-hidden="true" />
               <div className="tp-when">
                 <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>

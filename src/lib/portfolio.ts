@@ -40,8 +40,8 @@ export const featuredProjects = orderedProjects.filter((project) => FEATURED_SLU
 export const projectHref = (slug: string, onHome: boolean) =>
   onHome && FEATURED_SLUGS.has(slug.toLowerCase()) ? `#${projectAnchor(slug)}` : `${PROJECTS_URL}#${projectAnchor(slug)}`
 
-// Every result across all projects, plus events not tied to a project (events.json), oldest first,
-// for the timeline. A project milestone links to its sheet; an event has no slug and no link.
+// Every result across all projects, plus events not tied to a project (events.json), newest first,
+// for the timeline, so upcoming events and the latest results lead. A project milestone links to its sheet; an event has no slug and no link.
 export const milestones: (Recognition & { slug: string | null; title: string })[] = [
   ...projects.flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
     ...recognition,
@@ -49,7 +49,7 @@ export const milestones: (Recognition & { slug: string | null; title: string })[
     title: project.name.split(/\s+--\s+/, 1)[0],
   }))),
   ...events.map((event) => ({ ...event, slug: null })),
-].sort((a, b) => a.dates[0].localeCompare(b.dates[0]))
+].sort((a, b) => b.dates[0].localeCompare(a.dates[0]))
 
 // The toolkit (bill of materials): each part links to the projects that use it. Qty is the number of
 // those projects, so it stays right as projects are added; unknown slugs are skipped rather than
