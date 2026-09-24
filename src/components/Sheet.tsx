@@ -3,6 +3,8 @@ import { formatDate, formatDateRange, isUpcoming, projectAnchor, GITHUB_URL, typ
 
 const rulerNumbers = [1, 2, 3, 4, 5, 6, 7, 8]
 const rulerLetters = ['A', 'B', 'C', 'D', 'E', 'F']
+// The sheet's file name, from its title rather than the repo name: "WriteWise AI" becomes writewise-ai.
+const sheetFileName = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 export type NavItem = { href: string; label: string; active?: boolean; current?: 'location' | 'page' }
 
@@ -65,9 +67,8 @@ export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Pr
   const Heading = headingLevel === 2 ? 'h2' : 'h3'
   return (
     <li className="sub-sheet" id={projectAnchor(project.slug)} style={{ '--n': index } as CSSProperties}>
-      <Heading className="sheet-name">
-        {project.url ? <a href={project.url} target="_blank" rel="noreferrer">{projectTitle}</a> : projectTitle}
-      </Heading>
+      {/* The title is plain text: the source and demo links below say where each one goes */}
+      <Heading className="sheet-name">{projectTitle}</Heading>
       <div className="sheet-box">
         {projectSubtitle && <p className="sheet-subtitle">{projectSubtitle}</p>}
         <p>{project.summary || 'Project description coming soon.'}</p>
@@ -95,7 +96,7 @@ export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Pr
         )}
       </div>
       <p className="sheet-file">
-        <span>File: {project.slug}</span>
+        <span>File: {sheetFileName(projectTitle)}</span>
         <span>{project.language || 'Project'}</span>
         <span>Updated {formatDate(project.updatedAt)}</span>
       </p>

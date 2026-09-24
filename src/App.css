@@ -388,8 +388,6 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 @keyframes wire-down { 99% { clip-path: inset(0); } 100% { clip-path: none; } }
 
 .sheet-name { margin: 0 0 .55rem; color: var(--teal); font-family: var(--text); font-size: 1.5rem; font-weight: 650; line-height: 1.2; letter-spacing: -.025em; }
-.sheet-name a { color: inherit; text-decoration: underline 2px transparent; text-underline-offset: 5px; transition: text-decoration-color 160ms ease; }
-.sheet-name a:hover { text-decoration-color: currentColor; }
 .sheet-box { padding: 1.35rem 1.6rem 1.3rem; border: 2px solid var(--magenta); background: var(--paper); }
 .sheet-box p { max-width: 66ch; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
 .sheet-box p.sheet-subtitle { margin-bottom: .45rem; color: var(--navy); font-size: 1.12rem; font-weight: 700; line-height: 1.35; }
