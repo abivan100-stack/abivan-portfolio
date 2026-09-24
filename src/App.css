@@ -196,7 +196,8 @@
 .is-board .pins-out .pin-name:focus-visible { color: var(--copper-hot); }
 .is-board .pins-out .pin-name:hover::after,
 .is-board .pins-out .pin-name:focus-visible::after { background: var(--copper-hot); box-shadow: 0 0 8px var(--copper-hot); }
-.is-board :focus-visible { outline-color: var(--copper-hot); }
+/* Only on the board itself: the view switch sits on white paper, where copper would barely show */
+.is-board .chip :focus-visible { outline-color: var(--copper-hot); }
 
 /* Vias where each trace leaves the pin; hidden in the schematic */
 .pins-in li::after,
