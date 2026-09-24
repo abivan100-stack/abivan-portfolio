@@ -47,6 +47,13 @@
     "contextNote": null,
     "recognitions": [
       {
+        "text": "Qualified at the SRM zonals",
+        "dates": [
+          "2026-07-11",
+          "2026-07-12"
+        ]
+      },
+      {
         "text": "Selected for the National Robotics Championship (NRC)",
         "dates": [
           "2026-07-22"
