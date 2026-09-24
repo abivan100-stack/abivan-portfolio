@@ -28,7 +28,7 @@ const offlineProjects = [
     summary: 'An ESP32 build that checks food for spoilage on a conveyor belt. An IR sensor stops each item under two gas sensors, which compare its reading against a clean-air baseline the system calibrates at start-up. The verdict, FRESH or ROTTEN, shows on an LCD and is sent to the Blynk IoT cloud for remote monitoring. Built as a three-person team project.',
     contextNote: null,
     recognitions: [
-      { text: 'Participated in the RoboWunder International Competition regionals', dates: ['2026-01-02'] },
+      { text: 'Participated in the RoboWunder International Competition Regionals', dates: ['2026-01-02'] },
       { text: 'Winner, school-level expo', dates: ['2026-02-16'] },
     ],
     url: null,
