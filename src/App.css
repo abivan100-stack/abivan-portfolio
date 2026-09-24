@@ -39,10 +39,10 @@
 /* Wordmark chip: schematic colours; its pins light up like a highlighted net on hover */
 .wordmark-chip { width: 30px; height: 30px; flex: 0 0 auto; overflow: visible; }
 .wordmark-chip rect { fill: var(--fill); stroke: var(--maroon); stroke-width: 2; }
-.wordmark-pins { stroke: var(--maroon); stroke-width: 2; transition: stroke 160ms ease, filter 160ms ease; }
+.wordmark-pins { stroke: var(--maroon); stroke-width: 2; transition: stroke 160ms ease; }
 .wordmark-chip text { fill: var(--navy); font-family: var(--mono); font-size: 13px; font-weight: 700; }
 .wordmark:hover .wordmark-pins,
-.wordmark:focus-visible .wordmark-pins { stroke: var(--green-hot); filter: drop-shadow(0 0 2px var(--green-hot)); }
+.wordmark:focus-visible .wordmark-pins { stroke: var(--green-hot); }
 .site-header nav { display: flex; align-items: center; gap: clamp(14px, 2.6vw, 32px); }
 .site-header nav a { padding-block: 4px; color: var(--ink); font-size: var(--fs-base); text-decoration: underline 2px transparent; text-underline-offset: 6px; transition: color 160ms ease, text-decoration-color 160ms ease; }
 .site-header nav a:hover,
@@ -277,10 +277,10 @@
 .tp:last-child::before { right: 0; }
 .tp { position: relative; padding-top: calc(var(--tp-y) + 26px); }
 .tp-ref { position: absolute; top: calc(var(--tp-y) - 34px); left: 0; color: var(--teal); font-family: var(--mono); font-size: var(--fs-xs); font-weight: 700; }
-.tp-mark { position: absolute; top: calc(var(--tp-y) - 8px); left: 0; width: 16px; height: 16px; border: 2px solid var(--maroon); border-radius: 50%; background: var(--paper); transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+.tp-mark { position: absolute; top: calc(var(--tp-y) - 8px); left: 0; width: 16px; height: 16px; border: 2px solid var(--maroon); border-radius: 50%; background: var(--paper); transition: background-color 160ms ease, border-color 160ms ease; }
 /* Hovering a result that links to its project sheet lights its test point; events with no sheet stay unlit */
 .tp:has(a.tp-project):hover .tp-mark,
-.tp:focus-within .tp-mark { border-color: var(--green); background: var(--green-hot); box-shadow: 0 0 8px var(--green-hot); }
+.tp:focus-within .tp-mark { border-color: var(--green); background: var(--green-hot); }
 .tp-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .5rem; }
 .tp time { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-sm); }
 
@@ -334,13 +334,13 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .drawer-part { display: block; color: var(--navy); font-size: var(--fs-base); font-weight: 700; line-height: 1.25; }
 .drawer-note { display: block; margin-top: .15rem; color: var(--muted); font-size: var(--fs-sm); line-height: 1.35; }
 .drawer-qty { color: var(--navy); font-family: var(--mono); font-size: var(--fs-sm); font-weight: 600; }
-.drawer-handle { position: absolute; bottom: 11px; left: 50%; width: 46px; height: 9px; margin-left: -23px; border: 2px solid var(--navy); border-radius: 6px; background: var(--paper); transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+.drawer-handle { position: absolute; bottom: 11px; left: 50%; width: 46px; height: 9px; margin-left: -23px; border: 2px solid var(--navy); border-radius: 6px; background: var(--paper); transition: background-color 160ms ease, border-color 160ms ease; }
 .drawer-front:hover,
 .drawer-front:focus-visible,
 .is-open .drawer-front { border-color: var(--green); }
 .drawer-front:hover .drawer-handle,
 .drawer-front:focus-visible .drawer-handle,
-.is-open .drawer-handle { border-color: var(--green); background: var(--green-hot); box-shadow: 0 0 6px var(--green-hot); }
+.is-open .drawer-handle { border-color: var(--green); background: var(--green-hot); }
 /* Pulled out: the front drops onto its shadow and the tray appears beneath it */
 .is-open .drawer-front { box-shadow: 0 1px 0 var(--drawer-shadow); transform: translateY(3px); }
 .drawer-tray { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 260ms ease, visibility 0s linear 260ms; }
@@ -370,7 +370,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .sub-sheet { position: relative; max-width: 800px; }
 .sub-sheet + .sub-sheet { margin-top: var(--gap); }
 .sub-sheet::before,
-.sub-sheet::after { position: absolute; left: calc(var(--bus-x) - var(--indent)); content: ''; transition: border-color 160ms ease, filter 160ms ease; }
+.sub-sheet::after { position: absolute; left: calc(var(--bus-x) - var(--indent)); content: ''; transition: border-color 160ms ease; }
 .sub-sheet::before { top: 0; width: calc(var(--indent) - var(--bus-x)); height: var(--wire-y); border-left: 2px solid var(--green); border-bottom: 2px solid var(--green); }
 /* Bus continuation down to the next sheet, with a junction dot where the wire branches off */
 .sub-sheet::after {
@@ -384,7 +384,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 }
 .sub-sheet:last-child::after { display: none; }
 .sub-sheet:hover::before,
-.sub-sheet:focus-within::before { border-color: var(--green-hot); filter: drop-shadow(0 0 3px var(--green-hot)); }
+.sub-sheet:focus-within::before { border-color: var(--green-hot); }
 
 /* Bus power-up: the drop from the label, then each branch in order, drawn top to bottom */
 .work.is-armed .sheet-bus::before,
@@ -393,7 +393,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .work.is-live .sheet-bus::before { animation: wire-down 240ms ease-out forwards; }
 .work.is-live .sub-sheet::before { animation: wire-down 280ms ease-out forwards; animation-delay: calc(220ms + var(--n) * 300ms); }
 .work.is-live .sub-sheet::after { animation: wire-down 200ms linear forwards; animation-delay: calc(500ms + var(--n) * 300ms); }
-/* Release the clip at the end so the hover glow on a branch is not cut off */
+/* Release the clip at the end so branch lines end with no clipping */
 @keyframes wire-down { 99% { clip-path: inset(0); } 100% { clip-path: none; } }
 
 .sheet-name { margin: 0 0 .55rem; color: var(--teal); font-family: var(--text); font-size: var(--fs-xl); font-weight: 650; line-height: 1.2; letter-spacing: -.025em; }
@@ -401,7 +401,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .sheet-box p { max-width: 66ch; margin: 0; color: var(--muted); font-size: var(--fs-base); line-height: 1.65; }
 .sheet-box p.sheet-subtitle { margin-bottom: .45rem; color: var(--navy); font-size: var(--fs-md); font-weight: 700; line-height: 1.35; }
 .sheet-box p.sheet-context { margin-top: .6rem; font-size: var(--fs-sm); }
-.sheet-recognition { max-width: 66ch; margin-top: .9rem; padding: .6rem .85rem .65rem; border-left: 3px solid var(--green); background: var(--fill); color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.5; }
+.sheet-recognition { max-width: 66ch; margin-top: .9rem; padding: .6rem .85rem .65rem; border: 1px solid var(--green); background: var(--fill); color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.5; }
 .sheet-recognition ul { margin: 0; padding: 0; list-style: none; }
 .sheet-recognition li + li { margin-top: .3rem; }
 .sheet-recognition .upcoming-tag { margin-left: .5rem; vertical-align: .1em; }

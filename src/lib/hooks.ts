@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { readHashFragment } from './hash-fragment'
 
 // Wires in [data-power-up] sections (the timeline and the projects bus) are drawn in the first time each
 // scrolls into view. They are only hidden once JS has armed them, so without IntersectionObserver or
@@ -8,7 +9,14 @@ export function usePowerUp() {
     const sections = [...document.querySelectorAll<HTMLElement>('[data-power-up]')]
     if (!sections.length || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    sections.forEach((section) => section.classList.add('is-armed'))
+    const arrivalTarget = document.getElementById(readHashFragment())
+    const arrivalBus = arrivalTarget?.classList.contains('sub-sheet')
+      ? arrivalTarget.closest<HTMLElement>('.work[data-power-up]')
+      : null
+    const animatedSections = sections.filter((section) => section !== arrivalBus)
+    if (!animatedSections.length) return
+
+    animatedSections.forEach((section) => section.classList.add('is-armed'))
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return
@@ -16,7 +24,7 @@ export function usePowerUp() {
         observer.unobserve(entry.target)
       })
     }, { threshold: 0.12 })
-    sections.forEach((section) => observer.observe(section))
+    animatedSections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
   }, [])
 }
@@ -39,7 +47,7 @@ function flashTarget(id: string) {
 // the browser's own jump to the hash, so that jump would otherwise miss.
 export function useNetFlash() {
   useEffect(() => {
-    const arrivedAt = decodeURIComponent(window.location.hash.slice(1))
+    const arrivedAt = readHashFragment()
     if (arrivedAt) {
       document.getElementById(arrivedAt)?.scrollIntoView({ behavior: 'instant' })
       flashTarget(arrivedAt)
@@ -47,7 +55,7 @@ export function useNetFlash() {
 
     const onClick = (event: MouseEvent) => {
       const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null
-      const id = link?.getAttribute('href')?.slice(1)
+      const id = link ? readHashFragment(link.getAttribute('href') ?? '') : ''
       if (id) flashTarget(id)
     }
     const onAnimationEnd = (event: AnimationEvent) => {
