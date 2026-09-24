@@ -4,7 +4,7 @@ import { usePowerUp, useNetFlash } from './lib/hooks'
 import { useToday } from './lib/useToday'
 import { type HeroView, VIEW_KEY } from './lib/hero-view'
 import {
-  EMAIL, GITHUB_URL, PROJECTS_URL, TOOLKIT_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
+  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, TOOLKIT_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
 } from './lib/portfolio'
 import './App.css'
 
@@ -168,6 +168,7 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
           <div className="tb-main">
             <p className="tb-heading">Want to know more about a build? Email me.</p>
             <a className="tb-email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <p className="tb-cv"><NewTabLink href={CV_URL}>View my CV</NewTabLink> (PDF, 1 page)</p>
           </div>
           <dl className="tb-grid">
             <div><dt>GitHub</dt><dd><NewTabLink href={GITHUB_URL}>abivan100-stack</NewTabLink></dd></div>

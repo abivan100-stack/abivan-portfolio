@@ -13,6 +13,8 @@ export const EMAIL = 'abivan100@gmail.com'
 export const HOME_URL = import.meta.env.BASE_URL
 export const PROJECTS_URL = `${import.meta.env.BASE_URL}projects/`
 export const TOOLKIT_URL = `${import.meta.env.BASE_URL}toolkit/`
+// Committed in public/, since the host has no browser to print it. Regenerate with `npm run cv` after editing cv/abivan-vijay-cv.html.
+export const CV_URL = `${import.meta.env.BASE_URL}abivan-vijay-cv.pdf`
 
 // Written out by hand rather than with toLocaleDateString, which gives "Sept" in some browsers and "Sep"
 // in others (and in Node), so every page shows the same date wherever it is rendered.
