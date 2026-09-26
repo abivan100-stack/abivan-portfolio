@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
-import { NetLabel } from './Sheet'
+import { NetLabel, NewTabLink } from './Sheet'
 import { GITHUB_URL } from '../lib/portfolio'
 import './GitHubActivity.css'
 
@@ -198,7 +198,7 @@ export function GitHubActivity() {
             <p>Activity is temporarily unavailable. You can still view the public profile on GitHub.</p>
             <div className="github-activity-actions">
               <button type="button" onClick={() => { setLoading(true); setRetry((value) => value + 1) }}>Try again</button>
-              <a href={GITHUB_URL} rel="noreferrer" target="_blank">View GitHub profile<span className="visually-hidden"> (opens in a new tab)</span></a>
+              <NewTabLink href={GITHUB_URL}>View GitHub profile</NewTabLink>
             </div>
           </div>}
     </section>

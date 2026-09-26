@@ -1,5 +1,5 @@
 import { PartsDrawers } from './components/PartsDrawers'
-import { NetLabel, PageFrame } from './components/Sheet'
+import { NetLabel, PageFrame, SheetBreadcrumb } from './components/Sheet'
 import { useNetFlash } from './lib/hooks'
 import { HOME_URL, PROJECTS_URL } from './lib/portfolio'
 import './App.css'
@@ -9,25 +9,14 @@ import './App.css'
 function ToolkitPage() {
   useNetFlash()
 
-  const nav = [
-    { href: `${HOME_URL}#about`, label: 'About' },
-    { href: PROJECTS_URL, label: 'Projects' },
-    { href: '#toolkit', label: 'Toolkit', active: true, current: 'page' as const },
-    { href: `${HOME_URL}#contact`, label: 'Contact' },
-  ]
-
   return (
     <PageFrame
+      page="toolkit"
       homeHref={HOME_URL}
-      nav={nav}
       footer={<><span>Sheet 3 of 3, drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className="toolkit section" id="toolkit" aria-labelledby="toolkit-title">
-        <nav className="sheet-path" aria-label="Breadcrumb">
-          <a href={HOME_URL}>abivan</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">toolkit</span>
-        </nav>
+        <SheetBreadcrumb current="toolkit" />
         <div className="toolkit-head">
           <NetLabel id="toolkit-title" level={1}>toolkit</NetLabel>
           <p>The boards, parts, and software my builds use, sorted into drawers. The number on each drawer is how many projects use it; open one to see them.</p>

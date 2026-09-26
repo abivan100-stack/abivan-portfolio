@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { NetLabel, NewTabLink, PageFrame, ProjectSheet } from './components/Sheet'
+import { NetLabel, NewTabLink, PageFrame, ProjectSheet, SheetBreadcrumb } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import { readHashFragment } from './lib/hash-fragment'
-import { GITHUB_URL, getProjectCategories, HOME_URL, TOOLKIT_URL, orderedProjects, type ProjectCategory } from './lib/portfolio'
+import { GITHUB_URL, getProjectCategories, HOME_URL, orderedProjects, type ProjectCategory } from './lib/portfolio'
 import './App.css'
 import './ProjectsPage.css'
 
@@ -25,25 +25,14 @@ function ProjectsPage() {
     setFilter(category)
   }
 
-  const nav = [
-    { href: `${HOME_URL}#about`, label: 'About' },
-    { href: '#all-projects', label: 'Projects', active: true, current: 'page' as const },
-    { href: TOOLKIT_URL, label: 'Toolkit' },
-    { href: `${HOME_URL}#contact`, label: 'Contact' },
-  ]
-
   return (
     <PageFrame
+      page="projects"
       homeHref={HOME_URL}
-      nav={nav}
       footer={<><span>Sheet 2 of 3, drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className="work section" id="all-projects" aria-labelledby="all-projects-title" data-power-up>
-        <nav className="sheet-path" aria-label="Breadcrumb">
-          <a href={HOME_URL}>abivan</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">projects</span>
-        </nav>
+        <SheetBreadcrumb current="projects" />
         <div className="work-head">
           <NetLabel id="all-projects-title" level={1}>projects</NetLabel>
           <div className="projects-controls">

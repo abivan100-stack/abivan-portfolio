@@ -1,5 +1,17 @@
 import type { AnchorHTMLAttributes, CSSProperties, ReactNode } from 'react'
-import { formatDate, formatDateRange, isUpcoming, projectAnchor, CV_URL, GITHUB_URL, type Project, type Recognition } from '../lib/portfolio'
+import {
+  formatDate,
+  formatDateRange,
+  isUpcoming,
+  projectAnchor,
+  CV_URL,
+  GITHUB_URL,
+  HOME_URL,
+  PROJECTS_URL,
+  TOOLKIT_URL,
+  type Project,
+  type Recognition,
+} from '../lib/portfolio'
 import { useToday } from '../lib/useToday'
 
 const rulerNumbers = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -17,10 +29,53 @@ export function NewTabLink({ children, ...props }: AnchorHTMLAttributes<HTMLAnch
   )
 }
 
-export type NavItem = { href: string; label: string; active?: boolean; current?: 'location' | 'page' }
+type NavItem = { href: string; label: string; active?: boolean; current?: 'location' | 'page' }
+
+type SheetPage = 'home' | 'projects' | 'toolkit'
+
+function PageNavigation({ page, activeSection }: { page: SheetPage; activeSection: string | null }) {
+  const isHome = page === 'home'
+  const nav: NavItem[] = [
+    { href: isHome ? '#about' : `${HOME_URL}#about`, label: 'About', active: isHome && activeSection === 'about' },
+    {
+      href: isHome ? '#work' : page === 'projects' ? '#all-projects' : PROJECTS_URL,
+      label: 'Projects',
+      active: page === 'projects' || (isHome && activeSection === 'work'),
+      current: page === 'projects' ? 'page' : 'location',
+    },
+    { href: page === 'toolkit' ? '#toolkit' : TOOLKIT_URL, label: 'Toolkit', active: page === 'toolkit', current: 'page' },
+    { href: isHome ? '#contact' : `${HOME_URL}#contact`, label: 'Contact', active: isHome && activeSection === 'contact' },
+  ]
+
+  return (
+    <nav aria-label="Main navigation">
+      {nav.map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          className={item.active ? 'is-active' : undefined}
+          aria-current={item.active ? item.current ?? 'location' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+      {/* On every page, where people look for a CV first */}
+      <NewTabLink href={CV_URL}>CV<span className="visually-hidden">, PDF</span></NewTabLink>
+      <NewTabLink href={GITHUB_URL}>GitHub</NewTabLink>
+    </nav>
+  )
+}
 
 // The drawing frame shared by every page: zone rulers, the sheet, the header and the footer.
-export function PageFrame({ homeHref, nav, footer, children }: { homeHref: string; nav: NavItem[]; footer: ReactNode; children: ReactNode }) {
+type PageFrameProps = {
+  homeHref: string
+  page: SheetPage
+  activeSection?: string | null
+  footer: ReactNode
+  children: ReactNode
+}
+
+export function PageFrame({ homeHref, page, activeSection = null, footer, children }: PageFrameProps) {
   return (
     <div className="frame" id="top">
       <div className="ruler ruler-top" aria-hidden="true">{rulerNumbers.map((n) => <span key={n}>{n}</span>)}</div>
@@ -39,21 +94,7 @@ export function PageFrame({ homeHref, nav, footer, children }: { homeHref: strin
             </svg>
             <span>abivan</span>
           </a>
-          <nav aria-label="Main navigation">
-            {nav.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={item.active ? 'is-active' : undefined}
-                aria-current={item.active ? item.current ?? 'location' : undefined}
-              >
-                {item.label}
-              </a>
-            ))}
-            {/* On every page, where people look for a CV first */}
-            <NewTabLink href={CV_URL}>CV<span className="visually-hidden">, PDF</span></NewTabLink>
-            <NewTabLink href={GITHUB_URL}>GitHub</NewTabLink>
-          </nav>
+          <PageNavigation page={page} activeSection={activeSection} />
         </header>
 
         <main>{children}</main>
@@ -61,6 +102,16 @@ export function PageFrame({ homeHref, nav, footer, children }: { homeHref: strin
         <footer className="site-footer">{footer}</footer>
       </div>
     </div>
+  )
+}
+
+export function SheetBreadcrumb({ current }: { current: 'projects' | 'toolkit' }) {
+  return (
+    <nav className="sheet-path" aria-label="Breadcrumb">
+      <a href={HOME_URL}>abivan</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{current}</span>
+    </nav>
   )
 }
 

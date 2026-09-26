@@ -5,7 +5,7 @@ import { usePowerUp, useNetFlash } from './lib/hooks'
 import { useToday } from './lib/useToday'
 import { type HeroView, VIEW_KEY } from './lib/hero-view'
 import {
-  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, TOOLKIT_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
+  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
 } from './lib/portfolio'
 import './App.css'
 
@@ -62,17 +62,11 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
     }
   }, [heroView])
 
-  const nav = [
-    { href: '#about', label: 'About', active: activeSection === 'about' },
-    { href: '#work', label: 'Projects', active: activeSection === 'work' },
-    { href: TOOLKIT_URL, label: 'Toolkit' },
-    { href: '#contact', label: 'Contact', active: activeSection === 'contact' },
-  ]
-
   return (
     <PageFrame
+      page="home"
+      activeSection={activeSection}
       homeHref="#top"
-      nav={nav}
       footer={<><span>Drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className={`hero is-${heroView}`} aria-labelledby="intro-title">
