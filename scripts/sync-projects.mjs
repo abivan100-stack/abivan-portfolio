@@ -181,6 +181,19 @@ function sourceNote(markdown = '') {
   const lines = markdown.replace(/\r/g, '').split('\n')
   const paragraph = []
   let started = false
+  const readContextNote = () => {
+    if (!paragraph.length) return null
+    const text = paragraph.join(' ')
+      .replace(/^>\s?/, '')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[*_~`]/g, '')
+      .replace(/\u26A0\uFE0F?/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+    return /all data is simulated|nothing real was metered|unofficial fan project|frontend prototype|static prototype/i.test(text)
+      ? text
+      : null
+  }
 
   for (const rawLine of lines) {
     const line = rawLine.trim()
@@ -190,14 +203,8 @@ function sourceNote(markdown = '') {
     }
     if (!line) {
       if (paragraph.length) {
-        const text = paragraph.join(' ')
-          .replace(/^>\s?/, '')
-          .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-          .replace(/[*_~`]/g, '')
-          .replace(/\u26A0\uFE0F?/g, '')
-          .replace(/\s+/g, ' ')
-          .trim()
-        if (/all data is simulated|nothing real was metered|unofficial fan project|frontend prototype|static prototype/i.test(text)) return text
+        const contextNote = readContextNote()
+        if (contextNote) return contextNote
         paragraph.length = 0
       }
       continue
@@ -206,7 +213,7 @@ function sourceNote(markdown = '') {
     paragraph.push(line)
   }
 
-  return null
+  return readContextNote()
 }
 
 function htmlProjectSummary(html = '') {
