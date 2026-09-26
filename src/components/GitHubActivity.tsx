@@ -81,10 +81,10 @@ function GitHubCalendar({ data }: { data: CalendarData }) {
 
   const moveFocus = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const offset = {
-      ArrowLeft: -1,
-      ArrowRight: 1,
-      ArrowUp: -7,
-      ArrowDown: 7,
+      ArrowLeft: -7,
+      ArrowRight: 7,
+      ArrowUp: -1,
+      ArrowDown: 1,
     }[event.key]
     if (offset === undefined) return
 
