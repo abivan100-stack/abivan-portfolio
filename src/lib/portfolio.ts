@@ -34,8 +34,9 @@ export const formatDateRange = ([first, last]: string[]) => {
 }
 
 // A result dated after today (visitor's local date) is still to come; it turns into a normal entry
-// on its own once the day arrives.
-export const isUpcoming = (dates: string[], today: string) => dates[0] > today
+// on its own once the day arrives. Static prerendering leaves today empty until hydration so the
+// build machine's timezone cannot mark an event incorrectly for a visitor.
+export const isUpcoming = (dates: string[], today: string) => Boolean(today) && dates[0] > today
 
 export const projectAnchor = (slug: string) => `project-${slug}`
 
