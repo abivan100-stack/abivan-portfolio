@@ -163,7 +163,7 @@ export function GitHubActivity() {
   useEffect(() => {
     let cancelled = false
 
-    fetch('/api/github-contributions')
+    fetch(`${import.meta.env.BASE_URL}api/github-contributions`)
       .then(async (response) => {
         if (!response.ok) throw new Error('Contribution data is unavailable.')
         const result: unknown = await response.json()
