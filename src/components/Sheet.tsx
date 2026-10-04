@@ -4,6 +4,8 @@ import {
   formatDateRange,
   isUpcoming,
   projectAnchor,
+  projectPageHref,
+  splitProjectName,
   CV_URL,
   GITHUB_URL,
   HOME_URL,
@@ -128,26 +130,25 @@ export function NetLabel({ id, level = 2, children }: { id: string; level?: 1 | 
   )
 }
 
-// headingLevel is one below the section heading: 3 under the home page's h2, 2 under the projects page's h1.
-export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Project; index: number; headingLevel?: 2 | 3 }) {
+// A project in brief: a short overview, its results, and links to the live demo, the source and the full
+// page. headingLevel is one below the section heading: 3 under the home page's h2, 2 under the projects page's h1.
+export function ProjectCard({ project, index, headingLevel = 3 }: { project: Project; index: number; headingLevel?: 2 | 3 }) {
   const today = useToday()
-  const [projectTitle, projectSubtitle] = project.name.split(/\s+--\s+/, 2)
+  const [projectTitle, projectSubtitle] = splitProjectName(project.name)
   const Heading = headingLevel === 2 ? 'h2' : 'h3'
+  const recognitions = project.recognitions as Recognition[]
+  const missing = [!project.demoUrl && 'live demo', !project.url && 'public repository'].filter(Boolean).join(' or ')
   return (
     <li className="sub-sheet" id={projectAnchor(project.slug)} style={{ '--n': index } as CSSProperties}>
-      {/* The title is plain text: the source and demo links below say where each one goes */}
       <Heading className="sheet-name">{projectTitle}</Heading>
       <div className="sheet-box">
         {projectSubtitle && <p className="sheet-subtitle">{projectSubtitle}</p>}
-        <p>{project.summary || 'Project description coming soon.'}</p>
-        {project.contextNote && project.contextNote.trim() !== project.summary.trim() && (
-          <p className="sheet-context">{project.contextNote}</p>
-        )}
-        {project.recognitions.length > 0 && (
+        <p className="sheet-overview">{project.overview}</p>
+        {recognitions.length > 0 && (
           <div className="sheet-recognition">
             <span className="recognition-label">Results &amp; Recognition</span>
             <ul>
-              {(project.recognitions as Recognition[]).map((recognition) => (
+              {recognitions.map((recognition) => (
                 <li key={recognition.text}>
                   {recognition.text}
                   {isUpcoming(recognition.dates, today) && <span className="upcoming-tag">Upcoming: {formatDateRange(recognition.dates)}</span>}
@@ -156,12 +157,14 @@ export function ProjectSheet({ project, index, headingLevel = 3 }: { project: Pr
             </ul>
           </div>
         )}
-        {(project.url || project.demoUrl) && (
-          <div className="sheet-pins">
-            {project.url && <NewTabLink className="hier-pin" href={project.url}>Source repository</NewTabLink>}
-            {project.demoUrl && <NewTabLink className="hier-pin" href={project.demoUrl}>Open live demo</NewTabLink>}
-          </div>
-        )}
+        <div className="sheet-pins">
+          {project.demoUrl && <NewTabLink className="hier-pin" href={project.demoUrl}>Open live demo</NewTabLink>}
+          {project.url && <NewTabLink className="hier-pin" href={project.url}>Source repository</NewTabLink>}
+          <a className="hier-pin hier-pin-primary" href={projectPageHref(project.slug)}>
+            Know more<span className="visually-hidden"> about {projectTitle}</span>
+          </a>
+        </div>
+        {missing && <p className="sheet-missing">No {missing}.</p>}
       </div>
       <p className="sheet-file">
         <span>File: {sheetFileName(projectTitle)}</span>

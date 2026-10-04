@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react'
-import { NetLabel, NewTabLink, PageFrame, ProjectSheet } from './components/Sheet'
+import { NetLabel, NewTabLink, PageFrame, ProjectCard } from './components/Sheet'
 import { GitHubActivity } from './components/GitHubActivity'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import { useToday } from './lib/useToday'
@@ -151,7 +151,7 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
           <p>Highlights, newest first.</p>
         </div>
         <ol className="sheet-bus">
-          {featuredProjects.map((project, index) => <ProjectSheet project={project} index={index} key={project.slug} />)}
+          {featuredProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.slug} />)}
         </ol>
         <div className="work-outro">
           <a className="hier-pin see-all" href={PROJECTS_URL}>See all {orderedProjects.length} projects</a>

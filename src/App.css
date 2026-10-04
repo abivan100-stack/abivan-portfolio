@@ -401,7 +401,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .sheet-box p { max-width: 66ch; margin: 0; color: var(--muted); font-size: var(--fs-base); line-height: 1.65; }
 .sheet-box p.sheet-subtitle { margin-bottom: .45rem; color: var(--navy); font-size: var(--fs-md); font-weight: 700; line-height: 1.35; }
 .sheet-box p.sheet-context { margin-top: .6rem; font-size: var(--fs-sm); }
-.sheet-recognition { max-width: 66ch; margin-top: .9rem; padding: .6rem .85rem .65rem; border: 1px solid var(--green); background: var(--fill); color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.5; }
+.sheet-recognition { max-width: 66ch; margin-top: .9rem; padding: .6rem .85rem .65rem; border: 1px solid var(--green); background: var(--fill); color: var(--navy); font-size: var(--fs-sm); font-weight: 600; line-height: 1.5; }
 .sheet-recognition ul { margin: 0; padding: 0; list-style: none; }
 .sheet-recognition li + li { margin-top: .3rem; }
 .sheet-recognition .upcoming-tag { margin-left: .5rem; vertical-align: .1em; }
@@ -420,6 +420,11 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 }
 .hier-pin:hover { color: var(--paper); background: var(--magenta); }
 .hier-pin:focus-visible { color: var(--paper); background: var(--magenta); outline-offset: 2px; }
+/* "Know more" is the way into a project's own page, so it is filled; the demo and source pins are tinted */
+.hier-pin-primary { color: var(--paper); background: var(--magenta); }
+.hier-pin-primary:hover,
+.hier-pin-primary:focus-visible { color: var(--magenta); background: var(--magenta-tint); }
+.sheet-box p.sheet-missing { margin-top: .7rem; font-family: var(--mono); font-size: var(--fs-xs); }
 .sheet-file { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; margin: .6rem 0 0; color: var(--maroon); font-family: var(--mono); font-size: var(--fs-xs); }
 .work-outro { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin: 56px 0 0; padding-left: var(--indent); color: var(--muted); font-size: var(--fs-base); }
 .work-outro p { margin: 0; }

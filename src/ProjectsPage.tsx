@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NetLabel, NewTabLink, PageFrame, ProjectSheet, SheetBreadcrumb } from './components/Sheet'
+import { NetLabel, NewTabLink, PageFrame, ProjectCard, SheetBreadcrumb } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import { readHashFragment } from './lib/hash-fragment'
 import { GITHUB_URL, getProjectCategories, HOME_URL, orderedProjects, type ProjectCategory } from './lib/portfolio'
@@ -49,7 +49,7 @@ function ProjectsPage() {
           </div>
         </div>
         <ol className="sheet-bus">
-          {visibleProjects.map((project, index) => <ProjectSheet project={project} index={index} headingLevel={2} key={project.slug} />)}
+          {visibleProjects.map((project, index) => <ProjectCard project={project} index={index} headingLevel={2} key={project.slug} />)}
         </ol>
         <div className="work-outro">
           <a className="hier-pin see-all back" href={HOME_URL}>Back to home</a>
