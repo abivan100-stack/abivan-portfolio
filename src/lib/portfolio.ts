@@ -91,3 +91,16 @@ for (const row of toolkitData as ToolkitRow[]) {
 
 export const getProjectCategories = (slug: string): ProjectCategory[] =>
   [...(categoriesByProject.get(slug.toLowerCase()) ?? [])]
+
+// Every project has its own page, at /projects/<slug>/. The slug is made URL-safe ("C.R.A.S.H" becomes
+// c-r-a-s-h) so the path has no dots, which some static hosts and dev servers read as a file extension.
+export const projectPathSlug = (slug: string) => slug.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+export const projectPageHref = (slug: string) => `${PROJECTS_URL}${projectPathSlug(slug)}/`
+export const findProjectByPathSlug = (pathSlug: string) => orderedProjects.find((project) => projectPathSlug(project.slug) === pathSlug)
+
+// "Name -- subtitle" in the data is shown as a title and a subtitle.
+export const splitProjectName = (name: string) => name.split(/\s+--\s+/, 2) as [string, string | undefined]
+
+// The toolkit parts a project uses, for its detail page: the parts that list it, plus those used by every project.
+export const getProjectParts = (slug: string) =>
+  toolkit.filter((row) => row.used === null || row.used.some((project) => project.slug.toLowerCase() === slug.toLowerCase()))

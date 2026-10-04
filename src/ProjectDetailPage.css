@@ -1,0 +1,42 @@
+/* A project's own page. The sections reuse the projects bus (.sheet-bus, .sub-sheet, .sheet-box in App.css). */
+.detail-head { max-width: 800px; }
+.detail-kind { margin: 0 0 .9rem; color: var(--teal); font-family: var(--mono); font-size: var(--fs-sm); }
+.detail-head h1 { margin: 0; color: var(--navy); font-family: var(--text); font-size: clamp(2.4rem, 8vw, 4.6rem); font-weight: 700; letter-spacing: -.05em; line-height: .98; overflow-wrap: anywhere; }
+.detail-subtitle { margin: .7rem 0 0; color: var(--maroon); font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 650; line-height: 1.3; text-wrap: balance; }
+.detail-lead { max-width: 60ch; margin: 1.1rem 0 0; color: var(--muted); font-size: var(--fs-md); line-height: 1.6; }
+.detail-head .sheet-pins { margin-top: 1.3rem; }
+
+.detail-list,
+.detail-results,
+.detail-parts { margin: 0; padding: 0; list-style: none; }
+.detail-list li { position: relative; max-width: 66ch; padding-left: 1.4rem; color: var(--muted); font-size: var(--fs-base); line-height: 1.6; }
+.detail-list li + li { margin-top: .6rem; }
+/* A square pad, like a pin on the schematic */
+.detail-list li::before { position: absolute; top: .55em; left: 0; width: .55rem; height: .55rem; border: 2px solid var(--maroon); content: ''; }
+
+.detail-results li { display: grid; grid-template-columns: minmax(8.5rem, auto) minmax(0, 1fr); gap: .2rem 1.2rem; color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.5; }
+.detail-results li + li { margin-top: .75rem; }
+.detail-results time { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-sm); font-weight: 500; }
+.detail-results .upcoming-tag { margin-left: .5rem; vertical-align: .1em; }
+
+.detail-parts li { display: grid; grid-template-columns: 5.5rem minmax(0, 14rem) minmax(0, 1fr); align-items: baseline; gap: .15rem 1rem; }
+.detail-parts li + li { margin-top: .55rem; padding-top: .55rem; border-top: 1px solid var(--grid); }
+.part-group { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-xs); font-weight: 600; }
+.part-name { color: var(--navy); font-weight: 700; }
+.part-note { color: var(--muted); font-size: var(--fs-sm); }
+
+/* Cells wrap and stretch to fill the row; overlapping borders keep a single line between them */
+.detail-facts { display: flex; flex-wrap: wrap; margin: 0; padding: 1px 0 0 1px; }
+.detail-facts div { flex: 1 1 10.5rem; margin: -1px 0 0 -1px; padding: .7rem .9rem .8rem; border: 1px solid var(--navy); background: var(--paper); }
+.detail-facts dt { color: var(--muted); font-size: var(--fs-xs); }
+.detail-facts dd { margin: .3rem 0 0; color: var(--navy); font-size: var(--fs-sm); font-weight: 600; overflow-wrap: anywhere; }
+.detail-facts dd a { color: inherit; text-decoration-color: var(--green); text-underline-offset: 3px; }
+.detail-facts dd a:hover { color: var(--green); }
+
+.detail-outro { display: flex; flex-wrap: wrap; gap: 12px 18px; margin: 56px 0 0; padding-left: var(--indent); }
+
+@media (max-width: 700px) {
+  .detail-results li { grid-template-columns: minmax(0, 1fr); }
+  .detail-parts li { grid-template-columns: minmax(0, 1fr); }
+  .detail-outro { padding-left: 0; }
+}

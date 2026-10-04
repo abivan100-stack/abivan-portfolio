@@ -29,9 +29,9 @@ export function NewTabLink({ children, ...props }: AnchorHTMLAttributes<HTMLAnch
   )
 }
 
-type NavItem = { href: string; label: string; active?: boolean; current?: 'location' | 'page' }
+type NavItem = { href: string; label: string; active?: boolean; current?: 'location' | 'page' | 'true' }
 
-type SheetPage = 'home' | 'projects' | 'toolkit'
+type SheetPage = 'home' | 'projects' | 'project' | 'toolkit'
 
 function PageNavigation({ page, activeSection }: { page: SheetPage; activeSection: string | null }) {
   const isHome = page === 'home'
@@ -40,8 +40,9 @@ function PageNavigation({ page, activeSection }: { page: SheetPage; activeSectio
     {
       href: isHome ? '#work' : page === 'projects' ? '#all-projects' : PROJECTS_URL,
       label: 'Projects',
-      active: page === 'projects' || (isHome && activeSection === 'work'),
-      current: page === 'projects' ? 'page' : 'location',
+      active: page === 'projects' || page === 'project' || (isHome && activeSection === 'work'),
+      // A project's own page sits under Projects without being the Projects page itself
+      current: page === 'projects' ? 'page' : page === 'project' ? 'true' : 'location',
     },
     { href: page === 'toolkit' ? '#toolkit' : TOOLKIT_URL, label: 'Toolkit', active: page === 'toolkit', current: 'page' },
     { href: isHome ? '#contact' : `${HOME_URL}#contact`, label: 'Contact', active: isHome && activeSection === 'contact' },
@@ -105,11 +106,13 @@ export function PageFrame({ homeHref, page, activeSection = null, footer, childr
   )
 }
 
-export function SheetBreadcrumb({ current }: { current: 'projects' | 'toolkit' }) {
+// via is the page between home and this one, when there is one: a project's page sits under projects.
+export function SheetBreadcrumb({ current, via }: { current: string; via?: { label: string; href: string } }) {
   return (
     <nav className="sheet-path" aria-label="Breadcrumb">
       <a href={HOME_URL}>abivan</a>
       <span aria-hidden="true">/</span>
+      {via && <><a href={via.href}>{via.label}</a><span aria-hidden="true">/</span></>}
       <span aria-current="page">{current}</span>
     </nav>
   )
