@@ -48,7 +48,7 @@ function ProjectDetailPage({ project }: { project: Project }) {
     <PageFrame
       page="project"
       homeHref={HOME_URL}
-      footer={<><span>Sheet 2 of 3, drawn by Abivan</span><a href="#top">Back to top</a></>}
+      footer={<><span>Sheet 2 of 4, drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <article className="work project-detail section" aria-labelledby="detail-title" data-power-up>
         <SheetBreadcrumb current={title} via={{ label: 'projects', href: PROJECTS_URL }} />

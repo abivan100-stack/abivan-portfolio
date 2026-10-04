@@ -25,13 +25,14 @@ export default defineConfig({
   server: { proxy: apiProxy },
   preview: { proxy: apiProxy },
   build: {
-    // Real pages, so /projects/ and /toolkit/ work on any static host without rewrite rules.
+    // Real pages, so /projects/, /toolkit/ and /achievements/ work on any static host without rewrite rules.
     rollupOptions: {
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         projects: fileURLToPath(new URL('./projects/index.html', import.meta.url)),
         project: fileURLToPath(new URL('./project/index.html', import.meta.url)),
         toolkit: fileURLToPath(new URL('./toolkit/index.html', import.meta.url)),
+        achievements: fileURLToPath(new URL('./achievements/index.html', import.meta.url)),
       },
     },
   },

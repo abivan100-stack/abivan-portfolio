@@ -4,7 +4,7 @@ import { useNetFlash } from './lib/hooks'
 import { HOME_URL, PROJECTS_URL } from './lib/portfolio'
 import './App.css'
 
-// Sheet 3 of 3: the toolkit as a parts cabinet. Reached from the Toolkit link in the header.
+// Sheet 3 of 4: the toolkit as a parts cabinet. Reached from the Toolkit link in the header.
 // "Back to top" targets #top, which PageFrame (components/Sheet.tsx) puts on its outer frame.
 function ToolkitPage() {
   useNetFlash()
@@ -13,7 +13,7 @@ function ToolkitPage() {
     <PageFrame
       page="toolkit"
       homeHref={HOME_URL}
-      footer={<><span>Sheet 3 of 3, drawn by Abivan</span><a href="#top">Back to top</a></>}
+      footer={<><span>Sheet 3 of 4, drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className="toolkit section" id="toolkit" aria-labelledby="toolkit-title">
         <SheetBreadcrumb current="toolkit" />

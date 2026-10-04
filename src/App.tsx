@@ -1,7 +1,6 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { NetLabel, NewTabLink, PageFrame, ProjectCard } from './components/Sheet'
 import { GitHubActivity } from './components/GitHubActivity'
-import { Timeline } from './components/Timeline'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import { useToday } from './lib/useToday'
 import { type HeroView, VIEW_KEY } from './lib/hero-view'
@@ -25,11 +24,11 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
   usePowerUp()
   useNetFlash()
 
-  // The nav highlights the last section whose top has passed a line 35% down the viewport. The hero and the
-  // timeline have no nav link, so nothing is highlighted over them. Contact is too short to reach the line, so it wins
+  // The nav highlights the last section whose top has passed a line 35% down the viewport. The hero
+  // has no nav link, so nothing is highlighted over it. Contact is too short to reach the line, so it wins
   // once the page is scrolled to the bottom.
   useEffect(() => {
-    const ids = ['about', 'timeline', 'work', 'contact']
+    const ids = ['about', 'work', 'contact']
     let frame = 0
     const update = () => {
       frame = 0
@@ -40,7 +39,7 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
         if (section && section.getBoundingClientRect().top <= line) current = id
       }
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = 'contact'
-      setActiveSection(current === 'timeline' ? null : current)
+      setActiveSection(current)
     }
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update)
@@ -149,8 +148,6 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
         </div>
       </section>
 
-      <Timeline />
-
       <GitHubActivity />
 
       <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
@@ -179,7 +176,7 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
             <div><dt>GitHub</dt><dd><NewTabLink href={GITHUB_URL}>abivan100-stack</NewTabLink></dd></div>
             <div><dt>Location</dt><dd>Chennai, India</dd></div>
             <div><dt>Updated</dt><dd>{lastUpdated}</dd></div>
-            <div><dt>Sheet</dt><dd>1 of 3</dd></div>
+            <div><dt>Sheet</dt><dd>1 of 4</dd></div>
           </dl>
         </div>
       </section>

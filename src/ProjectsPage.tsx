@@ -6,7 +6,7 @@ import { GITHUB_URL, getProjectCategories, HOME_URL, orderedProjects, type Proje
 import './App.css'
 import './ProjectsPage.css'
 
-// Sheet 2 of 3: every project, as sub-sheets on one bus. Reached from "See all projects" on the home page.
+// Sheet 2 of 4: every project, as sub-sheets on one bus. Reached from "See all projects" on the home page.
 function ProjectsPage() {
   const [filter, setFilter] = useState<'All' | ProjectCategory>('All')
   const visibleProjects = filter === 'All'
@@ -29,7 +29,7 @@ function ProjectsPage() {
     <PageFrame
       page="projects"
       homeHref={HOME_URL}
-      footer={<><span>Sheet 2 of 3, drawn by Abivan</span><a href="#top">Back to top</a></>}
+      footer={<><span>Sheet 2 of 4, drawn by Abivan</span><a href="#top">Back to top</a></>}
     >
       <section className="work section" id="all-projects" aria-labelledby="all-projects-title" data-power-up>
         <SheetBreadcrumb current="projects" />

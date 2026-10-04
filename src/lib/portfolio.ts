@@ -13,6 +13,7 @@ export const EMAIL = 'abivan100@gmail.com'
 export const HOME_URL = import.meta.env.BASE_URL
 export const PROJECTS_URL = `${import.meta.env.BASE_URL}projects/`
 export const TOOLKIT_URL = `${import.meta.env.BASE_URL}toolkit/`
+export const ACHIEVEMENTS_URL = `${import.meta.env.BASE_URL}achievements/`
 // Committed in public/, since the host has no browser to print it. Regenerate with `npm run cv` after editing cv/abivan-vijay-cv.html.
 export const CV_URL = `${import.meta.env.BASE_URL}abivan-vijay-cv.pdf`
 

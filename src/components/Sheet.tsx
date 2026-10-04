@@ -11,6 +11,7 @@ import {
   HOME_URL,
   PROJECTS_URL,
   TOOLKIT_URL,
+  ACHIEVEMENTS_URL,
   type Project,
   type Recognition,
 } from '../lib/portfolio'
@@ -33,7 +34,7 @@ export function NewTabLink({ children, ...props }: AnchorHTMLAttributes<HTMLAnch
 
 type NavItem = { href: string; label: string; active?: boolean; current?: 'location' | 'page' | 'true' }
 
-type SheetPage = 'home' | 'projects' | 'project' | 'toolkit'
+type SheetPage = 'home' | 'projects' | 'project' | 'toolkit' | 'achievements'
 
 function PageNavigation({ page, activeSection }: { page: SheetPage; activeSection: string | null }) {
   const isHome = page === 'home'
@@ -46,6 +47,7 @@ function PageNavigation({ page, activeSection }: { page: SheetPage; activeSectio
       // A project's own page sits under Projects without being the Projects page itself
       current: page === 'projects' ? 'page' : page === 'project' ? 'true' : 'location',
     },
+    { href: page === 'achievements' ? '#timeline' : ACHIEVEMENTS_URL, label: 'Achievements', active: page === 'achievements', current: 'page' },
     { href: page === 'toolkit' ? '#toolkit' : TOOLKIT_URL, label: 'Toolkit', active: page === 'toolkit', current: 'page' },
     { href: isHome ? '#contact' : `${HOME_URL}#contact`, label: 'Contact', active: isHome && activeSection === 'contact' },
   ]
@@ -120,7 +122,7 @@ export function SheetBreadcrumb({ current, via }: { current: string; via?: { lab
   )
 }
 
-// A net label is the section heading. On the projects and toolkit pages it is the page's only h1.
+// A net label is the section heading. On the projects, toolkit and achievements pages it is the page's only h1.
 export function NetLabel({ id, level = 2, children }: { id: string; level?: 1 | 2; children: string }) {
   const Heading = level === 1 ? 'h1' : 'h2'
   return (

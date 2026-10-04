@@ -4,10 +4,11 @@ import App from './App'
 import ProjectDetailPage from './ProjectDetailPage'
 import ProjectsPage from './ProjectsPage'
 import ToolkitPage from './ToolkitPage'
+import AchievementsPage from './AchievementsPage'
 import { TodayProvider } from './lib/today'
 import { findProjectByPathSlug, orderedProjects, projectPathSlug, splitProjectName } from './lib/portfolio'
 
-export type PageName = 'home' | 'projects' | 'toolkit'
+export type PageName = 'home' | 'projects' | 'toolkit' | 'achievements'
 
 // One page per project, for the build to write out at /projects/<path>/.
 export const projectPages = orderedProjects.map((project) => ({
@@ -29,7 +30,9 @@ export function renderPage(page: PageName, today: string) {
     ? <App initialView="schematic" />
     : page === 'projects'
       ? <ProjectsPage />
-      : <ToolkitPage />
+      : page === 'toolkit'
+        ? <ToolkitPage />
+        : <AchievementsPage />
 
   return renderMarkup(content, today)
 }

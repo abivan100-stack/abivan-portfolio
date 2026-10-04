@@ -7,6 +7,7 @@ const pages = [
   { name: 'home', file: 'index.html' },
   { name: 'projects', file: 'projects/index.html' },
   { name: 'toolkit', file: 'toolkit/index.html' },
+  { name: 'achievements', file: 'achievements/index.html' },
 ]
 // The build cannot know each visitor's local date. Leave date-dependent labels off the static markup;
 // TodayProvider fills in the visitor's date immediately after hydration.

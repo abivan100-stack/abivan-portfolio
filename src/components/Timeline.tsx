@@ -1,16 +1,18 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { NetLabel } from './Sheet'
 import { formatDateRange, isUpcoming, milestones, projectPageHref } from '../lib/portfolio'
 import { useToday } from '../lib/useToday'
 
 // Results and recognition across every project, newest first, as test points on one wire.
-export function Timeline() {
+// level is 1 on the achievements page, where the timeline is the whole page; breadcrumb goes above the heading there.
+export function Timeline({ level = 2, breadcrumb }: { level?: 1 | 2; breadcrumb?: ReactNode }) {
   const today = useToday()
 
   return (
     <section className="timeline section" id="timeline" aria-labelledby="timeline-title" data-power-up>
+      {breadcrumb}
       <div className="timeline-head">
-        <NetLabel id="timeline-title">timeline</NetLabel>
+        <NetLabel id="timeline-title" level={level}>timeline</NetLabel>
         <p>Results and recognition, newest first. Each is a test point (TP) on the wire, numbered in the order it happened, like the probe points on a circuit board.</p>
       </div>
       {/* TP numbers count in date order, so a result keeps its number as newer ones are added in front */}
