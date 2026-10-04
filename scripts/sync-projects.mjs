@@ -9,6 +9,8 @@ const selectedRepositories = [
   'C.R.A.S.H',
   'Write-Wise',
   'rutu-gaikwad-fansite',
+  'kvdb',
+  'CR7-fan-page',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
 // Each project lists its results oldest first. dates holds the event day, or the first and last
@@ -149,6 +151,28 @@ const detailsBySlug = {
     overview: 'An AI-powered grammar analysis agent built with Flask and Claude, presented as a writing studio.',
     highlights: [],
   },
+  kvdb: {
+    overview: 'A key-value database written from scratch in Go. It runs as a server that speaks the Redis protocol, so existing Redis client libraries and redis-cli work with it unchanged.',
+    highlights: [
+      'Data is kept in one append-only file with an in-memory index, and compaction rewrites the file with only the current values.',
+      'Every record carries a CRC32, so a half-written record after a crash or power cut is detected on start-up and cut off.',
+      'Supports SET, GET, MSET, MGET, SCAN, atomic counters (INCR, DECR) and key expiry.',
+      'Optional password, TLS encryption and scheduled backup snapshots.',
+      'A web page shows the data file as it grows and compacts.',
+      'Covered by unit and end-to-end tests, and a fuzz test that feeds random bytes to the file reader.',
+    ],
+  },
+  'cr7-fan-page': {
+    overview: 'An unofficial fan tribute to Cristiano Ronaldo, set entirely in type: a scroll-driven page with honours and records, his career in six eras, a stat explorer and a free-kick game.',
+    highlights: [
+      'Type-only artwork in Anton, Archivo and JetBrains Mono, with no photography.',
+      'A loading screen, scroll-driven animation and a sound toggle.',
+      'Honours and records, and the career told in six eras, with every figure labelled as of 3 Jul 2026.',
+      'A stat explorer that measures each era.',
+      'A canvas free-kick game with a swinging power meter and a personal best saved on the device.',
+      'Support for reduced-motion preferences.',
+    ],
+  },
   'rutu-gaikwad-fansite': {
     overview: 'A scroll-driven fan tribute with an animated hero, live canvas visualisations, a trivia quiz and four colour themes. An unofficial fan project.',
     highlights: [
@@ -232,8 +256,18 @@ const readmeOverrides = {
   'write-wise': {
     name: 'WriteWise AI -- Writing Studio',
   },
+  // The README is in a subfolder of the repo, so GitHub finds none; the description comes from the repo.
+  kvdb: {
+    name: 'kvdb -- Key-Value Database in Go',
+  },
+  // The README is only a title, so the name, summary and note are written here from the page itself.
+  'cr7-fan-page': {
+    name: 'CR7 Fan Page -- Kinetic Type Tribute',
+    summary: 'An unofficial fan tribute to Cristiano Ronaldo, set entirely in type: a scroll-driven page with honours and records, his career in six eras, a stat explorer and a free-kick game.',
+    contextNote: 'An unofficial fan project, not affiliated with Cristiano Ronaldo or any club or organisation. Figures are as of 3 Jul 2026.',
+  },
 }
-const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'spike_fit', 'cr7-fan-page', 'abivan-portfolio', 'agrifly', 'pulse-fit', 'raghav-dev-portfolio']
+const excludedRepositories = ['epl-predictor', 'lebron-fan-page', 'spike_fit', 'abivan-portfolio', 'agrifly', 'pulse-fit', 'raghav-dev-portfolio']
 const outputPath = fileURLToPath(new URL('../src/data/projects.json', import.meta.url))
 const apiHeaders = {
   Accept: 'application/vnd.github+json',
