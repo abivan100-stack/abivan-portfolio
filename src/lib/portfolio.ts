@@ -47,12 +47,8 @@ export const lastUpdated = orderedProjects[0] ? formatDate(orderedProjects[0].up
 const FEATURED_SLUGS = new Set(['robotics-for-good', 'c.r.a.s.h', 'freshsense', 'vault', 'volt-ledger'])
 export const featuredProjects = orderedProjects.filter((project) => FEATURED_SLUGS.has(project.slug.toLowerCase()))
 
-// Links to a project's sheet: on the home page for featured projects, otherwise on the projects page.
-export const projectHref = (slug: string, onHome: boolean) =>
-  onHome && FEATURED_SLUGS.has(slug.toLowerCase()) ? `#${projectAnchor(slug)}` : `${PROJECTS_URL}#${projectAnchor(slug)}`
-
 // Every result across all projects, plus events not tied to a project (events.json), newest first,
-// for the timeline, so upcoming events and the latest results lead. A project milestone links to its sheet; an event has no slug and no link.
+// for the timeline, so upcoming events and the latest results lead. A project milestone links to its page; an event has no slug and no link.
 export const milestones: (Recognition & { slug: string | null; title: string })[] = [
   ...projects.flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
     ...recognition,

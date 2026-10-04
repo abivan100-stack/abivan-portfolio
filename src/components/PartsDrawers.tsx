@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PROJECTS_URL, projectHref, toolkit } from '../lib/portfolio'
+import { PROJECTS_URL, projectPageHref, toolkit } from '../lib/portfolio'
 
 const idFor = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
@@ -42,7 +42,7 @@ export function PartsDrawers() {
                       {row.used ? (
                         <ul>
                           {row.used.map((project) => (
-                            <li key={project.slug}><a href={projectHref(project.slug, false)}>{project.title}</a></li>
+                            <li key={project.slug}><a href={projectPageHref(project.slug)}>{project.title}</a></li>
                           ))}
                         </ul>
                       ) : (

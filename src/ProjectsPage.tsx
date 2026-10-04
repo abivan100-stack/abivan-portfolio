@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { GitHubActivity } from './components/GitHubActivity'
+import { Timeline } from './components/Timeline'
 import { NetLabel, NewTabLink, PageFrame, ProjectCard, SheetBreadcrumb } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
 import { readHashFragment } from './lib/hash-fragment'
@@ -51,11 +53,15 @@ function ProjectsPage() {
         <ol className="sheet-bus">
           {visibleProjects.map((project, index) => <ProjectCard project={project} index={index} headingLevel={2} key={project.slug} />)}
         </ol>
+      </section>
+      <Timeline />
+      <GitHubActivity />
+      <div className="work section">
         <div className="work-outro">
           <a className="hier-pin see-all back" href={HOME_URL}>Back to home</a>
           <p>More experiments live on <NewTabLink href={GITHUB_URL}>my GitHub</NewTabLink>.</p>
         </div>
-      </section>
+      </div>
     </PageFrame>
   )
 }

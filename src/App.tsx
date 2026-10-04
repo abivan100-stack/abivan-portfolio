@@ -1,11 +1,9 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { NetLabel, NewTabLink, PageFrame, ProjectCard } from './components/Sheet'
-import { GitHubActivity } from './components/GitHubActivity'
 import { usePowerUp, useNetFlash } from './lib/hooks'
-import { useToday } from './lib/useToday'
 import { type HeroView, VIEW_KEY } from './lib/hero-view'
 import {
-  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, featuredProjects, formatDateRange, isUpcoming, lastUpdated, milestones, orderedProjects, projectHref,
+  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, featuredProjects, lastUpdated, orderedProjects,
 } from './lib/portfolio'
 import './App.css'
 
@@ -17,17 +15,16 @@ const outputPins = [
   { num: 5, name: 'GitHub', href: GITHUB_URL, external: true },
 ]
 function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
-  const today = useToday()
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [heroView, setHeroView] = useState<HeroView>(initialView)
   usePowerUp()
   useNetFlash()
 
-  // The nav highlights the last section whose top has passed a line 35% down the viewport. The hero and
-  // the timeline have no nav link, so nothing is highlighted over them. Contact is too short to reach
-  // the line, so it wins once the page is scrolled to the bottom.
+  // The nav highlights the last section whose top has passed a line 35% down the viewport. The hero has
+  // no nav link, so nothing is highlighted over it. Contact is too short to reach the line, so it wins
+  // once the page is scrolled to the bottom.
   useEffect(() => {
-    const ids = ['about', 'timeline', 'work', 'contact']
+    const ids = ['about', 'work', 'contact']
     let frame = 0
     const update = () => {
       frame = 0
@@ -38,7 +35,7 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
         if (section && section.getBoundingClientRect().top <= line) current = id
       }
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = 'contact'
-      setActiveSection(current === 'timeline' ? null : current)
+      setActiveSection(current)
     }
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update)
@@ -118,32 +115,6 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
           <p>I study at Velammal Academy, Nolambur. Claude Code and Codex are my main coding tools; I use them to explore ideas, build software, and experiment with how hardware and code can work together.</p>
         </div>
       </section>
-
-      <section className="timeline section" id="timeline" aria-labelledby="timeline-title" data-power-up>
-        <div className="timeline-head">
-          <NetLabel id="timeline-title">timeline</NetLabel>
-          <p>Results and recognition, newest first. Each is a test point (TP) on the wire, numbered in the order it happened, like the probe points on a circuit board.</p>
-        </div>
-        {/* TP numbers count in date order, so a result keeps its number as newer ones are added in front */}
-        <ol className="tp-wire">
-          {milestones.map((milestone, index) => (
-            <li className={isUpcoming(milestone.dates, today) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
-              <span className="tp-ref" aria-hidden="true">TP{milestones.length - index}</span>
-              <span className="tp-mark" aria-hidden="true" />
-              <div className="tp-when">
-                <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>
-                {isUpcoming(milestone.dates, today) && <span className="upcoming-tag">Upcoming</span>}
-              </div>
-              {milestone.slug
-                ? <a className="tp-project" href={projectHref(milestone.slug, true)}>{milestone.title}</a>
-                : <span className="tp-project">{milestone.title}</span>}
-              <p>{milestone.text}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <GitHubActivity />
 
       <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
         <div className="work-head">
