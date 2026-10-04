@@ -17,12 +17,13 @@ This repository is the portfolio that shows them, drawn as a KiCad schematic.</p
 
 ## About the site
 
-The portfolio is drawn in the vocabulary of electronics design. Abivan is part **U1**, a chip you can view as a schematic symbol or as a fabricated board. Sections are joined by net labels, each project is a sub-sheet, results sit on the timeline as numbered test points, and the toolkit is a parts cabinet of labelled drawers.
+The portfolio is drawn in the vocabulary of electronics design. Abivan is part **U1**, a chip you can view as a schematic symbol or as a fabricated board. Sections are joined by net labels, each project is a sub-sheet, results sit on the projects page timeline as numbered test points, and the toolkit is a parts cabinet of labelled drawers.
 
 | Page | Address | Contents |
 | :-- | :-- | :-- |
-| Home | [`/`](https://abivan-dev.vercel.app/) | About, a timeline of results and upcoming events, featured projects, and contact details |
-| Projects | [`/projects/`](https://abivan-dev.vercel.app/projects/) | Every project, with Hardware and Software filters |
+| Home | [`/`](https://abivan-dev.vercel.app/) | An opening with what is coming next, a short about, the projects that came with a result, and contact details |
+| Projects | [`/projects/`](https://abivan-dev.vercel.app/projects/) | Every project as a short card with its live demo and source links, Hardware and Software filters, then the timeline of results and the GitHub activity calendar |
+| A project | `/projects/<name>/` | The full overview of one project, opened with Know more: what it does, results, the toolkit parts it uses and its links |
 | Toolkit | [`/toolkit/`](https://abivan-dev.vercel.app/toolkit/) | The boards, parts and software behind the projects, sorted into drawers that open to show where each is used |
 
 Every page is pre-rendered to static HTML at build time, so content is in place before any JavaScript runs and the host needs no rewrite rules. Layouts adapt to small screens, work with a keyboard, and respect reduced-motion preferences.

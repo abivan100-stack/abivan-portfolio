@@ -138,6 +138,12 @@
 }
 .chip-description { max-width: 32ch; margin: 1.3em 0 0; color: var(--ink); font-size: clamp(1.1rem, 1.7vw, 1.35rem); line-height: 1.5; }
 
+/* Under the chip: what is coming next, and the two ways on */
+.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; margin-top: 30px; padding-inline: var(--stub); }
+.hero-next { display: flex; flex: 1 1 22rem; flex-wrap: wrap; align-items: baseline; gap: .3rem .8rem; min-height: 1.6em; margin: 0; color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.45; }
+.hero-next time { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-sm); font-weight: 500; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px 14px; }
+
 /* Schematic / Board switch, like flipping between KiCad's two editors */
 .view-switch { display: flex; justify-content: flex-end; margin-bottom: 18px; }
 .view-switch button {
@@ -478,6 +484,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
   .site-header nav a { font-size: var(--fs-sm); }
 
   .hero { --stub: 30px; padding-block: 28px 64px; }
+  .hero-foot { padding-inline: 0; }
   .chip { padding: calc(var(--stub) + 22px) 0 0; }
   .chip-ref { top: 0; right: 0; left: auto; }
   .chip-value { position: static; display: block; margin-top: calc(var(--stub) + 12px); }

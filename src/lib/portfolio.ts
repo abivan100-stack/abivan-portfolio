@@ -43,8 +43,9 @@ export const projectAnchor = (slug: string) => `project-${slug}`
 export const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
 export const lastUpdated = orderedProjects[0] ? formatDate(orderedProjects[0].updatedAt) : ''
 
-// The home page shows these; every project is on the projects page.
-const FEATURED_SLUGS = new Set(['robotics-for-good', 'c.r.a.s.h', 'freshsense', 'vault', 'volt-ledger'])
+// The home page shows the projects that came with a result (a win, a prize, or a place in the next round)
+// and leaves out those that were only presented or have no result; every project is on the projects page.
+const FEATURED_SLUGS = new Set(['robotics-for-good', 'c.r.a.s.h', 'freshsense', 'vault'])
 export const featuredProjects = orderedProjects.filter((project) => FEATURED_SLUGS.has(project.slug.toLowerCase()))
 
 // Every result across all projects, plus events not tied to a project (events.json), newest first,
@@ -57,6 +58,10 @@ export const milestones: (Recognition & { slug: string | null; title: string })[
   }))),
   ...events.map((event) => ({ ...event, slug: null })),
 ].sort((a, b) => b.dates[0].localeCompare(a.dates[0]))
+
+// The nearest result still to come, for the home page's opening. There is none until the visitor's date is
+// known, the same as every other upcoming label.
+export const nextUp = (today: string) => milestones.filter((milestone) => isUpcoming(milestone.dates, today)).at(-1) ?? null
 
 // The toolkit (bill of materials): each part links to the projects that use it. Qty is the number of
 // those projects, so it stays right as projects are added; unknown slugs are skipped rather than

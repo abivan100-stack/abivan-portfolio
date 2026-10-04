@@ -1,9 +1,10 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { NetLabel, NewTabLink, PageFrame, ProjectCard } from './components/Sheet'
 import { usePowerUp, useNetFlash } from './lib/hooks'
+import { useToday } from './lib/useToday'
 import { type HeroView, VIEW_KEY } from './lib/hero-view'
 import {
-  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, featuredProjects, lastUpdated, orderedProjects,
+  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, featuredProjects, formatDateRange, lastUpdated, nextUp, orderedProjects,
 } from './lib/portfolio'
 import './App.css'
 
@@ -15,6 +16,8 @@ const outputPins = [
   { num: 5, name: 'GitHub', href: GITHUB_URL, external: true },
 ]
 function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
+  const today = useToday()
+  const upcoming = nextUp(today)
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const [heroView, setHeroView] = useState<HeroView>(initialView)
   usePowerUp()
@@ -106,6 +109,22 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
           <span className="chip-value">Robotics enthusiast and vibe coder</span>
           <span className="board-led" aria-hidden="true"><span className="led" />D1</span>
         </div>
+        <div className="hero-foot">
+          {/* Reserved height: the date is only known after hydration, so this fills in without moving the page */}
+          <p className="hero-next">
+            {upcoming && (
+              <>
+                <span className="upcoming-tag">Next up</span>
+                <time dateTime={upcoming.dates[0]}>{formatDateRange(upcoming.dates)}</time>
+                <span>{upcoming.title}: {upcoming.text}</span>
+              </>
+            )}
+          </p>
+          <div className="hero-actions">
+            <a className="hier-pin see-all hier-pin-primary" href="#work">See my projects</a>
+            <a className="hier-pin see-all" href="#contact">Get in touch</a>
+          </div>
+        </div>
       </section>
 
       <section className="about section" id="about" aria-labelledby="about-title">
@@ -119,7 +138,7 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
       <section className="work section" id="work" aria-labelledby="work-title" data-power-up>
         <div className="work-head">
           <NetLabel id="work-title">projects</NetLabel>
-          <p>Highlights, newest first.</p>
+          <p>The projects that came with a result, newest first.</p>
         </div>
         <ol className="sheet-bus">
           {featuredProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.slug} />)}
