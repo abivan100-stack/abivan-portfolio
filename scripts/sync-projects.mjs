@@ -225,7 +225,7 @@ const hiddenContextNotes = new Set(['vault'])
 // project renamed since its repo was created.
 // Live demos for repos with no website set on GitHub. A repo's own website link always wins.
 const fallbackDemoUrls = {
-  'c.r.a.s.h': 'https://c-r-a-s-h.onrender.com',
+  'c.r.a.s.h': 'https://crash-chennai.vercel.app/',
   'rutu-gaikwad-fansite': 'https://rutu-31.onrender.com',
   'write-wise': 'https://write-wise-wbxl.onrender.com',
 }
