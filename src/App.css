@@ -138,22 +138,8 @@
 }
 .chip-description { max-width: 30ch; margin: 1.3em 0 0; color: var(--ink); font-size: clamp(1.15rem, 2vw, 1.6rem); font-weight: 500; line-height: 1.4; }
 
-/* Proof under the chip: three results, each a link to its project. Cells wrap and stretch; overlapping borders keep one line between them. */
-.hero-results { display: flex; flex-wrap: wrap; margin: 22px var(--stub) 0; padding: 1px 0 0 1px; list-style: none; }
-.hero-results li { flex: 1 1 13rem; margin: -1px 0 0 -1px; border: 1px solid var(--navy); background: var(--paper); animation: result-in 460ms ease-out both; animation-delay: calc(1500ms + var(--i) * 130ms); }
-.hero-results a { display: grid; gap: .15rem; height: 100%; padding: .75rem 1rem .8rem; color: var(--navy); text-decoration: none; transition: background-color 160ms ease; }
-.hero-results a:hover,
-.hero-results a:focus-visible { background: var(--fill); }
-.result-label { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
-.result-title { color: var(--teal); font-size: clamp(1.35rem, 2.6vw, 1.9rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
-.result-detail { color: var(--muted); font-size: var(--fs-sm); line-height: 1.4; }
-.hero-results time { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-xs); }
-@keyframes result-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-/* Under the chip: what is coming next, and the two ways on */
+/* Under the chip: the two ways on */
 .hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; margin-top: 22px; padding-inline: var(--stub); }
-.hero-next { display: flex; flex: 1 1 22rem; flex-wrap: wrap; align-items: baseline; gap: .3rem .8rem; min-height: 1.6em; margin: 0; color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.45; }
-.hero-next time { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-sm); font-weight: 500; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px 14px; }
 
 /* Schematic / Board switch, like flipping between KiCad's two editors */
@@ -499,7 +485,6 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 
   .hero { --stub: 30px; padding-block: 28px 64px; }
   .hero-foot { padding-inline: 0; }
-  .hero-results { margin-inline: 0; }
   .chip { padding: calc(var(--stub) + 22px) 0 0; }
   .chip-ref { top: 0; right: 0; left: auto; }
   .chip-value { position: static; display: block; margin-top: calc(var(--stub) + 12px); }

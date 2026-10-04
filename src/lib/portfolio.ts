@@ -60,10 +60,6 @@ export const milestones: (Recognition & { slug: string | null; title: string })[
   ...events.map((event) => ({ ...event, slug: null })),
 ].sort((a, b) => b.dates[0].localeCompare(a.dates[0]))
 
-// The nearest result still to come, for the home page's opening. There is none until the visitor's date is
-// known, the same as every other upcoming label.
-export const nextUp = (today: string) => milestones.filter((milestone) => isUpcoming(milestone.dates, today)).at(-1) ?? null
-
 // The toolkit (bill of materials): each part links to the projects that use it. Qty is the number of
 // those projects, so it stays right as projects are added; unknown slugs are skipped rather than
 // rendered as broken links.
@@ -107,17 +103,3 @@ export const splitProjectName = (name: string) => name.split(/\s+--\s+/, 2) as [
 export const getProjectParts = (slug: string) =>
   toolkit.filter((row) => row.used === null || row.used.some((project) => project.slug.toLowerCase() === slug.toLowerCase()))
 
-// The results under the hero chip, the first thing a visitor sees. Each is looked up by project and the exact
-// result text, so a reworded or removed result drops out of the opening instead of showing stale copy.
-const HERO_RESULTS = [
-  { label: 'Winner', slug: 'freshsense', text: 'Winner, school-level expo', detail: 'School-level expo' },
-  { label: 'Selected', slug: 'c.r.a.s.h', text: 'Selected for the National Robotics Championship (NRC)', detail: 'National Robotics Championship' },
-  { label: 'Selected', slug: 'robotics-for-good', text: 'Selected for the national round, Senior category', detail: 'National round, Senior category' },
-]
-export const heroResults = HERO_RESULTS.flatMap(({ label, slug, text, detail }) => {
-  const project = projects.find((candidate) => candidate.slug.toLowerCase() === slug)
-  const recognition = (project?.recognitions as Recognition[] | undefined)?.find((candidate) => candidate.text === text)
-  return project && recognition
-    ? [{ label, detail, slug: project.slug, title: splitProjectName(project.name)[0], dates: recognition.dates }]
-    : []
-})
