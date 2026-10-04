@@ -24,7 +24,7 @@ The portfolio is drawn in the vocabulary of electronics design. Abivan is part *
 | Home | [`/`](https://abivan-dev.vercel.app/) | An opening with what is coming next, a short about, the GitHub activity calendar, the projects that came with a result, and contact details |
 | Projects | [`/projects/`](https://abivan-dev.vercel.app/projects/) | Every project as a short card with its live demo and source links, with Hardware and Software filters |
 | A project | `/projects/<name>/` | The full overview of one project, opened with Know more: what it does, results, the toolkit parts it uses and its links |
-| Achievements | [`/achievements/`](https://abivan-dev.vercel.app/achievements/) | The timeline of results and recognition across every project and event, newest first, as numbered test points |
+| Achievements | [`/achievements/`](https://abivan-dev.vercel.app/achievements/) | The timeline of results and recognition across every project and event, oldest first from TP1, as numbered test points |
 | Toolkit | [`/toolkit/`](https://abivan-dev.vercel.app/toolkit/) | The boards, parts and software behind the projects, sorted into drawers that open to show where each is used |
 
 Every page is pre-rendered to static HTML at build time, so content is in place before any JavaScript runs and the host needs no rewrite rules. Layouts adapt to small screens, work with a keyboard, and respect reduced-motion preferences.

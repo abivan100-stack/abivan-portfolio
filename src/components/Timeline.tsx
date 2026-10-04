@@ -3,7 +3,7 @@ import { NetLabel } from './Sheet'
 import { formatDateRange, isUpcoming, milestones, projectPageHref } from '../lib/portfolio'
 import { useToday } from '../lib/useToday'
 
-// Results and recognition across every project, newest first, as test points on one wire.
+// Results and recognition across every project, oldest first, as test points on one wire.
 // level is 1 on the achievements page, where the timeline is the whole page; breadcrumb goes above the heading there.
 export function Timeline({ level = 2, breadcrumb }: { level?: 1 | 2; breadcrumb?: ReactNode }) {
   const today = useToday()
@@ -13,13 +13,13 @@ export function Timeline({ level = 2, breadcrumb }: { level?: 1 | 2; breadcrumb?
       {breadcrumb}
       <div className="timeline-head">
         <NetLabel id="timeline-title" level={level}>timeline</NetLabel>
-        <p>Results and recognition, newest first. Each is a test point (TP) on the wire, numbered in the order it happened, like the probe points on a circuit board.</p>
+        <p>Results and recognition, oldest first. Each is a test point (TP) on the wire, numbered in the order it happened from TP1, like the probe points on a circuit board.</p>
       </div>
-      {/* TP numbers count in date order, so a result keeps its number as newer ones are added in front */}
+      {/* TP numbers count up in date order from TP1, so a result keeps its number as newer ones are added after it */}
       <ol className="tp-wire">
         {milestones.map((milestone, index) => (
           <li className={isUpcoming(milestone.dates, today) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
-            <span className="tp-ref" aria-hidden="true">TP{milestones.length - index}</span>
+            <span className="tp-ref" aria-hidden="true">TP{index + 1}</span>
             <span className="tp-mark" aria-hidden="true" />
             <div className="tp-when">
               <time dateTime={milestone.dates[0]}>{formatDateRange(milestone.dates)}</time>

@@ -49,8 +49,8 @@ export const lastUpdated = orderedProjects[0] ? formatDate(orderedProjects[0].up
 const FEATURED_SLUGS = new Set(['robotics-for-good', 'c.r.a.s.h', 'freshsense', 'vault'])
 export const featuredProjects = orderedProjects.filter((project) => FEATURED_SLUGS.has(project.slug.toLowerCase()))
 
-// Every result across all projects, plus events not tied to a project (events.json), newest first,
-// for the timeline, so upcoming events and the latest results lead. A project milestone links to its page; an event has no slug and no link.
+// Every result across all projects, plus events not tied to a project (events.json), oldest first,
+// for the timeline, so the first result is TP1 and upcoming events come last. A project milestone links to its page; an event has no slug and no link.
 export const milestones: (Recognition & { slug: string | null; title: string })[] = [
   ...projects.flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
     ...recognition,
@@ -58,7 +58,7 @@ export const milestones: (Recognition & { slug: string | null; title: string })[
     title: project.name.split(/\s+--\s+/, 1)[0],
   }))),
   ...events.map((event) => ({ ...event, slug: null })),
-].sort((a, b) => b.dates[0].localeCompare(a.dates[0]))
+].sort((a, b) => a.dates[0].localeCompare(b.dates[0]))
 
 // The toolkit (bill of materials): each part links to the projects that use it. Qty is the number of
 // those projects, so it stays right as projects are added; unknown slugs are skipped rather than
