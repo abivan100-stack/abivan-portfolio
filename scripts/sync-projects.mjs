@@ -15,7 +15,6 @@ const selectedRepositories = [
 // day of a multi-day event (YYYY-MM-DD).
 const recognitionsByRepository = {
   'c.r.a.s.h': [
-    { text: 'Qualified at the SRM zonals', dates: ['2026-07-11', '2026-07-12'] },
     { text: 'Selected for the National Robotics Championship (NRC)', dates: ['2026-07-22'] },
   ],
   'volt-ledger': [{ text: "Presented at the school's Shark Tank-style pitch competition, with all 14 branches competing", dates: ['2026-08-22'] }],
