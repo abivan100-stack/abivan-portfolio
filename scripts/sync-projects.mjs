@@ -112,6 +112,113 @@ const offlineProjects = [
     updatedAt: '2024-11-29T00:00:00Z',
   },
 ]
+// Card copy and detail-page highlights are curated here, not scraped: the card overview is a short
+// rewrite of the summary, and highlights only restate what the summary or the project's README says.
+// Keyed by lower-cased slug. Every project needs an overview (the sync fails without one).
+const detailsBySlug = {
+  'c.r.a.s.h': {
+    overview: 'A web app that maps road accidents across Greater Chennai, ranks the deadliest junctions by risk score and recommends an intervention for each hotspot.',
+    highlights: [
+      'Interactive hotspot map with severity-coded incident points and a ranked top-10 danger index.',
+      'Live filters for severity, time of day, weather, day of week and cause.',
+      'Analytics dashboards and a side-by-side comparison of any two areas.',
+      'Monte Carlo projection of an intervention over 1 to 24 months.',
+      'Citizen reporting with a map picker, synced across devices through MongoDB.',
+      'An AI data assistant that answers questions about the dataset, and PDF safety reports.',
+    ],
+  },
+  'volt-ledger': {
+    overview: 'A tamper-evident ledger for peer-to-peer rooftop-solar energy trading on a simulated neighbourhood microgrid. All data is simulated.',
+    highlights: [
+      'Every trade is sealed into a SHA-256 hash chain computed in the browser, so editing a past entry breaks verification from that block onward.',
+      'A live energy map of ten rooftops, with a dossier for each household.',
+      'A tamper test: retype any kWh figure and the chain visibly fails verification.',
+      'Metrics for carbon avoided, grid dependence, neighbourhood autonomy and fairness.',
+      'Ledger export as CSV or PDF, and shareable scenario links.',
+    ],
+  },
+  vault: {
+    overview: 'A cold-chain console for a vaccine shipment: simulated temperature readings, a hash-chained ledger that can be verified, and tracking from loading bay to handoff.',
+    highlights: [
+      'A temperature reading is simulated every 2 seconds against a safe corridor of 2 to 8 °C, and each reading is marked SAFE or EXCURSION.',
+      'Events are recorded to a hash-chained ledger that can be verified after the fact.',
+      'One box is tracked from loading bay to handoff, with a closing report.',
+      'Runs entirely in the browser by default. An optional backend adds organisations, roles, a protected copy of the ledger and Telegram alerts.',
+    ],
+  },
+  'write-wise': {
+    overview: 'An AI-powered grammar analysis agent built with Flask and Claude, presented as a writing studio.',
+    highlights: [],
+  },
+  'rutu-gaikwad-fansite': {
+    overview: 'A scroll-driven fan tribute with an animated hero, live canvas visualisations, a trivia quiz and four colour themes. An unofficial fan project.',
+    highlights: [
+      'A hero with a live particle field and a marquee that reacts to scroll speed.',
+      'A pinned, scroll-driven career timeline with animated stats.',
+      'A hand-drawn canvas shot map and a stats explorer with a radar chart.',
+      'A trivia quiz of 10 questions reshuffled from a larger pool each play.',
+      'Four colour themes, and support for reduced-motion preferences.',
+    ],
+  },
+  freshsense: {
+    overview: 'An ESP32 conveyor-belt build that checks food for spoilage with gas sensors, and shows FRESH or ROTTEN on an LCD and in the Blynk IoT cloud.',
+    highlights: [
+      'An IR sensor stops each item under two gas sensors.',
+      'Readings are compared against a clean-air baseline that the system calibrates at start-up.',
+      'The verdict, FRESH or ROTTEN, shows on an LCD.',
+      'The verdict is also sent to the Blynk IoT cloud for remote monitoring.',
+      'Built as a three-person team project.',
+    ],
+  },
+  'smart-guard': {
+    overview: 'An ESP32 smart-home model that puts RFID access control and temperature, humidity, soil-moisture, gas and rain sensing in one unit.',
+    highlights: [
+      'An RFID reader checks each card against a list of known IDs and shows a welcome message or Access Denied.',
+      'A DHT22 tracks temperature and humidity, a capacitive probe measures soil moisture, an MQ2 sensor reads gas levels and a rain sensor detects water.',
+      'Everything shows on an OLED screen, with the time from a DS3231 clock.',
+      'Built as a three-person team project.',
+    ],
+  },
+  'robotics-for-good': {
+    overview: 'A fully autonomous LEGO SPIKE Prime robot for the Robotics for Good Youth Challenge 2026–2027, built for a simulated public-health emergency response. Senior category.',
+    highlights: [
+      'The challenge is run by the ITU with make+learn.',
+      'Matches last 2 minutes and simulate a public-health emergency response.',
+      'The robot moves samples to a lab and closes a quarantine zone with upright beams.',
+      'It then delivers medical kits and colour-sorts patient cylinders to the hospital, primary care centres and recovery zone.',
+    ],
+  },
+  'sewer-gas-detector': {
+    overview: 'A two-unit ESP32 system that warns sanitation workers of hydrogen sulfide and methane in manholes, and relays the alarm to a supervisor over ESP-NOW.',
+    highlights: [
+      'A clip-on worker unit reads an MQ136 hydrogen sulfide sensor and an MQ4 methane sensor every second.',
+      'Levels show on an OLED, and a buzzer sounds at warning and danger thresholds.',
+      'Status is sent over ESP-NOW, with no router or internet needed, to a receiver held by the supervisor at the manhole opening.',
+      'The receiver raises its own alarm until the supervisor resets it.',
+    ],
+  },
+  'landmine-shoe': {
+    overview: 'An early prototype of a shoe that senses buried metal, using an ESP32 and a coil.',
+    highlights: [
+      'The ESP32 sends short pulses through a coil and reads the response.',
+      'It calibrates a baseline away from metal at start-up.',
+      'It then reports how far each new reading moves from that baseline.',
+    ],
+  },
+  'rfid-door-lock': {
+    overview: 'An Arduino door lock opened with RFID cards: a servo turns, and an LCD greets known card holders or shows Access Denied.',
+    highlights: [
+      'Scanning a known card turns a servo between open and locked.',
+      'The card holder is greeted by name on a 16x2 LCD.',
+      'An unknown card gets Access Denied.',
+    ],
+  },
+}
+const withDetails = (project) => {
+  const details = detailsBySlug[project.slug.toLowerCase()]
+  if (!details) throw new Error(`Add an overview and highlights for ${project.slug} to detailsBySlug.`)
+  return { ...project, ...details }
+}
 // README notes that describe repo housekeeping rather than the project, so they are not shown.
 const hiddenContextNotes = new Set(['vault'])
 // Wording that replaces what a README gives: a better description when the README is only a title, or a
@@ -332,7 +439,7 @@ try {
   }))
 
   await mkdir(path.dirname(outputPath), { recursive: true })
-  await writeFile(outputPath, `${JSON.stringify([...projects, ...offlineProjects], null, 2)}\n`)
+  await writeFile(outputPath, `${JSON.stringify([...projects, ...offlineProjects].map(withDetails), null, 2)}\n`)
   console.log(`Wrote ${projects.length + offlineProjects.length} verified project records to ${outputPath}`)
 } catch (error) {
   if (process.env.ALLOW_STALE_PROJECT_SNAPSHOT !== '1') {
@@ -347,7 +454,7 @@ try {
     const syncedRecords = snapshot.filter((project) => !offlineSlugs.has(project.slug))
     const syncedSlugs = new Set(syncedRecords.map((project) => project.slug.toLowerCase()))
     if (syncedRecords.length !== selectedRepositories.length || selectedRepositories.some((slug) => !syncedSlugs.has(slug.toLowerCase()))) throw error
-    await writeFile(outputPath, `${JSON.stringify([...syncedRecords, ...offlineProjects], null, 2)}\n`)
+    await writeFile(outputPath, `${JSON.stringify([...syncedRecords, ...offlineProjects].map(withDetails), null, 2)}\n`)
     console.warn(`GitHub refresh failed (${error.message}); retaining the committed project snapshot.`)
   }
 }
