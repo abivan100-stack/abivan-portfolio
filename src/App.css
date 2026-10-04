@@ -49,7 +49,7 @@
 .site-header nav a.is-active { color: var(--green); text-decoration-color: var(--green); }
 
 /* Hero: the U1 symbol */
-.hero { --stub: 56px; --edge: 3px; padding-block: clamp(40px, 7vw, 96px) clamp(24px, 4vw, 56px); }
+.hero { --stub: 56px; --edge: 3px; padding-block: clamp(8px, 1.5vw, 16px) clamp(24px, 4vw, 56px); }
 .chip { position: relative; padding: 30px var(--stub); }
 .chip-ref,
 .chip-value { position: absolute; left: var(--stub); color: var(--teal); font-size: var(--fs-sm); }
@@ -61,7 +61,7 @@
   position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  min-height: 440px;
+  min-height: 344px;
   border: var(--edge) solid var(--maroon);
   background: var(--fill);
 }
@@ -125,7 +125,7 @@
   100% { opacity: 0; transform: translateY(calc(var(--run) - 8px)); }
 }
 
-.chip-core { container-type: inline-size; min-width: 0; padding: clamp(32px, 5vw, 64px) clamp(12px, 3vw, 40px); display: flex; flex-direction: column; justify-content: center; }
+.chip-core { container-type: inline-size; min-width: 0; padding: clamp(24px, 3.5vw, 44px) clamp(12px, 3vw, 40px); display: flex; flex-direction: column; justify-content: center; }
 .chip-location { margin: 0 0 1.4em; color: var(--teal); font-family: var(--mono); font-size: var(--fs-sm); }
 .chip-core h1 {
   margin: 0;
@@ -136,16 +136,28 @@
   letter-spacing: -.06em;
   line-height: .92;
 }
-.chip-description { max-width: 32ch; margin: 1.3em 0 0; color: var(--ink); font-size: clamp(1.1rem, 1.7vw, 1.35rem); line-height: 1.5; }
+.chip-description { max-width: 30ch; margin: 1.3em 0 0; color: var(--ink); font-size: clamp(1.15rem, 2vw, 1.6rem); font-weight: 500; line-height: 1.4; }
+
+/* Proof under the chip: three results, each a link to its project. Cells wrap and stretch; overlapping borders keep one line between them. */
+.hero-results { display: flex; flex-wrap: wrap; margin: 22px var(--stub) 0; padding: 1px 0 0 1px; list-style: none; }
+.hero-results li { flex: 1 1 13rem; margin: -1px 0 0 -1px; border: 1px solid var(--navy); background: var(--paper); animation: result-in 460ms ease-out both; animation-delay: calc(1500ms + var(--i) * 130ms); }
+.hero-results a { display: grid; gap: .15rem; height: 100%; padding: .75rem 1rem .8rem; color: var(--navy); text-decoration: none; transition: background-color 160ms ease; }
+.hero-results a:hover,
+.hero-results a:focus-visible { background: var(--fill); }
+.result-label { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.result-title { color: var(--teal); font-size: clamp(1.35rem, 2.6vw, 1.9rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+.result-detail { color: var(--muted); font-size: var(--fs-sm); line-height: 1.4; }
+.hero-results time { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-xs); }
+@keyframes result-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 /* Under the chip: what is coming next, and the two ways on */
-.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; margin-top: 30px; padding-inline: var(--stub); }
+.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; margin-top: 22px; padding-inline: var(--stub); }
 .hero-next { display: flex; flex: 1 1 22rem; flex-wrap: wrap; align-items: baseline; gap: .3rem .8rem; min-height: 1.6em; margin: 0; color: var(--navy); font-size: var(--fs-base); font-weight: 600; line-height: 1.45; }
 .hero-next time { color: var(--maroon); font-family: var(--mono); font-size: var(--fs-sm); font-weight: 500; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px 14px; }
 
 /* Schematic / Board switch, like flipping between KiCad's two editors */
-.view-switch { display: flex; justify-content: flex-end; margin-bottom: 18px; }
+.view-switch { display: flex; justify-content: flex-end; margin-bottom: 12px; }
 .view-switch button {
   padding: 7px 14px;
   border: 1.5px solid var(--navy);
@@ -156,6 +168,8 @@
   cursor: pointer;
   transition: color 200ms ease, background-color 200ms ease;
 }
+/* Compact, so the chip and the results below it fit on the first screen */
+.view-switch button { padding-block: 5px; }
 .view-switch button + button { border-left: 0; }
 .view-switch button:hover { background: var(--fill); }
 .view-switch button[aria-pressed='true'] { color: var(--paper); background: var(--navy); }
@@ -485,6 +499,7 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 
   .hero { --stub: 30px; padding-block: 28px 64px; }
   .hero-foot { padding-inline: 0; }
+  .hero-results { margin-inline: 0; }
   .chip { padding: calc(var(--stub) + 22px) 0 0; }
   .chip-ref { top: 0; right: 0; left: auto; }
   .chip-value { position: static; display: block; margin-top: calc(var(--stub) + 12px); }

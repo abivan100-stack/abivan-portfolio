@@ -4,7 +4,7 @@ import { usePowerUp, useNetFlash } from './lib/hooks'
 import { useToday } from './lib/useToday'
 import { type HeroView, VIEW_KEY } from './lib/hero-view'
 import {
-  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, featuredProjects, formatDateRange, lastUpdated, nextUp, orderedProjects,
+  CV_URL, EMAIL, GITHUB_URL, PROJECTS_URL, projectPageHref, featuredProjects, formatDateRange, heroResults, lastUpdated, nextUp, orderedProjects,
 } from './lib/portfolio'
 import './App.css'
 
@@ -109,6 +109,18 @@ function App({ initialView = 'schematic' }: { initialView?: HeroView }) {
           <span className="chip-value">Robotics enthusiast and vibe coder</span>
           <span className="board-led" aria-hidden="true"><span className="led" />D1</span>
         </div>
+        <ul className="hero-results" aria-label="Recent results">
+          {heroResults.map((result, i) => (
+            <li key={result.slug} style={{ '--i': i } as CSSProperties}>
+              <a href={projectPageHref(result.slug)}>
+                <span className="result-label">{result.label}</span>
+                <span className="result-title">{result.title}</span>
+                <span className="result-detail">{result.detail}</span>
+                <time dateTime={result.dates[0]}>{formatDateRange(result.dates)}</time>
+              </a>
+            </li>
+          ))}
+        </ul>
         <div className="hero-foot">
           {/* Reserved height: the date is only known after hydration, so this fills in without moving the page */}
           <p className="hero-next">
