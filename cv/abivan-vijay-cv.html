@@ -30,7 +30,7 @@
         background: #fff;
         font-family: Barlow, 'Segoe UI', Arial, sans-serif;
         font-size: 9.4pt;
-        line-height: 1.34;
+        line-height: 1.36;
       }
       .page {
         display: flex;
@@ -73,11 +73,11 @@
       }
       /* The same space under the green rule as under each hairline */
       header + section { border-top: 0; margin-top: 0; }
-      h2 { color: var(--navy); font-size: 10.2pt; font-weight: 700; line-height: 1.3; }
+      h2 { color: var(--navy); font-size: 8.4pt; font-weight: 700; line-height: 1.6; letter-spacing: .07em; text-transform: uppercase; }
 
       /* Dated rows: text on the left, date right-aligned on the same baseline */
       .rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 5mm; }
-      .rows li + li { margin-top: .6mm; }
+      .rows li + li { margin-top: .7mm; }
       .when { flex: 0 0 auto; color: var(--muted); font-size: 8.8pt; white-space: nowrap; font-variant-numeric: tabular-nums; }
       .upcoming { color: var(--green); font-weight: 600; }
 
@@ -93,7 +93,7 @@
       /* Labels sit inline so each one shares a line with its own list, even in plain-text parsers */
       /* Lists break only between their semicolon groups, and wrapped ones split into two even lines */
       .skills li { text-wrap: balance; }
-      .skills li + li { margin-top: .5mm; }
+      .skills li + li { margin-top: .6mm; }
       .label { font-weight: 600; }
 
       /* Title-block footer, the one nod to the site's schematic sheets */
@@ -153,7 +153,7 @@
           <ul class="projects">
             <li>
               <div class="project-head"><p><span class="project-name">CRASH: Chennai Road Accident Safety Hub</span><span class="role">Team project</span></p><span class="stack">JavaScript, Python</span></div>
-              <p>Web app that maps road accidents across Greater Chennai, ranks junctions by a severity-weighted risk score and recommends interventions, with analytics dashboards, Monte Carlo simulation and an <span class="nowrap">AI data assistant</span>.</p>
+              <p>Web app that maps road accidents across Greater Chennai, ranks junctions by a severity-weighted risk score and recommends interventions, with analytics dashboards, Monte Carlo simulation and an AI data assistant.</p>
             </li>
             <li>
               <div class="project-head"><p><span class="project-name">Robotics for Good: Public-Health Response Robot</span><span class="role">Team project</span></p><span class="stack">LEGO SPIKE Prime</span></div>
@@ -175,12 +175,13 @@
       <section>
         <h2>Skills</h2>
         <ul class="skills">
-          <li><span class="label">Microcontrollers and robotics:</span> <span><span class="nowrap">Arduino, ESP32;</span> <span class="nowrap">LEGO SPIKE Prime (autonomous competition robots);</span> <span class="nowrap">servo control, sensor calibration</span></span></li>
+          <li><span class="label">Microcontrollers and robotics:</span> <span><span class="nowrap">Arduino, ESP32, LEGO SPIKE Prime;</span> <span class="nowrap">servo control</span></span></li>
           <li><span class="label">Sensors and modules:</span> <span><span class="nowrap">gas, climate and RFID sensors;</span> <span class="nowrap">displays, servos</span></span></li>
           <li><span class="label">Wireless and IoT:</span> <span><span class="nowrap">Wi-Fi, ESP-NOW (no-router device links);</span> <span class="nowrap">Blynk IoT cloud dashboards</span></span></li>
           <li><span class="label">Languages:</span> <span><span class="nowrap">JavaScript, TypeScript, Python, Arduino C++,</span> <span class="nowrap">HTML, CSS</span></span></li>
           <li><span class="label">Backends and data:</span> <span><span class="nowrap">Node.js, Express, FastAPI, Flask;</span> <span class="nowrap">MongoDB, Supabase;</span> <span class="nowrap">REST APIs, Claude API, Resend</span></span></li>
-          <li><span class="label">Web and product:</span> <span><span class="nowrap">analytics dashboards and maps;</span> <span class="nowrap">canvas and scroll-driven animation;</span> <span class="nowrap">hash-chained ledgers;</span> <span class="nowrap">Monte Carlo simulation</span></span></li>
+          <li><span class="label">Web:</span> <span><span class="nowrap">analytics dashboards and maps;</span> <span class="nowrap">canvas and scroll-driven animation</span></span></li>
+          <li><span class="label">Techniques:</span> <span><span class="nowrap">sensor calibration;</span> <span class="nowrap">hash-chained ledgers;</span> <span class="nowrap">Monte Carlo simulation</span></span></li>
           <li><span class="label">Tools:</span> <span><span class="nowrap">Claude Code, Codex;</span> <span class="nowrap">Git, GitHub;</span> <span class="nowrap">Render, Vercel</span></span></li>
         </ul>
       </section>
@@ -193,7 +194,7 @@
       <footer>
         <div>Title<b>Abivan Vijay, CV</b></div>
         <div>Portfolio<b><a href="https://abivan-dev.vercel.app/">abivan-dev.vercel.app</a></b></div>
-        <div>Updated<b>Sep 2026</b></div>
+        <div>Updated<b>Oct 2026</b></div>
         <div>Sheet<b>1 of 1</b></div>
       </footer>
     </div>
