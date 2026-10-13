@@ -17,7 +17,7 @@
     "language": "TypeScript",
     "topics": [],
     "stars": 2,
-    "updatedAt": "2026-09-28T16:22:31Z",
+    "updatedAt": "2026-10-12T08:42:20Z",
     "overview": "A tamper-evident ledger for peer-to-peer rooftop-solar energy trading on a simulated neighbourhood microgrid. All data is simulated.",
     "highlights": [
       "Every trade is sealed into a SHA-256 hash chain computed in the browser, so editing a past entry breaks verification from that block onward.",
@@ -73,7 +73,7 @@
     "language": "JavaScript",
     "topics": [],
     "stars": 2,
-    "updatedAt": "2026-10-04T15:42:50Z",
+    "updatedAt": "2026-10-06T11:36:15Z",
     "overview": "A web app that maps road accidents across Greater Chennai, ranks the deadliest junctions by risk score and recommends an intervention for each hotspot.",
     "highlights": [
       "Interactive hotspot map with severity-coded incident points and a ranked top-10 danger index.",
@@ -228,7 +228,7 @@
   {
     "slug": "robotics-for-good",
     "name": "Robotics for Good -- Autonomous Public-Health Response Robot",
-    "summary": "A fully autonomous LEGO SPIKE Prime robot for the Robotics for Good Youth Challenge 2026–2027, run by the ITU with make+learn. In 2-minute matches that simulate a public-health emergency response, it moves samples to a lab and closes a quarantine zone with upright beams, then delivers medical kits and colour-sorts patient cylinders to the hospital, primary care centres and recovery zone. Competing in the Senior category.",
+    "summary": "A fully autonomous LEGO SPIKE Prime robot for the Robotics for Good Youth Challenge 2026–2027, run by the ITU with make+learn. In 2-minute matches that simulate a public-health emergency response, it moves samples to a lab and closes a quarantine zone with upright beams, then delivers medical kits and colour-sorts patient cylinders to the hospital, primary care centres and recovery zone. Entered in the Senior category.",
     "contextNote": null,
     "recognitions": [
       {
@@ -238,7 +238,7 @@
         ]
       },
       {
-        "text": "National round in Delhi",
+        "text": "Semi-finalist at the national round in Delhi",
         "dates": [
           "2026-10-10"
         ]
