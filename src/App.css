@@ -566,3 +566,35 @@ a.tp-project:hover { text-decoration-color: currentColor; }
   .timeline.is-armed .tp-mark,
   .timeline.is-armed .tp-ref { opacity: 1; transform: none; }
 }
+
+/* Minimal motion: sub-pages fade up on load, cards follow the bus wires, hover states respond. */
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.sheet-path,
+.work-head,
+.toolkit-head,
+.detail-head > *,
+.work-outro,
+.detail-outro { animation: fade-up 360ms ease-out both; }
+.detail-head > :nth-child(2) { animation-delay: 60ms; }
+.detail-head > :nth-child(3) { animation-delay: 120ms; }
+.detail-head > :nth-child(n+4) { animation-delay: 180ms; }
+.sub-sheet .sheet-name,
+.sub-sheet .sheet-box { animation: fade-up 360ms ease-out both; animation-delay: calc(160ms + var(--n, 0) * 90ms); }
+.sheet-box { transition: border-color 160ms ease, box-shadow 200ms ease; }
+.sub-sheet:hover .sheet-box,
+.sub-sheet:focus-within .sheet-box { box-shadow: 0 0 0 3px var(--magenta-tint); }
+.hier-pin { transition: color 140ms ease, background-color 140ms ease, transform 140ms ease; }
+.hier-pin:hover { transform: translateX(3px); }
+.hier-pin.see-all.back:hover { transform: translateX(-3px); }
+.detail-facts div { transition: background-color 160ms ease; }
+.detail-facts div:hover,
+.tb-grid div:hover { background: var(--fill); }
+.tb-grid div { transition: background-color 160ms ease; }
+.detail-list li::before { transition: background-color 160ms ease; }
+.detail-list li:hover::before { background: var(--maroon); }
+.sheet-path a,
+.tb-email,
+.tb-cv a,
+.site-footer a,
+.work-outro p a { transition: color 160ms ease, background-color 160ms ease; }
+@media (hover: none) { .hier-pin:hover, .hier-pin.see-all.back:hover { transform: none; } }
