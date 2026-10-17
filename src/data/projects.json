@@ -17,7 +17,7 @@
     "language": "TypeScript",
     "topics": [],
     "stars": 2,
-    "updatedAt": "2026-10-12T08:42:20Z",
+    "updatedAt": "2026-10-14T15:32:47Z",
     "overview": "A tamper-evident ledger for peer-to-peer rooftop-solar energy trading on a simulated neighbourhood microgrid. All data is simulated.",
     "highlights": [
       "Every trade is sealed into a SHA-256 hash chain computed in the browser, so editing a past entry breaks verification from that block onward.",
@@ -73,7 +73,7 @@
     "language": "JavaScript",
     "topics": [],
     "stars": 2,
-    "updatedAt": "2026-10-06T11:36:15Z",
+    "updatedAt": "2026-10-15T19:05:43Z",
     "overview": "A web app that maps road accidents across Greater Chennai, ranks the deadliest junctions by risk score and recommends an intervention for each hotspot.",
     "highlights": [
       "Interactive hotspot map with severity-coded incident points and a ranked top-10 danger index.",
@@ -162,6 +162,28 @@
       "A stat explorer that measures each era.",
       "A canvas free-kick game with a swinging power meter and a personal best saved on the device.",
       "Support for reduced-motion preferences."
+    ]
+  },
+  {
+    "slug": "stub",
+    "name": "Stub -- Offline File Sharing Between Two Devices",
+    "summary": "Pass files straight between two devices on the same Wi-Fi or hotspot. No internet, no account, no server, nothing uploaded.",
+    "contextNote": null,
+    "recognitions": [],
+    "url": "https://github.com/abivan100-stack/stub",
+    "demoUrl": "https://stub-black.vercel.app",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "updatedAt": "2026-10-17T06:03:20Z",
+    "overview": "Passes files straight between two devices on the same Wi-Fi or hotspot, with no internet, account or server. Pairing is by QR code, and files go over WebRTC. Runs as a website and as an Android app.",
+    "highlights": [
+      "Devices pair by scanning a QR code on each device, and both screens show the same 6 digits to confirm no other device got in the middle.",
+      "Files travel in 64 KB chunks, each with a SHA-256 hash, and a ticket is stamped Verified only once every chunk checks out.",
+      "The website works offline after one visit. An Android app, built with Capacitor, adds a hotspot of its own, background transfers, the share sheet and NFC tap-to-pair.",
+      "A phone can serve Stub to a laptop that has never opened the site, using a short code or a typed address and PIN.",
+      "Covered by Vitest unit tests, Playwright end-to-end tests and Android JVM tests.",
+      "Styled as a printed ticket, with motion switched off under reduced-motion preferences."
     ]
   },
   {

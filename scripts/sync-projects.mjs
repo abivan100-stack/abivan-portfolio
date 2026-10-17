@@ -11,6 +11,7 @@ const selectedRepositories = [
   'rutu-gaikwad-fansite',
   'kvdb',
   'CR7-fan-page',
+  'stub',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
 // Each project lists its results oldest first. dates holds the event day, or the first and last
@@ -162,6 +163,17 @@ const detailsBySlug = {
       'Covered by unit and end-to-end tests, and a fuzz test that feeds random bytes to the file reader.',
     ],
   },
+  stub: {
+    overview: 'Passes files straight between two devices on the same Wi-Fi or hotspot, with no internet, account or server. Pairing is by QR code, and files go over WebRTC. Runs as a website and as an Android app.',
+    highlights: [
+      'Devices pair by scanning a QR code on each device, and both screens show the same 6 digits to confirm no other device got in the middle.',
+      'Files travel in 64 KB chunks, each with a SHA-256 hash, and a ticket is stamped Verified only once every chunk checks out.',
+      'The website works offline after one visit. An Android app, built with Capacitor, adds a hotspot of its own, background transfers, the share sheet and NFC tap-to-pair.',
+      'A phone can serve Stub to a laptop that has never opened the site, using a short code or a typed address and PIN.',
+      'Covered by Vitest unit tests, Playwright end-to-end tests and Android JVM tests.',
+      'Styled as a printed ticket, with motion switched off under reduced-motion preferences.',
+    ],
+  },
   'cr7-fan-page': {
     overview: 'An unofficial fan tribute to Cristiano Ronaldo, set entirely in type: a scroll-driven page with honours and records, his career in six eras, a stat explorer and a free-kick game.',
     highlights: [
@@ -255,6 +267,9 @@ const fallbackDemoUrls = {
 const readmeOverrides = {
   'write-wise': {
     name: 'WriteWise AI -- Writing Studio',
+  },
+  stub: {
+    name: 'Stub -- Offline File Sharing Between Two Devices',
   },
   // The README is in a subfolder of the repo, so GitHub finds none; the description comes from the repo.
   kvdb: {
