@@ -252,7 +252,15 @@
     "name": "AgriFly -- Live Field Monitoring Dashboard",
     "summary": "AgriFly - live IoT field monitoring dashboard for a drone-carried ESP32 sensor payload (Team 5)",
     "contextNote": null,
-    "recognitions": [],
+    "recognitions": [
+      {
+        "text": "Participated in the innovation contest at Vadiva, Velammal International School, Ponneri",
+        "dates": [
+          "2026-10-23",
+          "2026-10-25"
+        ]
+      }
+    ],
     "url": "https://github.com/abivan100-stack/agrifly-live",
     "demoUrl": "https://agrifly-live.vercel.app",
     "language": "JavaScript",
