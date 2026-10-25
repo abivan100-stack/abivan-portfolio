@@ -12,6 +12,7 @@ const selectedRepositories = [
   'kvdb',
   'CR7-fan-page',
   'stub',
+  'agrifly-live',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
 // Each project lists its results oldest first. dates holds the event day, or the first and last
@@ -174,6 +175,17 @@ const detailsBySlug = {
       'Styled as a printed ticket, with motion switched off under reduced-motion preferences.',
     ],
   },
+  'agrifly-live': {
+    overview: 'A live dashboard for field monitoring. An ESP32 on a drone-carried sensor payload sends its readings to a web dashboard, which shows each one as a live card and chart. Built as a team project.',
+    highlights: [
+      'Reads an MQ-135 gas sensor and an MPU6050 tilt sensor, with a BME280, BH1750, soil moisture and GPS planned next.',
+      'Two data sources, Blynk Cloud from any network or the ESP32 directly over local Wi-Fi, switched with a toggle on the dashboard.',
+      'Live updates are pushed to the page with Server-Sent Events, and the server polls a source only while a dashboard is showing it.',
+      'The Blynk token stays on the server, so the browser never sees it.',
+      'A public Vercel link shows Blynk Cloud data, and a laptop on the same Wi-Fi can run the full local mode.',
+      'A simulated ESP32 lets the dashboard be tested without hardware, and a new sensor needs one config entry plus a few lines of firmware.',
+    ],
+  },
   'cr7-fan-page': {
     overview: 'An unofficial fan tribute to Cristiano Ronaldo, set entirely in type: a scroll-driven page with honours and records, his career in six eras, a stat explorer and a free-kick game.',
     highlights: [
@@ -274,6 +286,9 @@ const readmeOverrides = {
   // The README is in a subfolder of the repo, so GitHub finds none; the description comes from the repo.
   kvdb: {
     name: 'kvdb -- Key-Value Database in Go',
+  },
+  'agrifly-live': {
+    name: 'AgriFly -- Live Field Monitoring Dashboard',
   },
   // The README is only a title, so the name, summary and note are written here from the page itself.
   'cr7-fan-page': {
