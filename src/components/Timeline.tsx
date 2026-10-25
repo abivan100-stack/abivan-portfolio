@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { NetLabel } from './Sheet'
-import { formatDateRange, isUpcoming, milestones, projectPageHref } from '../lib/portfolio'
+import { formatDateRange, isOngoing, isUpcoming, milestones, projectPageHref } from '../lib/portfolio'
 import { useToday } from '../lib/useToday'
 
 // Results and recognition across every project, oldest first, as test points on one wire.
@@ -18,7 +18,7 @@ export function Timeline({ level = 2, breadcrumb }: { level?: 1 | 2; breadcrumb?
       {/* TP numbers count up in date order from TP1, so a result keeps its number as newer ones are added after it */}
       <ol className="tp-wire">
         {milestones.map((milestone, index) => (
-          <li className={isUpcoming(milestone.dates, today) ? 'tp is-upcoming' : 'tp'} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
+          <li className={['tp', isUpcoming(milestone.dates, today) && 'is-upcoming', isOngoing(milestone.dates, today) && 'is-ongoing'].filter(Boolean).join(' ')} key={`${milestone.slug ?? milestone.title}-${milestone.dates[0]}`} style={{ '--n': index } as CSSProperties}>
             <span className="tp-ref" aria-hidden="true">TP{index + 1}</span>
             <span className="tp-mark" aria-hidden="true" />
             <div className="tp-when">

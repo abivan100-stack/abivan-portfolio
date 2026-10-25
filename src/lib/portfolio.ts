@@ -39,6 +39,9 @@ export const formatDateRange = ([first, last]: string[]) => {
 // build machine's timezone cannot mark an event incorrectly for a visitor.
 export const isUpcoming = (dates: string[], today: string) => Boolean(today) && dates[0] > today
 
+// An event whose first and last day include today is on now; its timeline point gets a green light.
+export const isOngoing = (dates: string[], today: string) => Boolean(today) && dates[0] <= today && today <= (dates.at(-1) ?? dates[0])
+
 export const projectAnchor = (slug: string) => `project-${slug}`
 
 export const orderedProjects = [...projects].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
