@@ -258,7 +258,8 @@
         "dates": [
           "2026-10-23",
           "2026-10-25"
-        ]
+        ],
+        "timeline": false
       }
     ],
     "url": "https://github.com/abivan100-stack/agrifly-live",

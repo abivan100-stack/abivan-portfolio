@@ -3,7 +3,7 @@ import events from '../data/events.json'
 import toolkitData from '../data/toolkit.json'
 
 export type Project = (typeof projects)[number]
-export type Recognition = { text: string; dates: string[] }
+export type Recognition = { text: string; dates: string[]; timeline?: boolean }
 export type ProjectCategory = 'Hardware' | 'Software'
 
 export const GITHUB_URL = 'https://github.com/abivan100-stack'
@@ -55,7 +55,7 @@ export const featuredProjects = orderedProjects.filter((project) => FEATURED_SLU
 // Every result across all projects, plus events not tied to a project (events.json), oldest first,
 // for the timeline, so the first result is TP1 and upcoming events come last. A project milestone links to its page; an event has no slug and no link.
 export const milestones: (Recognition & { slug: string | null; title: string })[] = [
-  ...projects.flatMap((project) => (project.recognitions as Recognition[]).map((recognition) => ({
+  ...projects.flatMap((project) => (project.recognitions as Recognition[]).filter((recognition) => recognition.timeline !== false).map((recognition) => ({
     ...recognition,
     slug: project.slug,
     title: project.name.split(/\s+--\s+/, 1)[0],

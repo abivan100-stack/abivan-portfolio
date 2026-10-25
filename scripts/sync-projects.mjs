@@ -23,7 +23,8 @@ const recognitionsByRepository = {
   ],
   'volt-ledger': [{ text: "Presented at the school's Shark Tank-style pitch competition, with all 14 branches competing", dates: ['2026-08-22'] }],
   vault: [{ text: 'Consolation prize at PEC Hacks 4.0 (hackathon)', dates: ['2026-08-29', '2026-08-30'] }],
-  'agrifly-live': [{ text: 'Participated in the innovation contest at Vadiva, Velammal International School, Ponneri', dates: ['2026-10-23', '2026-10-25'] }],
+  // timeline: false keeps this on the project's page only; the Vadiva point on the timeline comes from events.json.
+  'agrifly-live': [{ text: 'Participated in the innovation contest at Vadiva, Velammal International School, Ponneri', dates: ['2026-10-23', '2026-10-25'], timeline: false }],
 }
 // Projects without a public GitHub repository, listed as-is alongside the synced ones.
 const offlineProjects = [
