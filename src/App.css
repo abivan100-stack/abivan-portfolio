@@ -600,3 +600,14 @@ a.tp-project:hover { text-decoration-color: currentColor; }
 .site-footer a,
 .work-outro p a { transition: color 160ms ease, background-color 160ms ease; }
 @media (hover: none) { .hier-pin:hover, .hier-pin.see-all.back:hover { transform: none; } }
+
+/* Extra minimal motion: results and parts rows slide in as they scroll, press feedback on buttons. */
+.detail-results li,
+.detail-parts li { animation: fade-up 360ms ease-out both; animation-delay: calc(var(--i, 0) * 50ms + 240ms); }
+.detail-results li:nth-child(n+2), .detail-parts li:nth-child(n+2) { --i: 1; }
+.detail-results li:nth-child(n+3), .detail-parts li:nth-child(n+3) { --i: 2; }
+.detail-results li:nth-child(n+4), .detail-parts li:nth-child(n+4) { --i: 3; }
+.project-filter button { transition: color 140ms ease, background-color 140ms ease, transform 100ms ease; }
+.project-filter button:active { transform: scale(.96); }
+.part-name { transition: color 160ms ease; }
+.detail-parts li:hover .part-name { color: var(--teal); }
