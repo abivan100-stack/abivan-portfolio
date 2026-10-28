@@ -67,8 +67,8 @@
         grid-template-columns: var(--gutter) 1fr;
         /* Each heading sits on the baseline of its section's first line */
         align-items: baseline;
-        padding-top: 3.2mm;
-        margin-top: 3.2mm;
+        padding-top: 2.6mm;
+        margin-top: 2.6mm;
         border-top: .6pt solid var(--rule);
       }
       /* The same space under the green rule as under each hairline */
@@ -80,6 +80,7 @@
       .rows li + li { margin-top: .7mm; }
       .when { flex: 0 0 auto; color: var(--muted); font-size: 8.8pt; white-space: nowrap; font-variant-numeric: tabular-nums; }
       .upcoming { color: var(--green); font-weight: 600; }
+      .rows .soon { margin-top: 1.6mm; font-size: 8.8pt; }
 
       /* Projects */
       .projects > li + li { margin-top: 1.7mm; }
@@ -88,6 +89,7 @@
       .role { margin-left: 1.6mm; color: var(--muted); font-style: italic; }
       .stack { flex: 0 0 auto; color: var(--muted); font-size: 8.8pt; }
       .also { margin-top: 1.7mm; }
+      .outcome { color: var(--muted); font-size: 8.8pt; }
 
       /* Skills */
       /* Labels sit inline so each one shares a line with its own list, even in plain-text parsers */
@@ -128,24 +130,26 @@
 
       <section>
         <h2>Profile</h2>
-        <p>14-year-old builder who designs and builds ESP32 hardware, autonomous robots and full-stack web applications, and takes them to national competitions, hackathons and expos. Uses AI coding tools <span class="nowrap">(Claude Code,</span> Codex) to take ideas from prototype to working build quickly.</p>
+        <p>Designs and builds ESP32 hardware, autonomous robots and full-stack web applications, from sensors and firmware to the web interface, and takes them to national competitions, hackathons and expos.</p>
       </section>
 
       <section>
-        <h2>Achievements</h2>
+        <h2>Highlights</h2>
+        <div>
         <ul class="rows">
-          <li><span><b>National Robotics Championship 2026</b>, Delhi: drone soccer and <span class="nowrap">innovation contest</span></span><span class="when"><span class="upcoming">Upcoming</span> 20–21 Nov 2026</span></li>
-          <li><span><b>Vadiva</b>, Velammal International School, Ponneri: winners in robo soccer, robo retrieve and drone race; third place in robo race; innovation contest</span><span class="when">23–25 Oct 2026</span></li>
-          <li><span><b>Robotics for Good Youth Challenge</b> (ITU): semi-finalist, national round, Delhi</span><span class="when">10 Oct 2026</span></li>
-          <li><span><b>Robotics for Good Youth Challenge</b>: selected for the national round, Senior category</span><span class="when">Sep 2026</span></li>
+          <li><span><b>Vadiva</b>, Velammal International School, Ponneri: winners in Robo Soccer, Robo Retrieve and Drone Race; third place in Robo Race; Innovation Contest: top 25 of 100 teams</span><span class="when">23–25 Oct 2026</span></li>
+          <li><span><b>Robotics for Good Youth Challenge</b> (ITU): selected for the national round (Senior category), reached the semi-finals, Delhi</span><span class="when">Sep–Oct 2026</span></li>
           <li><span><b>PEC Hacks 4.0</b>: Consolation Prize, Vault (team lead)</span><span class="when">Aug 2026</span></li>
-          <li><span><b>School Shark Tank-style pitch competition</b>: presented Volt, with all 14 branches competing</span><span class="when">Aug 2026</span></li>
+          <li><span><b>School Shark Tank-style pitch competition</b>: presented Volt, representing my school branch</span><span class="when">Aug 2026</span></li>
           <li><span><b>Young Environmental Scientist 2026</b> (IWMA with IIT Madras): participant, Sewer Gas Detector</span><span class="when">Aug 2026</span></li>
-          <li><span><b>National Robotics Championship</b>: selected with CRASH, after qualifying at the SRM zonals</span><span class="when">Jul 2026</span></li>
+          <li><span><b>National Robotics Championship</b>: qualified with CRASH at the SRM zonals; Delhi round upcoming</span><span class="when">Jul 2026</span></li>
           <li><span><b>School-level expo</b>: Winner, FreshSense (team lead)</span><span class="when">Feb 2026</span></li>
           <li><span><b>RoboWunder International Competition</b>: participant at the Regionals, FreshSense (team lead)</span><span class="when">Jan 2026</span></li>
           <li><span><b>SRM University, Ramapuram expo</b>: participant, Smart Guard</span><span class="when">Nov 2025</span></li>
+          <li class="soon"><span><span class="upcoming">Upcoming:</span> <b>National Robotics Championship 2026</b>, Delhi: drone soccer and <span class="nowrap">innovation contest</span></span><span class="when">20–21 Nov 2026</span></li>
         </ul>
+        <p class="outcome also">A selection of recent highlights; more on <a href="https://abivan-dev.vercel.app/">abivan-dev.vercel.app</a>.</p>
+        </div>
       </section>
 
       <section>
@@ -155,18 +159,22 @@
             <li>
               <div class="project-head"><p><span class="project-name">CRASH: Chennai Road Accident Safety Hub</span><span class="role">Team project</span></p><span class="stack">JavaScript, Python</span></div>
               <p>Web app that maps road accidents across Greater Chennai, ranks junctions by a severity-weighted risk score and recommends interventions, with analytics dashboards, Monte Carlo simulation and an AI data assistant.</p>
+              <p class="outcome">Outcome: [TODO: number of junctions / accident records covered] · Link: [TODO: GitHub/demo link]</p>
             </li>
             <li>
               <div class="project-head"><p><span class="project-name">Robotics for Good: Public-Health Response Robot</span><span class="role">Team project</span></p><span class="stack">LEGO SPIKE Prime</span></div>
               <p>Fully autonomous robot that runs 2-minute simulated emergency-response missions: moving samples, closing a quarantine zone, delivering medical kits and colour-sorting patients.</p>
+              <p class="outcome">Outcome: [TODO: mission score or tasks completed] · Link: [TODO: GitHub/demo link]</p>
             </li>
             <li>
               <div class="project-head"><p><span class="project-name">Vault: Cold-Chain Integrity Console</span><span class="role">Team lead</span></p><span class="stack">TypeScript, ESP32</span></div>
               <p>Monitors a vaccine shipment’s cold chain and records every event to a hash-chained ledger that can be verified afterwards.</p>
+              <p class="outcome">Outcome: [TODO: e.g. number of events logged or verification time] · Link: [TODO: GitHub/demo link]</p>
             </li>
             <li>
               <div class="project-head"><p><span class="project-name">FreshSense: Food Spoilage Detection</span><span class="role">Team lead, 3 members</span></p><span class="stack">ESP32, Blynk IoT</span></div>
               <p>ESP32 conveyor system that classifies food as FRESH or ROTTEN using gas sensors and a <span class="nowrap">self-calibrated</span> baseline, with remote monitoring through Blynk IoT.</p>
+              <p class="outcome">Outcome: [TODO: classification accuracy or samples tested] · Link: [TODO: GitHub/demo link]</p>
             </li>
           </ul>
           <p class="also"><span class="label">Also built:</span> Sewer Gas Detector (ESP32 wearable for sanitation workers, <span class="nowrap">ESP-NOW</span>), Volt (<span class="nowrap">peer-to-peer</span> solar energy ledger, Open Energy Challenge&nbsp;2026), Smart Guard (team lead, 3 members), WriteWise AI (Flask + Claude), Landmine Detection Shoe (prototype), RFID&nbsp;Door&nbsp;Lock.</p>
@@ -176,9 +184,7 @@
       <section>
         <h2>Skills</h2>
         <ul class="skills">
-          <li><span class="label">Microcontrollers and robotics:</span> <span><span class="nowrap">Arduino, ESP32, LEGO SPIKE Prime;</span> <span class="nowrap">servo control</span></span></li>
-          <li><span class="label">Sensors and modules:</span> <span><span class="nowrap">gas, climate and RFID sensors;</span> <span class="nowrap">displays, servos</span></span></li>
-          <li><span class="label">Wireless and IoT:</span> <span><span class="nowrap">Wi-Fi, ESP-NOW (no-router device links);</span> <span class="nowrap">Blynk IoT cloud dashboards</span></span></li>
+          <li><span class="label">Hardware and IoT:</span> <span><span class="nowrap">Arduino, ESP32, LEGO SPIKE Prime;</span> <span class="nowrap">gas, climate and RFID sensors;</span> <span class="nowrap">displays, servos;</span> <span class="nowrap">Wi-Fi, ESP-NOW, Blynk IoT</span></span></li>
           <li><span class="label">Languages:</span> <span><span class="nowrap">JavaScript, TypeScript, Python, Arduino C++,</span> <span class="nowrap">HTML, CSS</span></span></li>
           <li><span class="label">Backends and data:</span> <span><span class="nowrap">Node.js, Express, FastAPI, Flask;</span> <span class="nowrap">MongoDB, Supabase;</span> <span class="nowrap">REST APIs, Claude API, Resend</span></span></li>
           <li><span class="label">Web:</span> <span><span class="nowrap">analytics dashboards and maps;</span> <span class="nowrap">canvas and scroll-driven animation</span></span></li>
