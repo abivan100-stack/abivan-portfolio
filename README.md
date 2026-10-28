@@ -79,7 +79,11 @@ The project list is committed, so the dev server works without a GitHub sync. Ru
 .
 ├── index.html              Home page entry
 ├── projects/index.html     Projects page entry
+├── project/index.html      Template for each /projects/<name>/ page
+├── achievements/index.html Achievements page entry
 ├── toolkit/index.html      Toolkit page entry
+├── api/                    Serverless function for the GitHub activity calendar
+├── docs/agents/            Issue tracker, triage label and domain notes for coding agents
 ├── cv/                     One-page CV, printed to PDF by npm run cv
 ├── public/                 Favicon, social preview image and CV PDF
 ├── scripts/
@@ -89,6 +93,8 @@ The project list is committed, so the dev server works without a GitHub sync. Ru
 └── src/
     ├── App.tsx             Home page
     ├── ProjectsPage.tsx    Projects page
+    ├── ProjectDetailPage.tsx  One project's overview
+    ├── AchievementsPage.tsx   Achievements timeline
     ├── ToolkitPage.tsx     Toolkit page
     ├── entry-server.tsx    Server entry used for pre-rendering
     ├── components/         Sheet frame, project sub-sheets and toolkit drawers
@@ -106,7 +112,7 @@ Built with [React](https://react.dev/), [TypeScript](https://www.typescriptlang.
     <td><sub>Drawn by</sub><br /><a href="https://github.com/abivan100-stack">Abivan Vijay</a></td>
   </tr>
   <tr>
-    <td><sub>Sheets</sub><br />Home, Projects, Toolkit</td>
+    <td><sub>Sheets</sub><br />Home, Projects, Achievements, Toolkit</td>
     <td><sub>Contact</sub><br /><a href="mailto:abivan100@gmail.com">abivan100@gmail.com</a></td>
   </tr>
 </table>
