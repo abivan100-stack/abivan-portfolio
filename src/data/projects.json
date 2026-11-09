@@ -26,7 +26,7 @@
       "typescript"
     ],
     "stars": 2,
-    "updatedAt": "2026-10-14T15:32:47Z",
+    "updatedAt": "2026-11-01T18:28:19Z",
     "overview": "A tamper-evident ledger for peer-to-peer rooftop-solar energy trading on a simulated neighbourhood microgrid. All data is simulated.",
     "highlights": [
       "Every trade is sealed into a SHA-256 hash chain computed in the browser, so editing a past entry breaks verification from that block onward.",
@@ -99,7 +99,7 @@
       "road-safety"
     ],
     "stars": 2,
-    "updatedAt": "2026-10-21T07:40:03Z",
+    "updatedAt": "2026-11-01T05:44:18Z",
     "overview": "A web app that maps road accidents across Greater Chennai, ranks the deadliest junctions by risk score and recommends an intervention for each hotspot.",
     "highlights": [
       "Interactive hotspot map with severity-coded incident points and a ranked top-10 danger index.",
@@ -286,6 +286,59 @@
       "The Blynk token stays on the server, so the browser never sees it.",
       "A public Vercel link shows Blynk Cloud data, and a laptop on the same Wi-Fi can run the full local mode.",
       "A simulated ESP32 lets the dashboard be tested without hardware, and a new sensor needs one config entry plus a few lines of firmware."
+    ]
+  },
+  {
+    "slug": "pitwatch-3d",
+    "name": "PitWatch 3D -- Open-Pit Mine Compliance Dashboard",
+    "summary": "A browser dashboard that helps a mining inspector check an open-pit mine against its permit from two terrain surveys. It shows the mine as a 3D model, measures what changed between a baseline and a current survey, and runs transparent rules that flag digging outside the lease, digging below the approved floor and dumping outside permitted zones.",
+    "contextNote": "Simulated data. The mine, the company and every survey are fictional, generated from a fixed seed. It supports inspection planning and does not replace a site visit.",
+    "recognitions": [],
+    "url": "https://github.com/abivan100-stack/pitwatch-3d",
+    "demoUrl": "https://pitwatch-3d.vercel.app",
+    "language": "TypeScript",
+    "topics": [
+      "3d-visualization",
+      "compliance",
+      "dashboard",
+      "mining",
+      "react",
+      "react-three-fiber",
+      "threejs",
+      "typescript"
+    ],
+    "stars": 0,
+    "updatedAt": "2026-10-30T13:36:22Z",
+    "overview": "A browser dashboard that checks a simulated open-pit mine against its permit. It compares two terrain surveys on a 3D model and flags digging outside the lease, below the approved floor and dumping outside permitted zones.",
+    "highlights": [
+      "A 3D model of the mine with a simulated aerial image, elevation tint, contours, vertical exaggeration and oblique, top and pit camera views.",
+      "Three transparent permit rules (boundary, depth and dumping) run on the measured change between surveys, and flagged cells are grouped into findings with an area, volume and severity.",
+      "Every elevation is shown with its survey uncertainty, and every value is tagged measured, derived, simulated or unverified.",
+      "Inspect and Measure tools read a point or the distance, grade and elevation profile between two points.",
+      "Findings export as CSV or PDF, and a link opens the map on any finding.",
+      "The terrain is generated in Web Workers, and the rule engine is pure TypeScript covered by unit and Playwright tests."
+    ]
+  },
+  {
+    "slug": "chennai-game",
+    "name": "Auto Anna -- Open-World Auto Rickshaw Game",
+    "summary": "A browser open-world game set in Mylapore, Chennai. You inherit your uncle's old auto rickshaw: pick up passengers, earn fares, and pay off the auto before the moneylender takes it. The day/night cycle follows real Chennai time (IST).",
+    "contextNote": "An early prototype.",
+    "recognitions": [],
+    "url": "https://github.com/abivan100-stack/chennai-game",
+    "demoUrl": "https://chennai-game.vercel.app",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "updatedAt": "2026-11-07T17:26:25Z",
+    "overview": "A browser open-world game set in Mylapore, Chennai. You inherit your uncle's old auto rickshaw, pick up passengers, earn fares and pay off the auto before the moneylender takes it.",
+    "highlights": [
+      "Built with Vite, TypeScript, three.js and Rapier physics, and runs as a static site.",
+      "The day and night cycle follows real Chennai time (IST), and the weather is live from Chennai.",
+      "Walk around Mylapore, get into the auto and drive it, with a horn and headlights that come on at dusk.",
+      "An in-game phone for ride orders, a map, a wallet to repay the loan, messages and the weather.",
+      "Food at hotels, tiffin centres and a supermarket, and a lighthouse you can climb.",
+      "An early prototype."
     ]
   },
   {

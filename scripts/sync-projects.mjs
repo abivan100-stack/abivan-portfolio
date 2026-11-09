@@ -13,6 +13,8 @@ const selectedRepositories = [
   'CR7-fan-page',
   'stub',
   'agrifly-live',
+  'pitwatch-3d',
+  'chennai-game',
 ]
 // Results and recognition are not on GitHub, so they are kept here and merged into each synced record.
 // Each project lists its results oldest first. dates holds the event day, or the first and last
@@ -188,6 +190,28 @@ const detailsBySlug = {
       'A simulated ESP32 lets the dashboard be tested without hardware, and a new sensor needs one config entry plus a few lines of firmware.',
     ],
   },
+  'pitwatch-3d': {
+    overview: 'A browser dashboard that checks a simulated open-pit mine against its permit. It compares two terrain surveys on a 3D model and flags digging outside the lease, below the approved floor and dumping outside permitted zones.',
+    highlights: [
+      'A 3D model of the mine with a simulated aerial image, elevation tint, contours, vertical exaggeration and oblique, top and pit camera views.',
+      'Three transparent permit rules (boundary, depth and dumping) run on the measured change between surveys, and flagged cells are grouped into findings with an area, volume and severity.',
+      'Every elevation is shown with its survey uncertainty, and every value is tagged measured, derived, simulated or unverified.',
+      'Inspect and Measure tools read a point or the distance, grade and elevation profile between two points.',
+      'Findings export as CSV or PDF, and a link opens the map on any finding.',
+      'The terrain is generated in Web Workers, and the rule engine is pure TypeScript covered by unit and Playwright tests.',
+    ],
+  },
+  'chennai-game': {
+    overview: "A browser open-world game set in Mylapore, Chennai. You inherit your uncle's old auto rickshaw, pick up passengers, earn fares and pay off the auto before the moneylender takes it.",
+    highlights: [
+      'Built with Vite, TypeScript, three.js and Rapier physics, and runs as a static site.',
+      'The day and night cycle follows real Chennai time (IST), and the weather is live from Chennai.',
+      'Walk around Mylapore, get into the auto and drive it, with a horn and headlights that come on at dusk.',
+      'An in-game phone for ride orders, a map, a wallet to repay the loan, messages and the weather.',
+      'Food at hotels, tiffin centres and a supermarket, and a lighthouse you can climb.',
+      'An early prototype.',
+    ],
+  },
   'cr7-fan-page': {
     overview: 'An unofficial fan tribute to Cristiano Ronaldo, set entirely in type: a scroll-driven page with honours and records, his career in six eras, a stat explorer and a free-kick game.',
     highlights: [
@@ -291,6 +315,16 @@ const readmeOverrides = {
   },
   'agrifly-live': {
     name: 'AgriFly -- Live Field Monitoring Dashboard',
+  },
+  // The README opens with the demo link, so the summary and the simulated-data note are written here.
+  'pitwatch-3d': {
+    name: 'PitWatch 3D -- Open-Pit Mine Compliance Dashboard',
+    summary: 'A browser dashboard that helps a mining inspector check an open-pit mine against its permit from two terrain surveys. It shows the mine as a 3D model, measures what changed between a baseline and a current survey, and runs transparent rules that flag digging outside the lease, digging below the approved floor and dumping outside permitted zones.',
+    contextNote: 'Simulated data. The mine, the company and every survey are fictional, generated from a fixed seed. It supports inspection planning and does not replace a site visit.',
+  },
+  'chennai-game': {
+    name: 'Auto Anna -- Open-World Auto Rickshaw Game',
+    contextNote: 'An early prototype.',
   },
   // The README is only a title, so the name, summary and note are written here from the page itself.
   'cr7-fan-page': {
